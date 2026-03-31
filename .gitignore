@@ -1,0 +1,12 @@
+node_modules/
+*.log
+.env
+.env.local
+.env.*.local
+apps/*/.env
+apps/*/.env.local
+apps/*/.env.production
+apps/*/.next/
+apps/cms/.strapi/
+apps/*/dist/
+apps/*/build/

@@ -1,0 +1,19 @@
+{
+  "name": "basis",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "setup": "npm install --workspaces --include-workspace-root",
+    "dev": "npm run db:start && concurrently -k -n CMS,WEB -c green,cyan \"npm run dev:cms\" \"npm run dev:web\"",
+    "dev:cms": "npm --workspace apps/cms run develop",
+    "dev:web": "npm --workspace apps/web run dev",
+    "db:start": "docker start basis-postgres >/dev/null 2>&1 || docker compose up -d postgres",
+    "db:stop": "docker stop basis-postgres",
+    "db:logs": "docker logs -f basis-postgres"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
