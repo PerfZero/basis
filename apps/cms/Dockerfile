@@ -19,6 +19,7 @@ COPY --from=builder /app/database ./database
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/tsconfig.json ./tsconfig.json
 COPY --from=builder /app/favicon.png ./favicon.png
 EXPOSE 1337
 CMD ["npm", "run", "start"]
