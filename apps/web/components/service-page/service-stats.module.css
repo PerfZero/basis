@@ -100,13 +100,28 @@
 }
 
 @media (max-width: 600px) {
+  .section {
+    padding: 56px 16px;
+  }
+
+  .container {
+    padding: 24px 12px;
+    gap: 20px;
+  }
+
+  .title {
+    font-size: 26px;
+    text-align: left;
+    width: 100%;
+  }
+
   .thLabel,
   .thBefore,
   .thAfter,
   .tdLabel,
   .tdBefore,
   .tdAfter {
-    padding: 12px 12px;
+    padding: 10px 8px;
     font-size: 13px;
   }
 }

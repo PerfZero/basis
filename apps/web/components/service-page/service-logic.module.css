@@ -139,13 +139,37 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 56px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
   .container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 20px;
   }
 
   .imageWrap {
-    max-width: 280px;
+    max-width: 260px;
     margin: 0 auto;
+  }
+
+  .slideTitle {
+    font-size: 24px;
+  }
+
+  .slideDesc {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 4px 4px 4px 18px;
   }
 }

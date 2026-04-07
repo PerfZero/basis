@@ -115,8 +115,71 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 56px 16px;
+  }
+
   .container {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 20px;
+  }
+
+  .left {
+    height: auto;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  .title {
+    max-width: none;
+    text-align: left;
+    font-size: 26px;
+  }
+
+  .titleIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+  }
+
+  .titleIconImg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .viewport {
+    height: auto;
+    padding: 0;
+    mask-image: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .item {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none !important;
+    opacity: 1 !important;
+    z-index: auto !important;
+    border: 1px solid rgba(11, 122, 102, 0.2);
+    background: #fff;
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+
+  .itemTitle {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .itemDesc {
+    font-size: 14px;
+  }
+
+  .itemInactive:hover {
+    opacity: 1 !important;
   }
 }

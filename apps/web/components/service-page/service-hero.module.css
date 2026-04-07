@@ -167,3 +167,61 @@
   background: var(--accent);
   flex-shrink: 0;
 }
+
+@media (max-width: 900px) {
+  .section {
+    min-height: auto;
+    padding: 56px 16px 40px;
+  }
+
+  .inner {
+    gap: 16px;
+    max-width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 16px;
+  }
+
+  .divider {
+    width: min(70vw, 220px);
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 145%;
+  }
+
+  .buttons {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btnPrimary {
+    padding: 6px 6px 6px 20px;
+  }
+
+  .btnSecondary {
+    padding: 12px 20px;
+  }
+
+  .badges {
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .badge {
+    font-size: 12px;
+  }
+}

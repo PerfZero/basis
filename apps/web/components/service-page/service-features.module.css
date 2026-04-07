@@ -82,7 +82,35 @@
 }
 
 @media (max-width: 640px) {
+  .section {
+    padding: 56px 16px;
+  }
+
+  .container {
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .title {
+    font-size: 26px;
+    text-align: left;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .card {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardDesc {
+    font-size: 14px;
   }
 }

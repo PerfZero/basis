@@ -170,17 +170,70 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 56px 16px;
+  }
+
+  .title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
   .body {
     grid-template-columns: 1fr;
-    padding: 32px 24px;
+    padding: 24px 16px 16px;
+    gap: 20px;
   }
 
   .tabs {
-    padding: 0 24px;
+    padding: 0 10px;
+    justify-content: flex-start;
     overflow-x: auto;
+    gap: 4px;
+    scrollbar-width: none;
+  }
+
+  .tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab {
+    white-space: nowrap;
+    min-width: max-content;
+    padding: 14px 10px 12px;
+    font-size: 14px;
   }
 
   .right {
+    position: static;
     order: -1;
+    justify-content: center;
+    margin-bottom: 4px;
+  }
+
+  .image {
+    width: 100%;
+    max-width: 260px;
+    margin-left: 0;
+  }
+
+  .subtitle {
+    font-size: 18px;
+  }
+
+  .challenge {
+    font-size: 14px;
+    padding-top: 12px;
+  }
+
+  .featureText {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 6px 6px 6px 16px;
   }
 }

@@ -4,14 +4,17 @@ const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
 export async function POST(request: Request) {
-  const body = await request.json().catch(() => null) as { name?: string; phone?: string; consent?: boolean } | null;
+  const body = await request.json().catch(() => null) as
+    | { name?: string; phone?: string; consent?: boolean; data?: { name?: string; phone?: string; consent?: boolean } }
+    | null;
   if (!body) {
     return NextResponse.json({ error: "Некорректное тело запроса." }, { status: 400 });
   }
 
-  const name = String(body.name ?? "").trim();
-  const phone = String(body.phone ?? "").trim();
-  const consent = Boolean(body.consent);
+  const src = body.data ?? body;
+  const name = String(src.name ?? "").trim();
+  const phone = String(src.phone ?? "").trim();
+  const consent = Boolean(src.consent);
 
   if (!name || !phone) {
     return NextResponse.json({ error: "Заполните обязательные поля." }, { status: 400 });

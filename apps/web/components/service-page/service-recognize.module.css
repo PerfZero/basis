@@ -171,13 +171,61 @@
 }
 
 @media (max-width: 768px) {
-  .card {
-    width: 220px;
-    min-height: 240px;
+  .section {
+    padding: 56px 0 56px 16px;
   }
 
-  .card:hover,
-  .cardExpanded {
-    width: 280px;
+  .title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    padding-right: 16px;
+    text-align: left;
+  }
+
+  .track {
+    justify-content: flex-start;
+    padding-right: 16px;
+    gap: 10px;
+  }
+
+  .card {
+    width: min(86vw, 340px);
+    min-height: 240px;
+    padding: 14px;
+  }
+
+  .cardWithImage {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cardText {
+    width: auto;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+  }
+
+  .cardBody {
+    margin-top: 10px;
+    gap: 10px;
+  }
+
+  .blocs {
+    width: 100%;
+    opacity: 1;
+    min-height: 140px;
+    margin-top: 12px;
+  }
+
+  .blocs img {
+    width: min(100%, 180px);
+  }
+
+  .card:hover .blocs,
+  .cardExpanded .blocs {
+    width: 100%;
+    opacity: 1;
   }
 }
