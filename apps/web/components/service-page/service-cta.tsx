@@ -2,8 +2,7 @@ import Image from "next/image";
 import type { ServicePageData } from "@/lib/strapi/service-page";
 import s from "./service-cta.module.css";
 
-const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
-const CTA_IMAGE_URL = `${STRAPI_URL}/uploads/logo_blurpng_c2af2874a6.png`;
+const CTA_IMAGE_URL = "/uploads/logo_blurpng_c2af2874a6.png";
 
 type Props = Pick<
   NonNullable<ServicePageData>,
