@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "stats_blocks",
+  "info": {
+    "singularName": "stats-block",
+    "pluralName": "stats-blocks",
+    "displayName": "Блок статистики",
+    "description": "Ряд карточек: фото и/или показатели"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "cards": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.photo-card",
+        "blocks.stat-card"
+      ],
+      "required": false
+    }
+  }
+}

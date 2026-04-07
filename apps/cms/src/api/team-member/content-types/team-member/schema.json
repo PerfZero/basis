@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "team_members",
+  "info": {
+    "singularName": "team-member",
+    "pluralName": "team-members",
+    "displayName": "Команда — участник",
+    "description": "Участники команды"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "role": { "type": "string", "required": true },
+    "description": { "type": "string" },
+    "phone": { "type": "string" },
+    "email": { "type": "email" },
+    "contactHandle": { "type": "string" },
+    "photo": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images"] },
+    "qrCode": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images"] },
+    "sortOrder": { "type": "integer", "default": 0 }
+  }
+}

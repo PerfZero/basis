@@ -1,0 +1,618 @@
+.section {
+  background: #fff;
+  padding: 60px 120px 80px;
+}
+
+.inner {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #000;
+}
+
+.subheading {
+  width: min(846px, 100%);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #000;
+}
+
+.contentRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.cardsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  height: 370px;
+  border-radius: 20px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  background: linear-gradient(346deg, rgba(246, 245, 241, 0.4) 0%, #f6f5f1 100%);
+  border: 1px solid rgba(189, 227, 220, 0.6);
+}
+
+.cardInfo {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: transparent;
+}
+
+.role {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #0b7a66;
+}
+
+.name {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #3c4a50;
+}
+
+.line {
+  margin-top: 10px;
+  width: 245px;
+  max-width: 100%;
+  height: 1px;
+  background: #bde3dc;
+}
+
+.description {
+  margin-top: 10px;
+  width: 241px;
+  max-width: 100%;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #3c4a50;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.contactLabel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #0b7a66;
+}
+
+.phone {
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #3c4a50;
+}
+
+.email {
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #3c4a50;
+}
+
+.handle {
+  margin-top: 2px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #0b7a66;
+}
+
+.qrPlaceholder {
+  margin-top: 8px;
+  width: 94px;
+  height: 94px;
+  border-radius: 4px;
+  background: #e0e0e0;
+}
+
+.qrImage {
+  margin-top: 8px;
+  width: 94px;
+  height: 94px;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #fff;
+}
+
+.photoWrap {
+  position: relative;
+  border-radius: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.photoFallback {
+  width: 100%;
+  height: 100%;
+  background: #d6d6d6;
+}
+
+.photoFade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-180deg, rgba(246, 245, 241, 0) 0%, #f6f5f1 100%);
+}
+
+.formCol {
+  width: 100%;
+}
+
+.formCol[id] {
+  scroll-margin-top: 96px;
+}
+
+.formTitle {
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: right;
+  color: #3c4a50;
+}
+
+.contactCards {
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactTopRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.workCard,
+.docsCard {
+  min-height: 180px;
+  border-radius: 20px;
+  padding: 50px 30px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.workCard {
+  background: #fff;
+  border: 1px solid #6dafa3;
+}
+
+.docsCard {
+  background: #0b7a66;
+}
+
+.cornerTab,
+.cornerTabLight {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 25px;
+  height: 25px;
+  border-radius: 0 0 5px 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cornerTab {
+  background: #0b7a66;
+}
+
+.cornerTabLight {
+  background: #f6f5f1;
+}
+
+.cornerIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.contactCardTitle,
+.contactCardTitleLight {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.contactCardTitle {
+  color: #3c4a50;
+}
+
+.contactCardTitleLight {
+  color: #f6f5f1;
+}
+
+.contactSpacer {
+  flex: 1 1 auto;
+}
+
+.contactLabel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #0b7a66;
+}
+
+.contactValue {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #3c4a50;
+}
+
+.docsRow {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.docsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.docsLabel {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #b7b7b3;
+}
+
+.docsValue {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.coffeeCard {
+  min-height: 240px;
+  border-radius: 20px;
+  border: 1px solid #6dafa3;
+  background: #fff;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+}
+
+.coffeeContent {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.coffeeTitle {
+  font-family: var(--font-display);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #3c4a50;
+}
+
+.coffeeText {
+  max-width: 600px;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #000;
+}
+
+.coffeeMedia {
+  padding: 30px;
+  display: flex;
+      background-size: cover;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.coffeeButton {
+  width: min(342px, 100%);
+  height: 45px;
+  border-radius: 30px;
+  background: #0b7a66;
+  color: #fff;
+  text-decoration: none;
+  padding: 0 6px 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.coffeeButtonCircle {
+  width: 39px;
+  height: 39px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #0b7a66;
+  font-size: 18px;
+}
+
+.form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.twoCols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #3c4a50;
+}
+
+.input,
+.textarea {
+  width: 100%;
+  border: 1px solid #3c4a50;
+  background: #fff;
+  color: #3c4a50;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+}
+
+.input {
+  height: 45px;
+  border-radius: 30px;
+  padding: 0 18px;
+}
+
+.textarea {
+  border-radius: 20px;
+  min-height: 135px;
+  padding: 14px 18px;
+  resize: vertical;
+}
+
+.submit {
+  height: 45px;
+  border-radius: 30px;
+  background: #0b7a66;
+  color: #fff;
+  padding: 0 6px 0 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.submitCircle {
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #0b7a66;
+  font-size: 18px;
+}
+
+.formMessageSuccess,
+.formMessageError {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.formMessageSuccess {
+  color: #0b7a66;
+}
+
+.formMessageError {
+  color: #c0392b;
+}
+
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.consent input {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  accent-color: #0b7a66;
+}
+
+.consent span {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: #3c4a50;
+}
+
+@media (max-width: 1200px) {
+  .section {
+    padding: 48px 24px 64px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .contentRow {
+    grid-template-columns: 1fr;
+  }
+
+  .formTitle {
+    text-align: left;
+  }
+
+  .contactTopRow {
+    grid-template-columns: 1fr;
+  }
+
+  .coffeeCard {
+    grid-template-columns: 1fr;
+  }
+
+  .coffeeMedia {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 32px 16px 40px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .subheading {
+    font-size: 14px;
+  }
+
+  .card {
+    height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .photoWrap {
+    min-height: 260px;
+    order: -1;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .cardInfo {
+    padding: 20px;
+  }
+
+  .formTitle {
+    font-size: 28px;
+  }
+
+  .contactCards {
+    margin-top: 28px;
+  }
+
+  .workCard,
+  .docsCard {
+    padding: 44px 20px 20px;
+  }
+
+  .docsRow {
+    gap: 20px;
+  }
+
+  .coffeeContent {
+    padding: 20px;
+  }
+
+  .coffeeTitle {
+    font-size: 28px;
+  }
+
+  .coffeeText {
+    font-size: 16px;
+  }
+
+  .coffeeMedia {
+    padding: 20px;
+  }
+
+  .twoCols {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "referrals",
+  "info": {
+    "singularName": "referral",
+    "pluralName": "referrals",
+    "displayName": "Реферальная программа — запись",
+    "description": "Сделки и начисления по реферальной программе"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "inviterUserId": { "type": "integer", "required": true },
+    "contactPerson": { "type": "string", "required": true },
+    "email": { "type": "email" },
+    "phone": { "type": "string" },
+    "company": { "type": "string", "required": true },
+    "product": { "type": "string", "required": true },
+    "status": {
+      "type": "enumeration",
+      "enum": ["in_progress", "contract_signed"],
+      "default": "in_progress"
+    },
+    "payout": { "type": "integer", "default": 0 },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "documents",
+  "info": {
+    "singularName": "document",
+    "pluralName": "documents",
+    "displayName": "Документы",
+    "description": "Документы клиентов по проектам"
+  },
+  "options": { "draftAndPublish": false },
+  "pluginOptions": {},
+  "attributes": {
+    "project": { "type": "string", "required": true },
+    "name": { "type": "string", "required": true },
+    "docStatus": {
+      "type": "enumeration",
+      "enum": ["pending_signature", "signed", "under_review"],
+      "default": "under_review"
+    },
+    "file": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["files"] },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

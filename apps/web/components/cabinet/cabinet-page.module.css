@@ -1,0 +1,291 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 0 80px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 42px;
+  text-transform: uppercase;
+  text-align: center;
+  color: #3c4a50;
+  margin-bottom: 40px;
+  letter-spacing: 0.02em;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  margin-bottom: 48px;
+  position: relative;
+}
+
+
+
+.tab {
+  padding: 0 0 16px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #b7b7b3;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+  text-transform: lowercase;
+  position: relative;
+  z-index: 1;
+}
+
+
+.tabActive {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.tabActive::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
+}
+
+/* Content */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+  font-family: var(--font-display);
+}
+
+/* Name row */
+.nameRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .nameRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  color: #b7b7b3;
+  font-weight: 400;
+}
+
+.input {
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: #3c4a50;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+  width: 100%;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid #e8e8e8;
+  margin: 24px 0;
+}
+
+/* Info row */
+.infoRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+@media (max-width: 768px) {
+  .infoRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.infoBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.infoLabel {
+  font-size: 16px;
+  font-weight: 700;
+  color: #3c4a50;
+}
+
+.infoValue {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  color: #3c4a50;
+}
+
+.changeBtn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.2s;
+}
+
+.changeBtn:hover {
+  color: var(--accent-strong);
+}
+
+/* Password button */
+.passwordBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  width: fit-content;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+
+.passwordBtn:hover {
+  background: var(--accent-strong);
+}
+
+.empty {
+  color: #b7b7b3;
+  font-size: 16px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 40px;
+}
+
+.topRow .heading {
+  margin-bottom: 0;
+}
+
+.logoutBtn {
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  padding: 8px 20px;
+  font-size: 14px;
+  color: #b7b7b3;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color 0.2s, color 0.2s;
+  margin-top: 32px;
+}
+
+.logoutBtn:hover {
+  border-color: #e53e3e;
+  color: #e53e3e;
+}
+
+.inlineInput {
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 16px;
+  color: #3c4a50;
+  font-family: inherit;
+  outline: none;
+  min-width: 200px;
+}
+
+.saveBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saveBtn:hover {
+  background: var(--accent-strong);
+}
+
+.cancelBtn {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: #b7b7b3;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 6px 0;
+}
+
+.cancelBtn:hover {
+  color: #3c4a50;
+}
+
+.nameSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.nameActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}

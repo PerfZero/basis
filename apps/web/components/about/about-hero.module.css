@@ -1,0 +1,272 @@
+.hero {
+  background: #fff;
+  padding: 60px 120px 48px;
+}
+
+.container {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  color: #0b7a66;
+}
+
+.divider {
+  width: 296px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(11, 122, 102, 0) 0%, #0b7a66 50%, rgba(11, 122, 102, 0) 100%);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  color: #000;
+}
+
+.headingAccent {
+  color: #0b7a66;
+}
+
+.headingSecondLine {
+  display: inline-block;
+}
+
+.description {
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-align: center;
+  color: #000;
+}
+
+.locations {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.locationItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.locationDot {
+  width: 16px;
+  height: 16px;
+  background: #0b7a66;
+  opacity: 0.3;
+  border-radius: 2px;
+  flex: 0 0 16px;
+}
+
+.locationIcon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  object-fit: contain;
+}
+
+.locationText {
+  font-family: var(--font-golos), var(--font-sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #3c4a50;
+}
+
+.principlesSection {
+  background: #fff;
+  padding: 0 120px 60px;
+}
+
+.principlesCard {
+  position: relative;
+  width: min(1200px, 100%);
+  height: 500px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #0f5f51;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-end;
+}
+
+.principlesOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 122, 102, 0) 24%, #0b7a66 100%);
+}
+
+.principlesContent {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.principlesTitle {
+  width: 100%;
+  font-family: var(--font-display);
+  font-size: 35px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.principlesGrid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+}
+
+.principle {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.principleBadge {
+  width: fit-content;
+  height: 25px;
+  padding: 0 16px;
+  border-radius: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f5f1;
+  color: #000;
+  font-family: var(--font-golos), var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.principleDivider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, #0b7a66 0%, rgba(109, 175, 163, 0) 100%);
+}
+
+.principleTitle {
+  font-family: var(--font-golos), var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #f6f5f1;
+}
+
+.principleTextPrimary {
+  font-family: var(--font-golos), var(--font-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: #f6f5f1;
+}
+
+.principleTextSecondary {
+  font-family: var(--font-golos), var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: #f6f5f1;
+}
+
+@media (max-width: 1100px) {
+  .hero {
+    padding: 40px 40px 32px;
+  }
+
+  .principlesSection {
+    padding: 0 40px 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 28px 16px 24px;
+  }
+
+  .container {
+    gap: 16px;
+  }
+
+  .eyebrow {
+    font-size: 18px;
+  }
+
+  .divider {
+    width: 220px;
+  }
+
+  .heading {
+    font-size: 27px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .locations {
+    gap: 16px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .locationText {
+    font-size: 14px;
+  }
+
+  .principlesSection {
+    padding: 0 16px 32px;
+  }
+
+  .principlesCard {
+    height: auto;
+    min-height: 520px;
+    border-radius: 14px;
+  }
+
+  .principlesContent {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .principlesTitle {
+    font-size: 28px;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .principle {
+    padding-right: 0;
+  }
+}

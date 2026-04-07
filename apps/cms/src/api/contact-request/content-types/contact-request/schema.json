@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contact_requests",
+  "info": {
+    "singularName": "contact-request",
+    "pluralName": "contact-requests",
+    "displayName": "Заявки с формы «О компании»",
+    "description": "Лиды с формы технологического вызова"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "company": { "type": "string", "required": true },
+    "direction": { "type": "string", "required": true },
+    "pain": { "type": "text", "required": true },
+    "turnover": { "type": "string" },
+    "employeeCount": { "type": "string" },
+    "phone": { "type": "string", "required": true },
+    "consent": { "type": "boolean", "required": true, "default": false },
+    "source": { "type": "string", "default": "about-form" }
+  }
+}
+

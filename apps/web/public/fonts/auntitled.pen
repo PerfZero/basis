@@ -1,0 +1,1590 @@
+{
+  "version": "2.9",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Frame",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#FFFFFF",
+      "layout": "none",
+      "children": [
+        {
+          "type": "rectangle",
+          "cornerRadius": 20,
+          "id": "81imY",
+          "x": 360,
+          "y": 350,
+          "name": "Rectangle 51",
+          "fill": "#ffffffff",
+          "width": 590,
+          "height": 180,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": {
+              "type": "gradient",
+              "gradientType": "linear",
+              "enabled": true,
+              "rotation": -135,
+              "size": {
+                "height": 1.414213562373095
+              },
+              "colors": [
+                {
+                  "color": "#0b7a66ff",
+                  "position": 0
+                },
+                {
+                  "color": "#6dafa3ff",
+                  "position": 1
+                }
+              ],
+              "center": {
+                "x": 0.5000000000000013,
+                "y": 0.5000000000000013
+              }
+            }
+          }
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 20,
+          "id": "DFeVx",
+          "x": 360,
+          "y": 550,
+          "name": "Rectangle 65",
+          "fill": "#ffffffff",
+          "width": 1200,
+          "height": 180,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": {
+              "type": "gradient",
+              "gradientType": "linear",
+              "enabled": true,
+              "rotation": -135,
+              "size": {
+                "height": 1.414213562373095
+              },
+              "colors": [
+                {
+                  "color": "#0b7a66ff",
+                  "position": 0
+                },
+                {
+                  "color": "#6dafa3ff",
+                  "position": 1
+                }
+              ],
+              "center": {
+                "x": 0.5000000000000013,
+                "y": 0.5000000000000013
+              }
+            }
+          }
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": 20,
+          "id": "RJJhJ",
+          "x": 970,
+          "y": 350,
+          "name": "Rectangle 62",
+          "fill": "#0b7a66ff",
+          "width": 590,
+          "height": 180,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          }
+        },
+        {
+          "type": "text",
+          "id": "uhYDJ",
+          "x": 390,
+          "y": 400,
+          "name": "Режим работы",
+          "fill": "#3c4a50ff",
+          "content": "Режим работы",
+          "lineHeight": 1.100000023841858,
+          "fontFamily": "Wadik",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "ZVWC2",
+          "x": 395,
+          "y": 585,
+          "name": "Начнем с кофе",
+          "fill": "#3c4a50ff",
+          "content": "Начнем с кофе",
+          "lineHeight": 1.2000000476837158,
+          "fontFamily": "Wadik",
+          "fontSize": 35,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "xhDQW",
+          "x": 1000,
+          "y": 400,
+          "name": "Для документов",
+          "fill": "#f6f5f1ff",
+          "content": "Для документов",
+          "lineHeight": 1.100000023841858,
+          "fontFamily": "Wadik",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "5FN3z",
+          "x": 390,
+          "y": 466,
+          "name": "Мы работаем в ритме бизнеса:",
+          "fill": "#0b7a66ff",
+          "content": "Мы работаем в ритме бизнеса:",
+          "lineHeight": 1.4500000476837158,
+          "fontFamily": "Evolventa",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "pf1lJ",
+          "x": 1000,
+          "y": 466,
+          "name": "Телефон",
+          "fill": "#b7b7b3ff",
+          "content": "Телефон",
+          "lineHeight": 1.4500000476837158,
+          "fontFamily": "Evolventa",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "O73vP",
+          "x": 1275,
+          "y": 466,
+          "name": "Эл. почта",
+          "fill": "#b7b7b3ff",
+          "content": "Эл. почта",
+          "lineHeight": 1.4500000476837158,
+          "fontFamily": "Evolventa",
+          "fontSize": 12,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "aDR1Q",
+          "x": 390,
+          "y": 488,
+          "name": "Пн — Пт, 10:00 — 18:00",
+          "fill": "#3c4a50ff",
+          "content": "Пн — Пт, 10:00 — 18:00",
+          "lineHeight": 1.100000023841858,
+          "fontFamily": "Wadik",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "gqvpk",
+          "x": 1000,
+          "y": 488,
+          "name": "+7 495 555 66 77",
+          "fill": "#ffffffff",
+          "content": "+7 495 555 66 77",
+          "lineHeight": 1.100000023841858,
+          "fontFamily": "Wadik",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "jtF9V",
+          "x": 1275,
+          "y": 488,
+          "name": "info@basisthree.ru",
+          "fill": "#ffffffff",
+          "content": "info@basisthree.ru",
+          "lineHeight": 1.100000023841858,
+          "fontFamily": "Wadik",
+          "fontSize": 16,
+          "fontWeight": "700"
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": [
+            0,
+            0,
+            5,
+            5
+          ],
+          "id": "zUWbU",
+          "x": 390,
+          "y": 351,
+          "name": "Rectangle 63",
+          "fill": "#0b7a66ff",
+          "width": 25,
+          "height": 25,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          }
+        },
+        {
+          "type": "rectangle",
+          "cornerRadius": [
+            0,
+            0,
+            5,
+            5
+          ],
+          "id": "M4QTd",
+          "x": 1000,
+          "y": 350,
+          "name": "Rectangle 64",
+          "fill": "#f6f5f1ff",
+          "width": 25,
+          "height": 26,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          }
+        },
+        {
+          "type": "frame",
+          "id": "PXCbD",
+          "x": 395,
+          "y": 356,
+          "name": "mingcute:time-fill",
+          "clip": true,
+          "width": 16,
+          "height": 16,
+          "fill": {
+            "type": "color",
+            "color": "#ffffffff",
+            "enabled": false
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "group",
+              "id": "Vh2Ez",
+              "x": 1.3333333730697632,
+              "y": 1.3333333730697632,
+              "name": "Group",
+              "children": [
+                {
+                  "type": "path",
+                  "id": "nGKzT",
+                  "x": 6.7173333168029785,
+                  "y": 14.0960693359375,
+                  "name": "Vector",
+                  "geometry": "M0.517 0.1139l-0.011 0.002-0.071 0.035-0.02 0.004-0.014-0.004-0.071-0.035c-0.01067-0.00333-0.01867-0.00167-0.024 0.005l-0.004 0.01-0.017 0.42799 0.005 0.02001 0.01 0.013 0.104 0.074 0.015 0.00399 0.012-0.00399 0.104-0.074 0.012-0.016 0.004-0.01701-0.017-0.427c-0.00267-0.01067-0.00833-0.01667-0.017-0.01799z m0.265-0.113l-0.013 0.002-0.185 0.093-0.01 0.01-0.003 0.011 0.018 0.43 0.005 0.01199 0.008 0.007 0.201 0.09301c0.01267 0.00333 0.02233 0.00067 0.029-0.008l0.004-0.014-0.034-0.614c-0.00333-0.012-0.01-0.01933-0.02-0.022z m-0.715 0.002c-0.00441-0.00267-0.00967-0.00354-0.0147-0.00242-0.00503 0.00112-0.00943 0.00413-0.0123 0.00842l-0.006 0.014-0.034 0.614c0.00067 0.012 0.00633 0.02 0.017 0.024l0.015-0.002 0.201-0.09301 0.01-0.00799 0.004-0.011 0.017-0.43-0.003-0.012-0.01-0.01-0.184-0.092z",
+                  "width": 0.5573329925537109,
+                  "height": 0.44659659266471863,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "6OH8x",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Vector",
+                  "geometry": "M10 0c5.523 0 10 4.477 10 10 0 5.523-4.477 10-10 10-5.523 0-10-4.477-10-10 0-5.523 4.477-10 10-10z m0 4c-0.26522 0-0.51957 0.10536-0.70711 0.29289-0.18754 0.18754-0.29289 0.44189-0.29289 0.70711l0 5c0.00006 0.2652 0.10545 0.51951 0.293 0.707l3 3c0.1886 0.18216 0.4412 0.28295 0.7034 0.28067 0.2622-0.00228 0.51301-0.10745 0.69842-0.29285 0.18541-0.18541 0.29058-0.43622 0.29285-0.69842 0.00228-0.2622-0.09852-0.5148-0.28067-0.7034l-2.707-2.707 0-4.586c0-0.26522-0.10536-0.51957-0.29289-0.70711-0.18754-0.18754-0.44189-0.29289-0.70711-0.29289z",
+                  "fill": "#f6f5f1ff",
+                  "width": 13.333333015441895,
+                  "height": 13.333333015441895,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 2
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j9dGo",
+          "x": 1005,
+          "y": 355,
+          "name": "f7:doc-fill",
+          "clip": true,
+          "width": 16,
+          "height": 16,
+          "fill": {
+            "type": "color",
+            "color": "#ffffffff",
+            "enabled": false
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "path",
+              "id": "ZnjUp",
+              "x": 2.3682854175567627,
+              "y": 0.8214285373687744,
+              "name": "Vector",
+              "geometry": "M7.266 50.25l24.89 0c4.852 0 7.266-2.461 7.266-7.336l0-21.281-16.969 0c-3 0-4.406-1.43-4.406-4.43l0-17.203-10.781 0c-4.828 0-7.266 2.484-7.266 7.36l0 35.554c0 4.898 2.438 7.336 7.266 7.336z m15.258-31.828l16.64 0c-0.164-0.961-0.844-1.899-1.945-3.047l-12.938-13.148c-1.078-1.125-2.062-1.805-3.047-1.97l0 16.9c0 0.843 0.446 1.265 1.29 1.265z",
+              "fill": "#0b7a66ff",
+              "width": 11.263427734375,
+              "height": 14.35714340209961,
+              "stroke": {
+                "align": "inside",
+                "thickness": 0.8571428656578064
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "xH9vD",
+          "x": 395,
+          "y": 637,
+          "name": "Если вы в Петербурге — приглашаем на личную встречу для обсуждения архитектуры вашего проекта",
+          "fill": "#000000ff",
+          "textGrowth": "fixed-width",
+          "width": 599,
+          "content": "Если вы в Петербурге — приглашаем на личную встречу для обсуждения архитектуры вашего проекта",
+          "lineHeight": 1.4500000476837158,
+          "fontFamily": "Evolventa",
+          "fontSize": 20,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "rectangle",
+          "id": "Ke4OF",
+          "x": 1221,
+          "y": 550,
+          "name": "1 копия 1",
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "",
+            "mode": "stretch"
+          },
+          "width": 265,
+          "height": 180,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          }
+        },
+        {
+          "type": "group",
+          "id": "kalK4",
+          "x": 1188,
+          "y": 643,
+          "name": "Group 130",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 30,
+              "id": "dkBql",
+              "x": 0,
+              "y": 0,
+              "name": "Rectangle 3",
+              "fill": "#0b7a66ff",
+              "width": 342,
+              "height": 45,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#0b7a66ff"
+              }
+            },
+            {
+              "type": "text",
+              "id": "b0jyy",
+              "x": 56,
+              "y": 12,
+              "name": "Договориться о встрече",
+              "fill": "#ffffffff",
+              "content": "Договориться о встрече",
+              "textAlign": "center",
+              "fontFamily": "Evolventa",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "ellipse",
+              "id": "PhZcS",
+              "x": 300,
+              "y": 3,
+              "name": "Ellipse 6",
+              "sweepAngle": -360.00001001791264,
+              "fill": "#ffffffff",
+              "width": 39,
+              "height": 39,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1
+              }
+            },
+            {
+              "type": "path",
+              "id": "MVUnN",
+              "x": 314,
+              "y": 23,
+              "name": "Arrow 2",
+              "rotation": 0.000005008956538086317,
+              "geometry": "M0 0l100 0",
+              "width": 12,
+              "height": 0,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": "#0b7a66ff"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "U7bHi",
+      "x": 2080,
+      "y": 0,
+      "name": "Footer — CLEAN",
+      "clip": true,
+      "width": 1920,
+      "height": 1080,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "AP3Sl",
+          "name": "Content Wrapper",
+          "width": "fill_container",
+          "height": "fill_container",
+          "layout": "vertical",
+          "gap": 20,
+          "padding": [
+            0,
+            360
+          ],
+          "justifyContent": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "C6OvM",
+              "name": "Top Row",
+              "width": "fill_container",
+              "height": 180,
+              "gap": 20,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "uftkq",
+                  "name": "Card / Режим работы",
+                  "width": "fill_container",
+                  "height": 180,
+                  "fill": "#ffffffff",
+                  "cornerRadius": 20,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": {
+                      "type": "gradient",
+                      "gradientType": "linear",
+                      "enabled": true,
+                      "rotation": -135,
+                      "size": {
+                        "height": 1
+                      },
+                      "colors": [
+                        {
+                          "color": "#0b7a66ff",
+                          "position": 0
+                        },
+                        {
+                          "color": "#6dafa3ff",
+                          "position": 1
+                        }
+                      ]
+                    }
+                  },
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    50,
+                    30,
+                    30,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        0,
+                        0,
+                        5,
+                        5
+                      ],
+                      "id": "hLeTg",
+                      "layoutPosition": "absolute",
+                      "x": 10,
+                      "y": 0,
+                      "name": "Tab",
+                      "fill": "#0b7a66ff",
+                      "width": 25,
+                      "height": 25
+                    },
+                    {
+                      "type": "frame",
+                      "id": "ThP1d",
+                      "layoutPosition": "absolute",
+                      "x": 15,
+                      "y": 10,
+                      "name": "iconL",
+                      "clip": true,
+                      "width": 16,
+                      "height": 16,
+                      "fill": {
+                        "type": "color",
+                        "color": "#ffffffff",
+                        "enabled": false
+                      },
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "group",
+                          "id": "mUSo5",
+                          "x": 1.3333333730697632,
+                          "y": 1.3333333730697632,
+                          "name": "Group",
+                          "children": [
+                            {
+                              "type": "path",
+                              "id": "5DTsE",
+                              "x": 6.7173333168029785,
+                              "y": 14.0960693359375,
+                              "name": "Vector",
+                              "geometry": "M0.517 0.1139l-0.011 0.002-0.071 0.035-0.02 0.004-0.014-0.004-0.071-0.035c-0.01067-0.00333-0.01867-0.00167-0.024 0.005l-0.004 0.01-0.017 0.42799 0.005 0.02001 0.01 0.013 0.104 0.074 0.015 0.00399 0.012-0.00399 0.104-0.074 0.012-0.016 0.004-0.01701-0.017-0.427c-0.00267-0.01067-0.00833-0.01667-0.017-0.01799z m0.265-0.113l-0.013 0.002-0.185 0.093-0.01 0.01-0.003 0.011 0.018 0.43 0.005 0.01199 0.008 0.007 0.201 0.09301c0.01267 0.00333 0.02233 0.00067 0.029-0.008l0.004-0.014-0.034-0.614c-0.00333-0.012-0.01-0.01933-0.02-0.022z m-0.715 0.002c-0.00441-0.00267-0.00967-0.00354-0.0147-0.00242-0.00503 0.00112-0.00943 0.00413-0.0123 0.00842l-0.006 0.014-0.034 0.614c0.00067 0.012 0.00633 0.02 0.017 0.024l0.015-0.002 0.201-0.09301 0.01-0.00799 0.004-0.011 0.017-0.43-0.003-0.012-0.01-0.01-0.184-0.092z",
+                              "width": 0.5573329925537109,
+                              "height": 0.44659659266471863,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 2
+                              }
+                            },
+                            {
+                              "type": "path",
+                              "id": "G5GpO",
+                              "x": 0,
+                              "y": 0,
+                              "name": "Vector",
+                              "geometry": "M10 0c5.523 0 10 4.477 10 10 0 5.523-4.477 10-10 10-5.523 0-10-4.477-10-10 0-5.523 4.477-10 10-10z m0 4c-0.26522 0-0.51957 0.10536-0.70711 0.29289-0.18754 0.18754-0.29289 0.44189-0.29289 0.70711l0 5c0.00006 0.2652 0.10545 0.51951 0.293 0.707l3 3c0.1886 0.18216 0.4412 0.28295 0.7034 0.28067 0.2622-0.00228 0.51301-0.10745 0.69842-0.29285 0.18541-0.18541 0.29058-0.43622 0.29285-0.69842 0.00228-0.2622-0.09852-0.5148-0.28067-0.7034l-2.707-2.707 0-4.586c0-0.26522-0.10536-0.51957-0.29289-0.70711-0.18754-0.18754-0.44189-0.29289-0.70711-0.29289z",
+                              "fill": "#f6f5f1ff",
+                              "width": 13.333333015441895,
+                              "height": 13.333333015441895,
+                              "stroke": {
+                                "align": "inside",
+                                "thickness": 2
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "NElbs",
+                      "name": "titleL",
+                      "fill": "#3c4a50ff",
+                      "content": "Режим работы",
+                      "lineHeight": 1.1,
+                      "fontFamily": "Wadik",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "RPk0I",
+                      "name": "spacer",
+                      "width": "fill_container",
+                      "height": "fill_container"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qrg7B",
+                      "name": "labelL",
+                      "fill": "#0b7a66ff",
+                      "content": "Мы работаем в ритме бизнеса:",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Evolventa",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    },
+                    {
+                      "type": "text",
+                      "id": "s4Ez7",
+                      "name": "valueL",
+                      "fill": "#3c4a50ff",
+                      "content": "Пн — Пт, 10:00 — 18:00",
+                      "lineHeight": 1.1,
+                      "fontFamily": "Wadik",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "kFlWB",
+                  "name": "Card / Для документов",
+                  "width": "fill_container",
+                  "height": 180,
+                  "fill": "#0b7a66ff",
+                  "cornerRadius": 20,
+                  "layout": "vertical",
+                  "gap": 8,
+                  "padding": [
+                    50,
+                    30,
+                    30,
+                    30
+                  ],
+                  "children": [
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": [
+                        0,
+                        0,
+                        5,
+                        5
+                      ],
+                      "id": "9vSPJ",
+                      "layoutPosition": "absolute",
+                      "x": 10,
+                      "y": 0,
+                      "name": "Tab",
+                      "fill": "#f6f5f1ff",
+                      "width": 25,
+                      "height": 26
+                    },
+                    {
+                      "type": "frame",
+                      "id": "JF6xi",
+                      "layoutPosition": "absolute",
+                      "x": 15,
+                      "y": 10,
+                      "name": "iconR",
+                      "clip": true,
+                      "width": 16,
+                      "height": 16,
+                      "fill": {
+                        "type": "color",
+                        "color": "#ffffffff",
+                        "enabled": false
+                      },
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 1
+                      },
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "path",
+                          "id": "WFKtW",
+                          "x": 2.3682854175567627,
+                          "y": 0.8214285373687744,
+                          "name": "Vector",
+                          "geometry": "M7.266 50.25l24.89 0c4.852 0 7.266-2.461 7.266-7.336l0-21.281-16.969 0c-3 0-4.406-1.43-4.406-4.43l0-17.203-10.781 0c-4.828 0-7.266 2.484-7.266 7.36l0 35.554c0 4.898 2.438 7.336 7.266 7.336z m15.258-31.828l16.64 0c-0.164-0.961-0.844-1.899-1.945-3.047l-12.938-13.148c-1.078-1.125-2.062-1.805-3.047-1.97l0 16.9c0 0.843 0.446 1.265 1.29 1.265z",
+                          "fill": "#0b7a66ff",
+                          "width": 11.263427734375,
+                          "height": 14.35714340209961,
+                          "stroke": {
+                            "align": "inside",
+                            "thickness": 0.8571428656578064
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "MAkuo",
+                      "name": "titleR",
+                      "fill": "#f6f5f1ff",
+                      "content": "Для документов",
+                      "lineHeight": 1.1,
+                      "fontFamily": "Wadik",
+                      "fontSize": 16,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "VXinB",
+                      "name": "spacer",
+                      "width": "fill_container",
+                      "height": "fill_container"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "vh2Zu",
+                      "name": "Contacts Row",
+                      "width": "fill_container",
+                      "gap": 60,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "MAgHf",
+                          "name": "Phone Col",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "mMaX8",
+                              "name": "lPhone",
+                              "fill": "#b7b7b3ff",
+                              "content": "Телефон",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Evolventa",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "QbSAc",
+                              "name": "vPhone",
+                              "fill": "#ffffffff",
+                              "content": "+7 495 555 66 77",
+                              "lineHeight": 1.1,
+                              "fontFamily": "Wadik",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "vCxzq",
+                          "name": "Email Col",
+                          "layout": "vertical",
+                          "gap": 4,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "dQb0C",
+                              "name": "lEmail",
+                              "fill": "#b7b7b3ff",
+                              "content": "Эл. почта",
+                              "lineHeight": 1.45,
+                              "fontFamily": "Evolventa",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "text",
+                              "id": "cxo8X",
+                              "name": "vEmail",
+                              "fill": "#ffffffff",
+                              "content": "info@basisthree.ru",
+                              "lineHeight": 1.1,
+                              "fontFamily": "Wadik",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "0JN2L",
+              "name": "Card / Начнем с кофе",
+              "width": "fill_container",
+              "height": 240,
+              "fill": "#ffffffff",
+              "cornerRadius": 20,
+              "stroke": {
+                "align": "inside",
+                "thickness": 1,
+                "fill": {
+                  "type": "gradient",
+                  "gradientType": "linear",
+                  "enabled": true,
+                  "rotation": -135,
+                  "size": {
+                    "height": 1
+                  },
+                  "colors": [
+                    {
+                      "color": "#0b7a66ff",
+                      "position": 0
+                    },
+                    {
+                      "color": "#6dafa3ff",
+                      "position": 1
+                    }
+                  ]
+                }
+              },
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "9ekzK",
+                  "name": "Text Left",
+                  "width": "fill_container",
+                  "height": "fill_container",
+                  "layout": "vertical",
+                  "gap": 10,
+                  "padding": 30,
+                  "justifyContent": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "N5n4P",
+                      "name": "title2",
+                      "fill": "#3c4a50ff",
+                      "content": "Начнем с кофе",
+                      "lineHeight": 1.2,
+                      "fontFamily": "Wadik",
+                      "fontSize": 35,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "text",
+                      "id": "qXUf5",
+                      "name": "desc2",
+                      "fill": "#000000ff",
+                      "textGrowth": "fixed-width",
+                      "width": 500,
+                      "content": "Если вы в Петербурге — приглашаем на личную встречу для обсуждения архитектуры вашего проекта",
+                      "lineHeight": 1.45,
+                      "fontFamily": "Evolventa",
+                      "fontSize": 20,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "NTffj",
+                  "name": "Right Side",
+                  "metadata": {
+                    "type": "unsplash",
+                    "username": "agforl24",
+                    "link": "https://unsplash.com/@agforl24",
+                    "author": "Tai Bui"
+                  },
+                  "width": 420,
+                  "height": "fill_container",
+                  "fill": {
+                    "type": "image",
+                    "enabled": true,
+                    "url": "https://images.unsplash.com/photo-1638482879687-43d75ffb8643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzU0OTk3OTR8&ixlib=rb-4.1.0&q=80&w=1080",
+                    "mode": "fill"
+                  },
+                  "layout": "vertical",
+                  "gap": 16,
+                  "padding": 30,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "HhoyO",
+                      "name": "Button",
+                      "width": 342,
+                      "height": 45,
+                      "fill": "#0b7a66ff",
+                      "cornerRadius": 30,
+                      "padding": [
+                        0,
+                        18
+                      ],
+                      "justifyContent": "space_between",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "oNhGE",
+                          "name": "btnLbl",
+                          "fill": "#ffffffff",
+                          "content": "Договориться о встрече",
+                          "fontFamily": "Evolventa",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "frame",
+                          "id": "d3XvD",
+                          "name": "circleBtn",
+                          "width": 33,
+                          "height": 33,
+                          "fill": "#ffffffff",
+                          "cornerRadius": 99,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "icon_font",
+                              "id": "VpI8i",
+                              "name": "arrow",
+                              "width": 16,
+                              "height": 16,
+                              "iconFontName": "arrow-right",
+                              "iconFontFamily": "lucide",
+                              "fill": "#0b7a66ff"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "7Krr1",
+      "x": 2309,
+      "y": 1697,
+      "name": "Footer — CLEAN",
+      "clip": true,
+      "width": 1920,
+      "height": 1545,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "rectangle",
+          "id": "wmeid",
+          "name": "Rectangle 33",
+          "opacity": 0.20000000298023224,
+          "fill": {
+            "type": "gradient",
+            "gradientType": "radial",
+            "enabled": true,
+            "rotation": -180.0000000000001,
+            "size": {
+              "width": 1.3938913169257785,
+              "height": 2.2452828522125867
+            },
+            "colors": [
+              {
+                "color": "#6dafa3ff",
+                "position": 0
+              },
+              {
+                "color": "#ffffffff",
+                "position": 1
+              }
+            ],
+            "center": {
+              "x": 0.5000000623117966,
+              "y": 0.9999998661707135
+            }
+          },
+          "width": 1440,
+          "height": 615,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          }
+        },
+        {
+          "type": "text",
+          "id": "PmmEu",
+          "name": "Управление реальностью, а не бумагами",
+          "fill": "#000000ff",
+          "content": "Управление реальностью, а не бумагами",
+          "lineHeight": 1.2000000476837158,
+          "textAlign": "center",
+          "fontFamily": "Wadik",
+          "fontSize": 35,
+          "fontWeight": "700"
+        },
+        {
+          "type": "text",
+          "id": "vnIf0",
+          "name": "Операционные ERP",
+          "fill": "#0b7a66ff",
+          "content": "Операционные ERP",
+          "lineHeight": 1.4500000476837158,
+          "textAlign": "center",
+          "fontFamily": "Evolventa",
+          "fontSize": 22,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "text",
+          "id": "XIQ9G",
+          "name": "Строим цифровую экосистему, которая связывает офис, склад и полевых сотрудников. Инструмент для тех, кто создаёт физический продукт и несёт ответственность за сроки и сметы.",
+          "fill": "#000000ff",
+          "textGrowth": "fixed-width",
+          "width": 782,
+          "content": "Строим цифровую экосистему, которая связывает офис, склад и полевых сотрудников. Инструмент для тех, кто создаёт физический продукт и несёт ответственность за сроки и сметы.",
+          "lineHeight": 1.4500000476837158,
+          "textAlign": "center",
+          "fontFamily": "Evolventa",
+          "fontSize": 20,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "group",
+          "id": "4dOmH",
+          "name": "Group 131",
+          "children": [
+            {
+              "type": "group",
+              "id": "XOdjw",
+              "x": 316,
+              "y": 0,
+              "name": "Group 129",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 30,
+                  "id": "1GXW6",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 32",
+                  "width": 150,
+                  "height": 45,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#0b7a66ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "hjGx1",
+                  "x": 28,
+                  "y": 12,
+                  "name": "Подробнее",
+                  "fill": "#0b7a66ff",
+                  "content": "Подробнее",
+                  "textAlign": "center",
+                  "fontFamily": "Evolventa",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                }
+              ]
+            },
+            {
+              "type": "group",
+              "id": "zew3U",
+              "x": 0,
+              "y": 0,
+              "name": "Group 130",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 30,
+                  "id": "J1DIs",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Rectangle 3",
+                  "fill": "#0b7a66ff",
+                  "width": 306,
+                  "height": 45,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#0b7a66ff"
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "O5vY2",
+                  "x": 28,
+                  "y": 12,
+                  "name": "Запросить проект системы",
+                  "fill": "#ffffffff",
+                  "content": "Запросить проект системы",
+                  "textAlign": "center",
+                  "fontFamily": "Evolventa",
+                  "fontSize": 16,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "ellipse",
+                  "id": "2HrAt",
+                  "x": 264,
+                  "y": 3,
+                  "name": "Ellipse 6",
+                  "sweepAngle": -360.00001001791264,
+                  "fill": "#ffffffff",
+                  "width": 39,
+                  "height": 39,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "4xYOH",
+                  "x": 278,
+                  "y": 23,
+                  "name": "Arrow 2",
+                  "rotation": 0.000005008956538086317,
+                  "geometry": "M0 0l100 0",
+                  "width": 12,
+                  "height": 0,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 1,
+                    "fill": "#0b7a66ff"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "7sbxD",
+          "name": "Контролируем",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": -180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0b7a66ff",
+                "position": 0
+              },
+              {
+                "color": "#02060599",
+                "position": 1
+              }
+            ]
+          },
+          "content": "Контролируем",
+          "lineHeight": 1.100000023841858,
+          "textAlign": "center",
+          "textAlignVertical": "middle",
+          "fontFamily": "Gilroy",
+          "fontSize": 16,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "m8mgN",
+          "name": "Оцифровываем",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": -180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0b7a66ff",
+                "position": 0
+              },
+              {
+                "color": "#02060599",
+                "position": 1
+              }
+            ]
+          },
+          "content": "Оцифровываем",
+          "lineHeight": 1.100000023841858,
+          "textAlign": "center",
+          "textAlignVertical": "middle",
+          "fontFamily": "Gilroy",
+          "fontSize": 16,
+          "fontWeight": "500"
+        },
+        {
+          "type": "text",
+          "id": "xYF5f",
+          "name": "Ускоряем",
+          "fill": {
+            "type": "gradient",
+            "gradientType": "linear",
+            "enabled": true,
+            "rotation": -180,
+            "size": {
+              "height": 1
+            },
+            "colors": [
+              {
+                "color": "#0b7a66ff",
+                "position": 0
+              },
+              {
+                "color": "#02060599",
+                "position": 1
+              }
+            ]
+          },
+          "content": "Ускоряем",
+          "lineHeight": 1.100000023841858,
+          "textAlign": "center",
+          "textAlignVertical": "middle",
+          "fontFamily": "Gilroy",
+          "fontSize": 16,
+          "fontWeight": "500"
+        },
+        {
+          "type": "frame",
+          "id": "IoRoy",
+          "name": "Frame",
+          "clip": true,
+          "width": 16,
+          "height": 16,
+          "fill": {
+            "type": "color",
+            "color": "#ffffffff",
+            "enabled": false
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "group",
+              "id": "H3uNd",
+              "x": 0.9833669066429138,
+              "y": 0.8886273503303528,
+              "name": "Group",
+              "children": [
+                {
+                  "type": "group",
+                  "id": "dFtjQ",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Group",
+                  "children": [
+                    {
+                      "type": "path",
+                      "id": "86O3Y",
+                      "x": 3.563297986984253,
+                      "y": 3.5558173656463623,
+                      "name": "Vector",
+                      "geometry": "M8 0c-1.58225 0-3.12897 0.46919-4.44456 1.34824-1.31559 0.87905-2.34097 2.12848-2.94647 3.59029-0.6055 1.46181-0.76393 3.07034-0.45525 4.62219 0.30868 1.55185 1.07061 2.97731 2.18943 4.09614 1.11882 1.11882 2.54428 1.88075 4.09613 2.18942 1.55185 0.30868 3.16038 0.15025 4.62219-0.45524 1.46181-0.6055 2.71124-1.63088 3.59029-2.94648 0.87905-1.31559 1.34824-2.86231 1.34824-4.44456 0-2.12173-0.84286-4.15656-2.34314-5.65685-1.50029-1.50029-3.53512-2.34315-5.65686-2.34315z m3.66 7.31l-3.57 3.57c-0.21497 0.21071-0.50399 0.32874-0.805 0.32874-0.30102 0-0.59003-0.11803-0.805-0.32874l-2.15-2.14c-0.21134-0.21666-0.32964-0.50733-0.32964-0.81 0-0.30266 0.1183-0.59334 0.32964-0.81 0.106-0.10703 0.23216-0.192 0.37119-0.24998 0.13903-0.05798 0.28817-0.08784 0.43881-0.08784 0.15064 0 0.29978 0.02985 0.43881 0.08784 0.13903 0.05798 0.26519 0.14295 0.37119 0.24998l1.33 1.34 2.77-2.77c0.21483-0.2135 0.50566-0.33291 0.80854-0.33198 0.30287 0.00094 0.59297 0.12215 0.80646 0.33698 0.2135 0.21483 0.33291 0.50567 0.33198 0.80854-0.00094 0.30287-0.12215 0.59296-0.33698 0.80646z",
+                      "fillRule": "evenodd",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": -180,
+                        "size": {
+                          "height": 0.9999999999999999
+                        },
+                        "colors": [
+                          {
+                            "color": "#0b7a66ff",
+                            "position": 0
+                          },
+                          {
+                            "color": "#aeefe3ff",
+                            "position": 1
+                          }
+                        ],
+                        "center": {
+                          "y": 0.49999999999999994
+                        }
+                      },
+                      "width": 7.111113548278809,
+                      "height": 7.111113548278809,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 0.8365930914878845
+                      }
+                    },
+                    {
+                      "type": "path",
+                      "id": "iJSs9",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Vector",
+                      "geometry": "M28.78742 11.00059c-0.1598-0.23855-0.26873-0.50748-0.32-0.79l-0.88999-4.38c-0.09111-0.43946-0.30935-0.84246-0.62759-1.15892-0.31824-0.31646-0.72246-0.53243-1.16242-0.62108l-4.29-0.89c-0.28679-0.05848-0.55886-0.17411-0.8-0.34l-3.64-2.43c-0.37463-0.25451-0.81709-0.39059-1.27-0.39059-0.45291 0-0.89537 0.13608-1.27 0.39059l-3.64 2.43c-0.24372 0.16787-0.51948 0.28362-0.81 0.34l-4.28 0.89c-0.43762 0.09286-0.83847 0.31187-1.15302 0.62997-0.31455 0.31811-0.52904 0.72139-0.61698 1.16003l-0.89 4.38c-0.06755 0.27765-0.18258 0.54153-0.34 0.78l-2.42 3.75c-0.23988 0.37278-0.36742 0.80671-0.36742 1.25 0 0.44329 0.12755 0.87722 0.36742 1.25l2.42 3.75c0.15146 0.24289 0.25972 0.51017 0.32 0.79l0.89 4.38c0.08221 0.4486 0.29651 0.86243 0.61542 1.18847 0.31891 0.32604 0.72791 0.54942 1.17458 0.64153l4.28 0.89c0.29052 0.05638 0.56628 0.17213 0.81 0.34l3.64 2.43c0.37463 0.25451 0.81709 0.39059 1.27 0.39058 0.45291 0 0.89537-0.13608 1.27-0.39058l3.64-2.43c0.24114-0.16589 0.51321-0.28152 0.8-0.34l4.29-0.89c0.43762-0.09286 0.83847-0.31186 1.15302-0.62998 0.31455-0.31811 0.52904-0.72139 0.61698-1.16002l0.89-4.38c0.05193-0.29801 0.16794-0.5812 0.34-0.83l2.44-3.75c0.23933-0.36928 0.36668-0.79994 0.36668-1.24 0-0.44006-0.12735-0.87071-0.36668-1.24l-2.44-3.77z m-12.77 15.28c-2.03319 0-4.02072-0.60291-5.71126-1.73249-1.69054-1.12958-3.00815-2.7351-3.78622-4.61353-0.77807-1.87842-0.98165-3.94539-0.58499-5.93951 0.39666-1.99412 1.37573-3.82585 2.81342-5.26353 1.43768-1.43768 3.26941-2.41676 5.26353-2.81341 1.99413-0.39666 4.06109-0.19308 5.93951 0.58499 1.87842 0.77807 3.48394 2.09568 4.61352 3.78622 1.12958 1.69054 1.73249 3.67807 1.73249 5.71126-0.00529 2.7248-1.09005 5.33649-3.01678 7.26322-1.92673 1.92673-4.53842 3.0115-7.26322 3.01678z",
+                      "fillRule": "evenodd",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": -180,
+                        "size": {
+                          "height": 0.9999999999999999
+                        },
+                        "colors": [
+                          {
+                            "color": "#0b7a66ff",
+                            "position": 0
+                          },
+                          {
+                            "color": "#aeefe3ff",
+                            "position": 1
+                          }
+                        ],
+                        "center": {
+                          "y": 0.49999999999999994
+                        }
+                      },
+                      "width": 14.041823387145996,
+                      "height": 14.244966506958008,
+                      "stroke": {
+                        "align": "inside",
+                        "thickness": 0.8365930914878845
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "fg7Eg",
+          "name": "Frame",
+          "clip": true,
+          "width": 16,
+          "height": 16,
+          "fill": {
+            "type": "color",
+            "color": "#ffffffff",
+            "enabled": false
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "group",
+              "id": "8p6Yv",
+              "x": 0,
+              "y": 1.90625,
+              "name": "Group",
+              "children": [
+                {
+                  "type": "path",
+                  "id": "TOhu4",
+                  "x": 0,
+                  "y": 0,
+                  "name": "Vector",
+                  "geometry": "M30 390l280.34399 0c-5.16699-8.85999-8.34399-19.02301-8.34399-30l0-30-287 0c-8.284 0-15 6.71399-15 15l0 15c0 16.56699 13.431 30 30 30z m0-345l0 255 272 0 0-180c0-33.091 26.909-60 60-60l120 0 0-15c0-24.814-20.186-45-45-45l-362 0c-24.814 0-45 20.186-45 45z",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": -180,
+                    "size": {
+                      "height": 0.9999999999999999
+                    },
+                    "colors": [
+                      {
+                        "color": "#0b7a66ff",
+                        "position": 0
+                      },
+                      {
+                        "color": "#aeefe3ff",
+                        "position": 1
+                      }
+                    ],
+                    "center": {
+                      "y": 0.49999999999999994
+                    }
+                  },
+                  "width": 15.0625,
+                  "height": 12.1875,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 0.8365930914878845
+                  }
+                },
+                {
+                  "type": "path",
+                  "id": "i7vke",
+                  "x": 10.375,
+                  "y": 2.8125,
+                  "name": "Vector",
+                  "geometry": "M150 0l-120 0c-16.538 0-30 13.462-30 30l0 240c0 16.53799 13.462 30 30 30l120 0c16.53799 0 30-13.46201 30-30l0-240c0-16.538-13.46201-30-30-30z m-60 45c8.284 0 15 6.714 15 15 0 8.284-6.716 15-15 15-8.284 0-15-6.716-15-15 0-8.286 6.716-15 15-15z m15 210l-30 0c-8.291 0-15-6.709-15-15 0-8.291 6.709-15 15-15l30 0c8.291 0 15 6.709 15 15 0 8.291-6.709 15-15 15z",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": -180,
+                    "size": {
+                      "height": 0.9999999999999999
+                    },
+                    "colors": [
+                      {
+                        "color": "#0b7a66ff",
+                        "position": 0
+                      },
+                      {
+                        "color": "#aeefe3ff",
+                        "position": 1
+                      }
+                    ],
+                    "center": {
+                      "y": 0.49999999999999994
+                    }
+                  },
+                  "width": 5.625,
+                  "height": 9.375,
+                  "stroke": {
+                    "align": "inside",
+                    "thickness": 0.8365930914878845
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GXg2a",
+          "name": "mage:chart-up-fill",
+          "clip": true,
+          "width": 16,
+          "height": 16,
+          "fill": {
+            "type": "color",
+            "color": "#ffffffff",
+            "enabled": false
+          },
+          "stroke": {
+            "align": "inside",
+            "thickness": 1
+          },
+          "layout": "none",
+          "children": [
+            {
+              "type": "path",
+              "id": "5U3tH",
+              "x": 1.6933332681655884,
+              "y": 1.5,
+              "name": "Vector",
+              "geometry": "M5.04 10.81l0 7.08c0 0.41904-0.16646 0.82092-0.46277 1.11723-0.29631 0.29631-0.69819 0.46277-1.11723 0.46277l-1.88 0c-0.41904 0-0.82092-0.16646-1.11723-0.46277-0.29631-0.29631-0.46277-0.69819-0.46277-1.11723l0-7.08c-0.00001-0.41997 0.16614-0.82288 0.46216-1.12078 0.29602-0.2979 0.69788-0.46658 1.11784-0.46922l1.88 0c0.41996 0.00264 0.82182 0.17132 1.11784 0.46922 0.29602 0.2979 0.46217 0.70081 0.46216 1.12078z m6.94-4.59l0 11.7c-0.00264 0.41996-0.17132 0.82182-0.46922 1.11784-0.2979 0.29602-0.70081 0.46217-1.12078 0.46216l-1.87 0c-0.41997 0.00001-0.82288-0.16613-1.12078-0.46216-0.2979-0.29603-0.46658-0.69788-0.46922-1.11784l0-11.7c0-0.42169 0.16752-0.82612 0.4657-1.1243 0.29818-0.29818 0.70261-0.4657 1.1243-0.4657l1.87 0c0.42169 0 0.82612 0.16752 1.1243 0.4657 0.29818 0.29818 0.4657 0.70261 0.4657 1.1243z m6.94-4.63l0 16.33c-0.00264 0.41996-0.17132 0.82182-0.46922 1.11784-0.2979 0.29602-0.70081 0.46217-1.12078 0.46216l-1.87 0c-0.41997 0.00001-0.82288-0.16613-1.12078-0.46216-0.2979-0.29603-0.46658-0.69788-0.46922-1.11784l0-16.33c0-0.42169 0.16752-0.82612 0.4657-1.1243 0.29818-0.29818 0.70261-0.4657 1.1243-0.4657l1.87 0c0.42169 0 0.82611 0.16752 1.1243 0.4657 0.29818 0.29818 0.4657 0.70261 0.4657 1.1243z",
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": -180,
+                "size": {
+                  "height": 0.9999999999999999
+                },
+                "colors": [
+                  {
+                    "color": "#0b7a66ff",
+                    "position": 0
+                  },
+                  {
+                    "color": "#aeefe3ff",
+                    "position": 1
+                  }
+                ],
+                "center": {
+                  "y": 0.49999999999999994
+                }
+              },
+              "width": 12.613333702087402,
+              "height": 13,
+              "stroke": {
+                "align": "inside",
+                "thickness": 0.8365930914878845
+              }
+            }
+          ]
+        },
+        {
+          "type": "line",
+          "id": "FOG6p",
+          "name": "Line 22",
+          "width": 296,
+          "height": 0,
+          "stroke": {
+            "align": "center",
+            "thickness": 1,
+            "fill": {
+              "type": "gradient",
+              "gradientType": "linear",
+              "enabled": true,
+              "rotation": -450,
+              "size": {
+                "height": 1
+              },
+              "colors": [
+                {
+                  "color": "#0b7a6600",
+                  "position": 0
+                },
+                {
+                  "color": "#0b7a66ff",
+                  "position": 0.4951923191547394
+                },
+                {
+                  "color": "#0b7a6600",
+                  "position": 1
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "fonts": [
+    {
+      "name": "Evolventa",
+      "url": "images/Evolventa-BoldOblique.woff2",
+      "weight": 700
+    },
+    {
+      "name": "Evolventa",
+      "url": "images/Evolventa-Regular.woff2"
+    },
+    {
+      "name": "Wadik",
+      "url": "images/Wadik-Regular.woff2",
+      "weight": 700
+    }
+  ]
+}

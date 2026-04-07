@@ -1,25 +1,20 @@
+import Link from "next/link";
 import type { NavItem } from "@/lib/navigation";
+import s from "./header.module.css";
 
 type NavLinksProps = {
   items: NavItem[];
-  linkClassName: string;
   onNavigate?: () => void;
 };
 
-export function NavLinks({ items, linkClassName, onNavigate }: NavLinksProps) {
+export function NavLinks({ items, onNavigate }: NavLinksProps) {
   return (
     <>
       {items.map((item) => (
         <li key={item.id}>
-          <a
-            href={item.href}
-            className={linkClassName}
-            onClick={() => {
-              onNavigate?.();
-            }}
-          >
+          <Link href={item.href} className={s.navLink} onClick={() => onNavigate?.()}>
             {item.label}
-          </a>
+          </Link>
         </li>
       ))}
     </>

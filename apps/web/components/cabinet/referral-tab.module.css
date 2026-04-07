@@ -1,0 +1,302 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 35px;
+  text-transform: uppercase;
+  color: #3c4a50;
+  line-height: 1;
+}
+
+.termsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #56a897;
+  color: var(--accent);
+  border-radius: 9999px;
+  padding: 9px 24px;
+  font-size: 16px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.termsBtn:hover {
+  background: #e8f5f2;
+}
+
+.linkBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, #f6f5f1 0%, rgba(246, 245, 241, 0.4) 100%);  border-radius: 20px;
+  padding: 14px 18px 14px 28px;
+}
+
+.linkText {
+  margin: 0;
+  font-size: 16px;
+  color: #6b7478;
+}
+
+.linkText span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.copyBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  padding: 3px 3px 3px 30px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.copyBtn:hover {
+  background: var(--accent-strong);
+}
+
+.copyArrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5f2;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.statCard {
+  border: 1px solid #56a897;
+  border-radius: 22px;
+  background: transparent;
+  padding: 24px 20px;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.statLabel {
+  margin: 0 0 34px;
+  color: #1d2428;
+  font-size: 20px;
+  line-height: 1.05;
+}
+
+.statCard span{
+    display: flex;
+    margin-top: auto;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.statValue {
+  margin: auto 0 0;
+  color: #3b8d7c;
+  font-size: 60px;
+  line-height: 90%;
+  font-weight: 700;
+}
+
+.statSub {
+  margin: 6px 0 0;
+  color: #1d2428;
+  font-size: 20px;
+  line-height: 1.05;
+}
+
+.statMoney {
+  margin: auto 0 0;
+  color: #3b8d7c;
+  font-size: 68px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.historyTitle {
+  margin: 34px 0 0;
+  color: #3c4a50;
+  text-transform: uppercase;
+  font-size: 35px;
+  line-height: 1;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+.table th {
+  text-align: left;
+  padding: 14px 0;
+  border-bottom: 1px solid #cdd3d3;
+  color: #3c4a50;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 22px 0;
+  border-bottom: 1px solid #cdd3d3;
+  color: #5f6a6f;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.productBadge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: #f0efec;
+  color: #151515;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.statusProgress {
+  color: #f19a4b;
+}
+
+.statusDone {
+  color: var(--accent);
+}
+
+.payoutCell {
+  color: #131313 !important;
+  font-weight: 700;
+}
+
+.empty,
+.noRows {
+  color: #8f9b9f;
+  font-size: 16px;
+  text-align: center;
+  padding: 28px 0;
+}
+
+@media (max-width: 1024px) {
+  .title,
+  .historyTitle {
+    font-size: 42px;
+  }
+
+  .linkText {
+    font-size: 24px;
+  }
+
+  .statLabel {
+    font-size: 28px;
+  }
+
+  .statValue {
+    font-size: 58px;
+  }
+
+  .statSub {
+    font-size: 30px;
+  }
+
+  .statMoney {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .termsBtn {
+    justify-content: center;
+  }
+
+  .linkBox {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .linkText {
+    font-size: 18px;
+  }
+
+  .copyBtn {
+    justify-content: space-between;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statCard {
+    min-height: 180px;
+  }
+
+  .title,
+  .historyTitle {
+    font-size: 32px;
+  }
+
+  .statLabel {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .statValue {
+    font-size: 48px;
+  }
+
+  .statSub {
+    font-size: 24px;
+  }
+
+  .statMoney {
+    font-size: 42px;
+  }
+}

@@ -1,0 +1,243 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background:#fff;
+}
+
+.inner {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+}
+
+.inner > a {
+    width: 245px;
+}
+
+/* nav desktop */
+.nav {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: block;
+  }
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navLink {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navLink:hover {
+  color: var(--accent);
+}
+
+/* services dropdown */
+.dropdownTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--foreground);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.dropdownTrigger:hover {
+  color: var(--accent);
+}
+
+.dropdownItem {
+  position: relative;
+}
+
+.dropdownMenu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 12px);
+  z-index: 30;
+  min-width: 280px;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  padding: 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  list-style: none;
+}
+
+.dropdownLink {
+  display: block;
+  border-radius: 12px;
+  padding: 8px 12px;
+  font-size: 16px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.dropdownLink:hover {
+  background: rgba(11, 122, 102, 0.08);
+  color: var(--accent);
+}
+
+/* actions desktop */
+.actions {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    display: flex;
+  }
+}
+
+.profileBtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+.diagBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  border: 1px solid var(--accent);
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--foreground);
+  background: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.diagBtn:hover {
+  background: var(--accent-strong);
+  color: #fff;
+}
+
+/* hamburger */
+.hamburger {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+  background: #fff;
+  color: var(--foreground);
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  .hamburger {
+    display: none;
+  }
+}
+
+/* mobile nav */
+.mobileNav {
+  order: 3;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  background: #fff;
+  padding: 12px;
+}
+
+.mobileNavList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+}
+
+.mobileNavLink {
+  display: block;
+  padding: 4px 0;
+  font-size: 16px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mobileNavLink:hover {
+  color: var(--accent);
+}
+
+.mobileServicesTrigger {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 16px;
+  color: var(--foreground);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.mobileServicesMenu {
+  margin-top: 8px;
+  padding-left: 8px;
+  padding-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  list-style: none;
+}
+
+.mobileServicesLink {
+  display: block;
+  border-radius: 8px;
+  padding: 4px 8px;
+  font-size: 16px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.mobileServicesLink:hover {
+  background: rgba(11, 122, 102, 0.08);
+  color: var(--accent);
+}
+
+.mobileActionsWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+}

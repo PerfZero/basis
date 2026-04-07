@@ -5,6 +5,6 @@ export type NavItem = {
 };
 
 export const STATIC_NAV_ITEMS: NavItem[] = [
-  { id: "about", label: "О компании", href: "#about" },
-  { id: "contacts", label: "Контакты", href: "#contacts" },
+  { id: "about", label: "О компании", href: "/about" },
+  { id: "contacts", label: "Контакты", href: "/#contacts" },
 ];

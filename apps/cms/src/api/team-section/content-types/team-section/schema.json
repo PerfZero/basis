@@ -1,0 +1,16 @@
+{
+  "kind": "singleType",
+  "collectionName": "team_sections",
+  "info": {
+    "singularName": "team-section",
+    "pluralName": "team-sections",
+    "displayName": "Команда — секция",
+    "description": "Заголовок и описание секции команды"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": { "type": "string", "required": true, "default": "Три экспертизы — одна команда" },
+    "subheading": { "type": "text" }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_service_tabs",
+  "info": {
+    "displayName": "Сервис — Таб (ERP)",
+    "description": "Таб в блоке «Объекты автоматизации» на странице ERP"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

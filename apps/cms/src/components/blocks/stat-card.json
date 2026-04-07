@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blocks_stat_cards",
+  "info": {
+    "displayName": "Карточка-показатель",
+    "description": "Карточка с цифрой, подписью и фоновым изображением"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

@@ -257,8 +257,6 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
           }))
         : [],
 
-      featuresTitle: d.featuresTitle ?? undefined,
-
       ctaHeading: d.ctaHeading ?? undefined,
       ctaHeadingAccent: d.ctaHeadingAccent ?? undefined,
       ctaSubheading: d.ctaSubheading ?? undefined,

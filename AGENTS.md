@@ -44,3 +44,22 @@
 10. Quality gate before finish.
 - Run `npm --workspace apps/web run build`.
 - If Strapi schema changed, run `npm --workspace apps/cms run build`.
+
+11. Styling: CSS Modules only — no Tailwind.
+- Every component has its own `*.module.css` file.
+- Import as `import s from "./component.module.css"` and use `className={s.className}`.
+- Global styles and design tokens live in `app/globals.css` only.
+- Do NOT install or use Tailwind.
+
+12. Strapi content-manager labels must be in Russian.
+- All displayName in schema info and field labels must be in Russian.
+- Field labels are set via bootstrap in `apps/cms/src/index.ts` using `strapi.store()`.
+- Every new content type must have its labels config added to `src/index.ts` bootstrap.
+
+12. Strapi dynamic zone populate syntax (v5).
+- Dynamic zones require the fragment API for nested populate:
+  `populate[zone][on][category.component][populate]=*`
+- Never use `populate[zone][populate]=field1,field2` — it throws 500 on polymorphic structures.
+
+13. next/image requires external hostnames to be whitelisted in next.config.
+- Add Strapi hostname (localhost in dev, production domain in prod) to `images.remotePatterns` in `next.config.ts`.

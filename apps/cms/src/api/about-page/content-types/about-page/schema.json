@@ -1,0 +1,73 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "Страница «О компании»",
+    "description": "Контент страницы о компании"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "eyebrow": { "type": "string" },
+    "heading": { "type": "string" },
+    "headingAccent": { "type": "string" },
+    "description": { "type": "text" },
+    "badge1Text": { "type": "string" },
+    "badge2Text": { "type": "string" },
+    "badge1Icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "badge2Icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "sectionTitle": { "type": "string" },
+    "backgroundImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "principles": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.principle"
+    },
+    "contactWorkTitle": { "type": "string" },
+    "contactWorkLabel": { "type": "string" },
+    "contactWorkValue": { "type": "string" },
+    "contactWorkIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "contactDocsTitle": { "type": "string" },
+    "contactDocsPhoneLabel": { "type": "string" },
+    "contactDocsPhoneValue": { "type": "string" },
+    "contactDocsEmailLabel": { "type": "string" },
+    "contactDocsEmailValue": { "type": "string" },
+    "contactDocsIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "contactCoffeeTitle": { "type": "string" },
+    "contactCoffeeText": { "type": "text" },
+    "contactCoffeeButtonLabel": { "type": "string" },
+    "contactCoffeeImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

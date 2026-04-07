@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_cards",
+  "info": {
+    "singularName": "service-card",
+    "pluralName": "service-cards",
+    "displayName": "Услуги — карточка",
+    "description": "Карточки услуг на главной странице"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "link": { "type": "string" },
+    "linkLabel": { "type": "string", "default": "Подробнее" },
+    "icon": { "type": "media", "multiple": false, "required": false, "allowedTypes": ["images", "files"] },
+    "isFeatured": { "type": "boolean", "default": false },
+    "sortOrder": { "type": "integer", "default": 0 }
+  }
+}

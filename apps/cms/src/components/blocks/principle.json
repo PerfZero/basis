@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_blocks_principles",
+  "info": {
+    "displayName": "Принцип",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "badge": { "type": "string" },
+    "title": { "type": "string" },
+    "paragraph1": { "type": "text" },
+    "paragraph2": { "type": "text" }
+  }
+}

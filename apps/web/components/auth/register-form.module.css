@@ -1,0 +1,262 @@
+.page {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 40px;
+}
+
+.logo {
+  display: block;
+}
+
+.loginBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: var(--foreground);
+  text-decoration: none;
+  background: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.loginBtn:hover {
+  background: var(--accent-strong);
+  color: #fff;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 80px;
+  padding: 40px 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .main {
+    flex-direction: column;
+    gap: 40px;
+    padding: 24px 16px;
+  }
+}
+
+/* Left */
+.left {
+  flex: 1;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 42px;
+  text-transform: uppercase;
+  color: #3c4a50;
+  margin-bottom: 32px;
+  line-height: 110%;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  list-style: none;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: #3c4a50;
+}
+
+/* Form */
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 380px;
+  width: 100%;
+}
+
+.refHint {
+  font-size: 14px;
+  color: #3c4a50;
+  background: #e8f5f2;
+  border: 1px solid #bde3dc;
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.refHint span {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fieldIcon {
+  position: absolute;
+  left: 16px;
+  color: #b7b7b3;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid #e0e0e0;
+  border-radius: 9999px;
+  padding: 14px 20px 14px 44px;
+  font-size: 16px;
+  color: #3c4a50;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+
+.input::placeholder {
+  color: #b7b7b3;
+}
+
+.input:focus {
+  border-color: var(--accent);
+}
+
+/* Checkbox */
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  color: #3c4a50;
+  cursor: pointer;
+  line-height: 1.4;
+  padding: 4px 0;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #b7b7b3;
+  border-radius: 3px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 1px;
+  cursor: pointer;
+}
+
+/* Submit */
+.submit {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: 9999px;
+  padding: 12px 56px 12px 32px;
+  font-size: 16px;
+  font-family: inherit;
+  font-weight: 400;
+  color: #3c4a50;
+  background: #f0f0f0;
+  border: none;
+  cursor: not-allowed;
+  transition: background 0.2s, color 0.2s;
+}
+
+.submit:not(:disabled) {
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit:not(:disabled):hover {
+  background: var(--accent-strong);
+}
+
+.submitArrow {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 1);
+  pointer-events: none;
+}
+
+.submit:not(:disabled) .submitArrow {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  flex-wrap: wrap;
+}
+
+.footerLink {
+  font-size: 14px;
+  color: #3c4a50;
+  opacity: 0.5;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footerLink:hover {
+  opacity: 1;
+}
+
+.footerSep {
+  font-size: 14px;
+  color: #b7b7b3;
+}
+
+.error {
+  font-size: 14px;
+  color: #e53e3e;
+  padding: 4px 8px;
+}

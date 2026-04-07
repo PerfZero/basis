@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Golos_Text } from "next/font/google";
 import "./globals.css";
+
+const golosText = Golos_Text({
+  subsets: ["cyrillic", "latin"],
+  variable: "--font-golos",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Диагностика | Главная",
@@ -12,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ru" className="h-full antialiased">
+    <html lang="ru" className={`h-full antialiased ${golosText.variable}`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

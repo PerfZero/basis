@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "diag_ctas",
+  "info": {
+    "singularName": "diag-cta",
+    "pluralName": "diag-ctas",
+    "displayName": "Диагностика — призыв к действию",
+    "description": "Блок призыва к действию с диагностикой"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true,
+      "default": "Диагностика [ВАШИХ] Бизнес-Процессов"
+    },
+    "subheading": { "type": "text" },
+    "buttonLabel": { "type": "string", "default": "Начать диагностику" },
+    "buttonHref": { "type": "string", "default": "#contact" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

@@ -1,0 +1,130 @@
+.section {
+  padding: 64px 16px;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.heading {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 110%;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.subheading {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 155%;
+    text-align: center;
+    color: #000;
+    margin-bottom: 50px;
+
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 410px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(135deg, #f6f5f1 0%, rgba(246, 245, 241, 0.4) 100%);
+}
+
+.card:hover .warpper img{
+    transform: translateY(-10px);
+}
+
+.watermark {
+  position: absolute;
+  left: 0;
+  top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+
+.photo {
+  object-fit: cover;
+  object-position: top;
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 290px;
+  transition: 0.2s;
+}
+
+.warpper::before{
+    content: '';
+    background: linear-gradient(177deg, rgba(247, 247, 243, 0) 0%, #faf9f7 100%);
+    display: block;
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    bottom: 40px;
+}
+
+
+.cardBottom {
+  position: relative;
+  z-index: 2;
+  padding: 24px;
+}
+
+.role {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 145%;
+    color: #0b7a66;
+  margin-bottom: 4px;
+}
+
+.name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 110%;
+    color: #3c4a50;
+    font-family: "Wadik", sans-serif;
+
+  margin-bottom: 4px;
+}
+
+.description {
+    font-weight: 400;
+    font-size: 12px;
+    width: fit-content;
+    line-height: 145%;
+    color: #3c4a50;
+    padding-top: 4px;
+    border-top: 1px solid #bde3dc;
+
+}

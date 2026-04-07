@@ -1,0 +1,45 @@
+{
+  "kind": "singleType",
+  "collectionName": "hero_blocks",
+  "info": {
+    "singularName": "hero-block",
+    "pluralName": "hero-blocks",
+    "displayName": "Главный экран",
+    "description": "Контент героя на главной странице"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "инженерное бюро цифровых решений"
+    },
+    "heading": {
+      "type": "string",
+      "required": true,
+      "default": "Строим системы, которые [Увеличивают] Маржинальность"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "primaryButtonLabel": {
+      "type": "string",
+      "default": "Начать диагностику"
+    },
+    "primaryButtonHref": {
+      "type": "string",
+      "default": "#contact"
+    },
+    "secondaryButtonLabel": {
+      "type": "string",
+      "default": "Наши услуги"
+    },
+    "secondaryButtonHref": {
+      "type": "string",
+      "default": "#services"
+    }
+  }
+}
