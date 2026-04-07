@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_service_recognize_sections",
+  "info": {
+    "displayName": "Сервис — Вы узнаёте свой бизнес",
+    "description": "Горизонтальный скролл с раскрывающимися карточками"
+  },
+  "options": {},
+  "attributes": {
+    "recognizeTitle": { "type": "string" },
+    "recognizeCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-recognize-card"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_service_problem_items",
+  "info": {
+    "displayName": "Сервис — Проблема",
+    "description": "Элемент секции «Почему X не работает»"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

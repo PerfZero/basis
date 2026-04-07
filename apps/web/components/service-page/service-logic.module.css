@@ -1,0 +1,151 @@
+.section {
+  padding: 80px 24px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 110%;
+    text-align: center;
+    color: #000;
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* ── Left: image ── */
+.imageWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: 480px;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+/* ── Right: slides ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.slides {
+  position: relative;
+  min-height: 160px;
+}
+
+.slide {
+  display: none;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.slideActive {
+  display: flex;
+}
+
+.slideTitle {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 600;
+    font-size: 35px;
+    line-height: 110%;
+    color: #0b7a66;
+}
+
+.slideDesc {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 130%;
+    color: #000;
+}
+
+/* ── Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--accent);
+  border-radius: 9999px;
+  padding: 3px 3px 3px 28px;
+  font-weight: 400;
+  font-size: 16px;
+  text-align: center;
+  color: #0b7a66;
+  text-decoration: none;
+  width: fit-content;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+  color: #fff;
+}
+
+.btnArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+
+.btn:hover .btnArrow {
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+/* ── Dots ── */
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #d0d0d0;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s, width 0.2s;
+}
+
+.dotActive {
+  background: var(--accent);
+  width: 24px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .imageWrap {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+}

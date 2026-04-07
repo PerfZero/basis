@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_service_hero_sections",
+  "info": {
+    "displayName": "Сервис — Hero",
+    "description": "Главный экран страницы услуги"
+  },
+  "options": {},
+  "attributes": {
+    "heroEyebrow": { "type": "string", "required": true },
+    "heroHeading": { "type": "string" },
+    "heroHeadingAccent": { "type": "string" },
+    "heroDescription": { "type": "text" },
+    "heroPrimaryButtonLabel": { "type": "string" },
+    "heroPrimaryButtonHref": { "type": "string" },
+    "heroSecondaryButtonLabel": { "type": "string", "default": "Подробнее" },
+    "heroBadges": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-badge"
+    }
+  }
+}

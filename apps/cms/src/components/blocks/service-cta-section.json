@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_service_cta_sections",
+  "info": {
+    "displayName": "Сервис — CTA",
+    "description": "Финальный призыв к действию"
+  },
+  "options": {},
+  "attributes": {
+    "ctaHeading": { "type": "string" },
+    "ctaHeadingAccent": { "type": "string" },
+    "ctaSubheading": { "type": "text" },
+    "ctaImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "ctaPrimaryButtonLabel": { "type": "string" },
+    "ctaPrimaryButtonHref": { "type": "string" }
+  }
+}

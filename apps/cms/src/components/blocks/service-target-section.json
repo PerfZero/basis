@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_service_target_sections",
+  "info": {
+    "displayName": "Сервис — Для кого",
+    "description": "Блок целевой аудитории (карточки)"
+  },
+  "options": {},
+  "attributes": {
+    "targetTitle": { "type": "string" },
+    "targetButtonLabel": { "type": "string" },
+    "targetButtonHref": { "type": "string" },
+    "targetCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-target-card"
+    }
+  }
+}

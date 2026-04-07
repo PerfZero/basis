@@ -1,0 +1,186 @@
+.section {
+  padding: 80px 24px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 35px;
+  line-height: 110%;
+  text-align: center;
+  color: #000;
+  margin-bottom: 30px;
+}
+
+/* ── Card container ── */
+.card {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 2px 4px 24px 0 rgba(11, 122, 102, 0.1);
+  background: radial-gradient(69.69% 112.26% at 69.69% 100%, #ebf9f7 0%, #fff 100%);  overflow: hidden;
+}
+
+/* ── Tabs ── */
+.tabs {
+  display: flex;
+  justify-content: space-around;
+}
+
+.tab {
+  position: relative;
+  padding: 24px 8px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #3c4a50;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.2s;
+}
+
+.tabActive {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.tabDivider {
+  display: block;
+  height: 1px;
+  width: 200%;
+  margin-left: -50%;
+  background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-top: 4px;
+}
+
+.tabActive .tabDivider {
+  opacity: 1;
+}
+
+/* ── Body: left text + right image ── */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 48px 48px 48px 48px;
+  gap: 40px;
+  min-height: 400px;
+}
+
+/* ── Left ── */
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subtitle {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    color: #3c4a50;
+}
+
+.challenge {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #3c4a50;
+
+  padding-top: 16px;
+  border-top: 1px solid #d0d0d0;
+}
+
+.challengeLabel {
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.featureIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.featureText {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 110%;
+    color: #0b7a66;
+}
+
+/* ── Button ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 9999px;
+  padding: 6px 6px 6px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  background: #0b7a66;  text-decoration: none;
+  transition: background-color 0.2s;
+  width: fit-content;
+  margin-top: 8px;
+}
+
+.btn:hover {
+  background-color: var(--accent);
+}
+
+.btnArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39px;
+  height: 39px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-strong);
+  flex-shrink: 0;
+}
+
+/* ── Right image ── */
+.right {
+  display: flex;
+  align-items: center;
+  position:    absolute;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+}
+
+.image {
+  width: 200%;
+  margin-left: -50%;
+  max-width: 460px;
+  height: auto;
+  object-fit: contain;
+
+}
+
+@media (max-width: 768px) {
+  .body {
+    grid-template-columns: 1fr;
+    padding: 32px 24px;
+  }
+
+  .tabs {
+    padding: 0 24px;
+    overflow-x: auto;
+  }
+
+  .right {
+    order: -1;
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_service_features_sections",
+  "info": {
+    "displayName": "Сервис — Возможности",
+    "description": "Блок с карточками возможностей/фич"
+  },
+  "options": {},
+  "attributes": {
+    "featuresTitle": { "type": "string" },
+    "featuresTitleAccent": { "type": "string" },
+    "featureCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-feature-card"
+    }
+  }
+}

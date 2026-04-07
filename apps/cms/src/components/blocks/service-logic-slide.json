@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_blocks_service_logic_slides",
+  "info": {
+    "displayName": "Сервис — Слайд логики",
+    "description": "Слайд в блоке «Инженерная логика»"
+  },
+  "options": {},
+  "attributes": {
+    "title": { "type": "string", "required": true },
+    "description": { "type": "text" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "buttonLabel": { "type": "string" },
+    "buttonHref": { "type": "string" }
+  }
+}

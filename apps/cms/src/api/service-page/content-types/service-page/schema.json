@@ -1,0 +1,107 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_pages",
+  "info": {
+    "singularName": "service-page",
+    "pluralName": "service-pages",
+    "displayName": "Страницы услуг",
+    "description": "Детальные страницы каждой услуги компании"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "heroEyebrow",
+      "required": true
+    },
+
+    "heroEyebrow": { "type": "string", "required": true },
+    "heroHeading": { "type": "string" },
+    "heroHeadingAccent": { "type": "string" },
+    "heroDescription": { "type": "text" },
+    "heroPrimaryButtonLabel": { "type": "string" },
+    "heroPrimaryButtonHref": { "type": "string" },
+    "heroSecondaryButtonLabel": { "type": "string", "default": "Подробнее" },
+    "heroBadges": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-badge"
+    },
+
+    "problemTitle": { "type": "string" },
+    "problemTitleAccent": { "type": "string" },
+    "problemIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "problemItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-problem-item"
+    },
+
+    "targetTitle": { "type": "string" },
+    "targetButtonLabel": { "type": "string" },
+    "targetButtonHref": { "type": "string" },
+    "targetCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-target-card"
+    },
+
+    "recognizeTitle": { "type": "string" },
+    "recognizeCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-recognize-card"
+    },
+
+    "autoTitle": { "type": "string" },
+    "autoTabs": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-auto-tab"
+    },
+
+    "logicTitle": { "type": "string" },
+    "logicSlides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-logic-slide"
+    },
+
+    "featuresTitle": { "type": "string" },
+    "featuresTitleAccent": { "type": "string" },
+    "featureCards": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-feature-card"
+    },
+
+    "statsTitle": { "type": "string" },
+    "statsColBefore": { "type": "string" },
+    "statsColAfter": { "type": "string" },
+    "statsRows": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-stat-row"
+    },
+
+    "ctaHeading": { "type": "string" },
+    "ctaHeadingAccent": { "type": "string" },
+    "ctaSubheading": { "type": "text" },
+    "ctaImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "ctaPrimaryButtonLabel": { "type": "string" },
+    "ctaPrimaryButtonHref": { "type": "string" }
+  }
+}

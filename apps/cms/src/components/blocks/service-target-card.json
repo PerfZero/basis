@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_service_target_cards",
+  "info": {
+    "displayName": "Сервис — Карточка «Для кого»",
+    "description": "Карточка целевой аудитории в секции «Для кого это решение»"
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "challenge": {
+      "type": "text"
+    },
+    "feature": {
+      "type": "text"
+    }
+  }
+}

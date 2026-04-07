@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_service_auto_tabs",
+  "info": {
+    "displayName": "Сервис — Таб объекта автоматизации",
+    "description": "Вкладка в блоке «Объекты автоматизации»"
+  },
+  "options": {},
+  "attributes": {
+    "label": { "type": "string", "required": true },
+    "subtitle": { "type": "string" },
+    "challenge": { "type": "text" },
+    "feature": { "type": "text" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    },
+    "buttonLabel": { "type": "string" },
+    "buttonHref": { "type": "string" }
+  }
+}

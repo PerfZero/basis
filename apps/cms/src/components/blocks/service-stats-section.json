@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_service_stats_sections",
+  "info": {
+    "displayName": "Сервис — Было/Стало",
+    "description": "Таблица сравнения показателей до и после"
+  },
+  "options": {},
+  "attributes": {
+    "statsTitle": { "type": "string" },
+    "statsColBefore": { "type": "string" },
+    "statsColAfter": { "type": "string" },
+    "statsRows": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-stat-row"
+    }
+  }
+}

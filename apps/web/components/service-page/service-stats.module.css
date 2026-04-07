@@ -1,0 +1,112 @@
+.section {
+  padding: 64px 24px;
+}
+
+.container {
+  max-width: 1200px;
+  padding: 95px 150px;
+  margin: 0 auto;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg, #0b4a3f 0%, #0b7a66 100%);
+
+  gap: 40px;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 110%;
+    text-align: center;
+    color: #f6f5f1;
+  letter-spacing: 0.04em;
+}
+
+.tableWrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 20px;
+  background: #f6f5f1;
+}
+
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.thLabel {
+  width: 40%;
+  padding: 12px 20px;
+  text-align: left;
+}
+
+.thBefore,
+.thAfter {
+  padding: 12px 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  border: 1px solid #6dafa3;
+
+  color: #3c4a50;
+}
+
+.thAfter {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 110%;
+    color: #3c4a50;
+    border: 1px solid #6dafa3;
+
+}
+
+.row {
+  border: 1px solid #6dafa3;
+}
+
+.tdLabel {
+  padding: 16px 20px;
+  font-weight: 600;
+  border: 1px solid #6dafa3;
+
+  font-size: 16px;
+  line-height: 110%;
+  color: #3c4a50;
+  text-align: left;
+}
+
+.tdBefore {
+  padding: 16px 20px;
+  font-weight: 600;
+  border: 1px solid #6dafa3;
+
+  font-size: 16px;
+  line-height: 110%;
+  color: #3c4a50;
+  text-align: center;
+}
+
+.tdAfter {
+  padding: 16px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 110%;
+  color: #3c4a50;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .thLabel,
+  .thBefore,
+  .thAfter,
+  .tdLabel,
+  .tdBefore,
+  .tdAfter {
+    padding: 12px 12px;
+    font-size: 13px;
+  }
+}

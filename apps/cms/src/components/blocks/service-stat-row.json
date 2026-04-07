@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_blocks_service_stat_rows",
+  "info": {
+    "displayName": "Сервис — Строка статистики",
+    "description": "Строка сравнительной таблицы в секции «Ценность в цифрах»"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "valueBefore": {
+      "type": "string"
+    },
+    "valueAfter": {
+      "type": "string"
+    }
+  }
+}

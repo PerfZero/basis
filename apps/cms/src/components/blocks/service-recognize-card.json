@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_service_recognize_cards",
+  "info": {
+    "displayName": "Сервис — Карточка «Вы узнаёте свой бизнес»",
+    "description": "Карточка горизонтального скролла с раскрытием по hover"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "feature": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images"]
+    }
+  }
+}

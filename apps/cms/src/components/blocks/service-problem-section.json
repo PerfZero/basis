@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_service_problem_sections",
+  "info": {
+    "displayName": "Сервис — Проблематика",
+    "description": "Блок с проблемами клиента (колесо)"
+  },
+  "options": {},
+  "attributes": {
+    "problemTitle": { "type": "string" },
+    "problemTitleAccent": { "type": "string" },
+    "problemIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "problemItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.service-problem-item"
+    }
+  }
+}

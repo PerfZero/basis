@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_blocks_service_feature_cards",
+  "info": {
+    "displayName": "Сервис — Карточка фичи",
+    "description": "Карточка технической возможности/фичи в секции инженерии"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": ["images", "files"]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
