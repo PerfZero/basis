@@ -560,6 +560,40 @@ export interface ApiDiagCtaDiagCta extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiDiagnosticRequestDiagnosticRequest
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'diagnostic_requests';
+  info: {
+    description: '\u041B\u0438\u0434\u044B \u0441 \u043A\u043D\u043E\u043F\u043A\u0438 \u00AB\u041D\u0430\u0447\u0430\u0442\u044C \u0434\u0438\u0430\u0433\u043D\u043E\u0441\u0442\u0438\u043A\u0443\u00BB';
+    displayName: '\u0417\u0430\u044F\u0432\u043A\u0438 \u043D\u0430 \u0434\u0438\u0430\u0433\u043D\u043E\u0441\u0442\u0438\u043A\u0443';
+    pluralName: 'diagnostic-requests';
+    singularName: 'diagnostic-request';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    consent: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::diagnostic-request.diagnostic-request'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiDocumentDocument extends Struct.CollectionTypeSchema {
   collectionName: 'documents';
   info: {
@@ -1474,6 +1508,7 @@ declare module '@strapi/strapi' {
       'api::about-page.about-page': ApiAboutPageAboutPage;
       'api::contact-request.contact-request': ApiContactRequestContactRequest;
       'api::diag-cta.diag-cta': ApiDiagCtaDiagCta;
+      'api::diagnostic-request.diagnostic-request': ApiDiagnosticRequestDiagnosticRequest;
       'api::document.document': ApiDocumentDocument;
       'api::hero-block.hero-block': ApiHeroBlockHeroBlock;
       'api::menu-service.menu-service': ApiMenuServiceMenuService;
