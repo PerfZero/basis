@@ -76,7 +76,7 @@ export function AboutRequestForm() {
       const response = await fetch("/api/contact-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ data: payload }),
       });
 
       if (!response.ok) {

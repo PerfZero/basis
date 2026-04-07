@@ -62,7 +62,7 @@ export function DiagnosticModal({ onClose }: Props) {
       const res = await fetch("/api/diagnostic-requests", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, consent }),
+        body: JSON.stringify({ data: { name, phone, consent } }),
       });
 
       if (!res.ok) {

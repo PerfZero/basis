@@ -31,20 +31,25 @@ type ContactRequestPayload = {
 };
 
 export async function POST(request: Request) {
-  const body = (await request.json().catch(() => null)) as ContactRequestPayload | null;
+  const body = (await request.json().catch(() => null)) as
+    | ContactRequestPayload
+    | { data?: ContactRequestPayload }
+    | null;
   if (!body) {
     return NextResponse.json({ error: "Некорректное тело запроса." }, { status: 400 });
   }
 
+  const src = (body as { data?: ContactRequestPayload }).data ?? (body as ContactRequestPayload);
+
   const payload = {
-    name: String(body.name ?? "").trim(),
-    company: String(body.company ?? "").trim(),
-    direction: String(body.direction ?? "").trim(),
-    pain: String(body.pain ?? "").trim(),
-    turnover: String(body.turnover ?? "").trim(),
-    employeeCount: String(body.employeeCount ?? "").trim(),
-    phone: String(body.phone ?? "").trim(),
-    consent: Boolean(body.consent),
+    name: String(src.name ?? "").trim(),
+    company: String(src.company ?? "").trim(),
+    direction: String(src.direction ?? "").trim(),
+    pain: String(src.pain ?? "").trim(),
+    turnover: String(src.turnover ?? "").trim(),
+    employeeCount: String(src.employeeCount ?? "").trim(),
+    phone: String(src.phone ?? "").trim(),
+    consent: Boolean(src.consent),
     source: "about-form",
   };
 
