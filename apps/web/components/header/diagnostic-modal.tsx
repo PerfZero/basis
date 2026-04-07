@@ -9,6 +9,22 @@ type Props = {
   onClose: () => void;
 };
 
+function extractErrorMessage(body: unknown, fallback: string): string {
+  if (!body || typeof body !== "object") return fallback;
+  const src = body as Record<string, unknown>;
+
+  if (typeof src.error === "string" && src.error.trim()) return src.error;
+  if (typeof src.message === "string" && src.message.trim()) return src.message;
+
+  if (src.error && typeof src.error === "object") {
+    const nested = src.error as Record<string, unknown>;
+    if (typeof nested.message === "string" && nested.message.trim()) return nested.message;
+    if (typeof nested.name === "string" && nested.name.trim()) return nested.name;
+  }
+
+  return fallback;
+}
+
 export function DiagnosticModal({ onClose }: Props) {
   const [phone, setPhone] = useState("");
   const [consent, setConsent] = useState(false);
@@ -51,7 +67,10 @@ export function DiagnosticModal({ onClose }: Props) {
 
       if (!res.ok) {
         const body = await res.json().catch(() => ({}));
-        setMessage({ type: "error", text: String(body?.error ?? "Не удалось отправить заявку. Попробуйте ещё раз.") });
+        setMessage({
+          type: "error",
+          text: extractErrorMessage(body, "Не удалось отправить заявку. Попробуйте ещё раз."),
+        });
         return;
       }
 

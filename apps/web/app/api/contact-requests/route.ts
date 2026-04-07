@@ -3,6 +3,22 @@ import { NextResponse } from "next/server";
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
+function extractStrapiError(raw: string): string | null {
+  try {
+    const parsed = JSON.parse(raw) as Record<string, unknown>;
+    if (typeof parsed.error === "string" && parsed.error.trim()) return parsed.error;
+    if (parsed.error && typeof parsed.error === "object") {
+      const nested = parsed.error as Record<string, unknown>;
+      if (typeof nested.message === "string" && nested.message.trim()) return nested.message;
+      if (typeof nested.name === "string" && nested.name.trim()) return nested.name;
+    }
+    if (typeof parsed.message === "string" && parsed.message.trim()) return parsed.message;
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 type ContactRequestPayload = {
   name?: string;
   company?: string;
@@ -51,13 +67,10 @@ export async function POST(request: Request) {
   });
 
   if (!response.ok) {
-    const details = await response.text();
-    return NextResponse.json(
-      { error: "Strapi не принял заявку.", details },
-      { status: 502 },
-    );
+    const raw = await response.text();
+    const errorMessage = extractStrapiError(raw) ?? "Strapi не принял заявку.";
+    return NextResponse.json({ error: errorMessage }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });
 }
-
