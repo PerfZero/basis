@@ -61,7 +61,7 @@
 .statLabel {
   font-size: 12px;
   line-height: 1.4;
-  white-space: pre-line;
+  width: 60%;  white-space: pre-line;
   position: relative;
   z-index: 1;
   color: var(--foreground);
@@ -81,4 +81,30 @@
   z-index: 0;
   opacity: 0.2;
   filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+  .photoCard {
+    display: none;
+  }
+
+  .statCard {
+    width: calc(50% - 8px);
+    min-height: 200px;
+  }
+
+  .statValue {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .statCard {
+    width: 100%;
+    min-height: 180px;
+  }
+
+  .statValue {
+    font-size: 44px;
+  }
 }

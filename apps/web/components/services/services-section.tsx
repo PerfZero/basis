@@ -4,7 +4,7 @@ import styles from "./services-section.module.css";
 
 export function ServicesSection({ heading, subheading, cards }: ServicesSectionData) {
   return (
-    <section className={styles.section}>
+    <section id="services" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
           <h2 className={styles.heading}>{heading}</h2>

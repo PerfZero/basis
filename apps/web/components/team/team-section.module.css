@@ -38,8 +38,24 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 40px 16px;
+  }
+
+  .heading {
+    font-size: 26px;
+  }
+
+  .header {
+    margin-bottom: 28px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
+  }
+
+  .card {
+    min-height: 280px;
   }
 }
 

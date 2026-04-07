@@ -1,11 +1,11 @@
 .section {
   position: relative;
   overflow: hidden;
-  height: calc(100dvh - 64px);
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
+  padding: 80px 16px;
 }
 
 .bg {
@@ -78,6 +78,7 @@
   transition: background-color 0.2s;
   border: none;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .btnPrimary:hover {
@@ -101,7 +102,7 @@
   display: inline-flex;
   align-items: center;
   border-radius: 9999px;
-  padding: 16px 40px;
+  padding: 12px 40px;
   font-size: 14px;
   font-weight: 500;
   border: 1px solid var(--accent);
@@ -113,4 +114,51 @@
 .btnSecondary:hover {
   background-color: var(--accent);
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 16px;
+  }
+
+  .inner {
+    gap: 20px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .eyebrow {
+    font-size: 14px;
+  }
+
+  .divider {
+    width: 160px;
+  }
+
+  .heading {
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .btnPrimary {
+    padding: 4px 4px 4px 20px;
+    font-size: 13px;
+  }
+
+  .btnSecondary {
+    padding: 10px 24px;
+    font-size: 13px;
+  }
 }

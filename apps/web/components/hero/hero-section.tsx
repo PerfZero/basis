@@ -1,6 +1,7 @@
 import Image from "next/image";
 import blurBack from "@/app/blur_back.png";
 import type { HeroBlockData } from "@/lib/strapi/hero-block";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import s from "./hero-section.module.css";
 
 type Props = HeroBlockData;
@@ -10,9 +11,7 @@ export function HeroSection({
   headingParts,
   description,
   primaryButtonLabel,
-  primaryButtonHref,
   secondaryButtonLabel,
-  secondaryButtonHref,
 }: Props) {
   return (
     <section className={s.section}>
@@ -36,11 +35,11 @@ export function HeroSection({
         <p className={s.description}>{description}</p>
 
         <div className={s.buttons}>
-          <a href={primaryButtonHref} className={s.btnPrimary}>
+          <DiagnosticTriggerButton className={s.btnPrimary}>
             {primaryButtonLabel}
             <span className={s.btnArrow} aria-hidden>→</span>
-          </a>
-          <a href={secondaryButtonHref} className={s.btnSecondary}>
+          </DiagnosticTriggerButton>
+          <a href="#services" className={s.btnSecondary}>
             {secondaryButtonLabel}
           </a>
         </div>

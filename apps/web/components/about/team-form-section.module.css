@@ -65,6 +65,18 @@
   background: transparent;
 }
 
+/* Desktop: wrapper divs are transparent — children flow as direct flex children of cardInfo */
+.cardBody,
+.cardText,
+.cardContact,
+.cardQrDesktop {
+  display: contents;
+}
+
+.cardQrMobile {
+  display: none;
+}
+
 .role {
   font-family: var(--font-sans);
   font-size: 12px;
@@ -556,43 +568,105 @@
   }
 
   .heading {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .subheading {
     font-size: 14px;
   }
 
+  .header {
+    margin-bottom: 24px;
+  }
+
+  /* Team cards — mobile layout */
   .card {
-    height: auto;
-    grid-template-columns: 1fr;
+    display: block;
+    position: relative;
+    height: 360px;
+    overflow: hidden;
   }
 
+  /* Photo: absolute top-right */
   .photoWrap {
-    min-height: 260px;
-    order: -1;
-    border-radius: 20px 20px 0 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 62%;
+    min-height: unset;
+    order: unset;
+    border-radius: 0 20px 0 0;
   }
 
+  .photo {
+    object-position: top center;
+  }
+
+  /* Info: covers full card, z-index above photo */
   .cardInfo {
+    position: absolute;
+    inset: 0;
     padding: 20px;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 80px;
+    grid-template-rows: 1fr auto auto auto auto auto auto;
+    column-gap: 10px;
+    row-gap: 2px;
+    height: 100%;
   }
 
+  /* Left column */
+  .role        { grid-column: 1; grid-row: 2; align-self: end; min-width: 0; }
+  .name        {
+    grid-column: 1; grid-row: 3;
+    font-size: 16px; line-height: 1.15;
+    min-width: 0;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: calc(55% - 10px);
+  }
+  .line        { display: none; }
+  .description { grid-column: 1; grid-row: 4; font-size: 11px; min-width: 0; max-width: calc(55% - 10px); }
+  .spacer      { display: none; }
+  .contactLabel { grid-column: 1 / -1; grid-row: 5; margin-top: 10px; }
+  .phone       { grid-column: 1 / -1; grid-row: 6; }
+  .email       { grid-column: 1 / -1; grid-row: 7; }
+
+  /* Right column: handle (row 2) + QR (rows 3-4), z-index above photo */
+  .handle  { grid-column: 2; grid-row: 2; align-self: end; text-align: right; font-size: 11px; position: relative; z-index: 3; }
+  .qrImage { grid-column: 2; grid-row: 3 / 5; width: 72px; height: 72px; margin-top: 4px; position: relative; z-index: 3; }
+  .qrPlaceholder { display: none; }
+
+  /* Form */
   .formTitle {
-    font-size: 28px;
+    font-size: 24px;
+    text-align: left;
   }
 
+  /* Contact cards */
   .contactCards {
-    margin-top: 28px;
+    margin-top: 24px;
+  }
+
+  .contactTopRow {
+    grid-template-columns: 1fr;
   }
 
   .workCard,
   .docsCard {
     padding: 44px 20px 20px;
+    min-height: auto;
   }
 
   .docsRow {
-    gap: 20px;
+    gap: 16px;
+  }
+
+  /* Coffee card */
+  .coffeeCard {
+    grid-template-columns: 1fr;
   }
 
   .coffeeContent {
@@ -600,17 +674,19 @@
   }
 
   .coffeeTitle {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .coffeeText {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .coffeeMedia {
     padding: 20px;
+    min-height: 160px;
   }
 
+  /* Form inputs */
   .twoCols {
     grid-template-columns: 1fr;
     gap: 14px;

@@ -1,5 +1,5 @@
 .footer {
-    background: radial-gradient(79.18% 100% at 50% 0%, rgba(255, 255, 255, 0) 46.32%, rgba(11, 122, 102, 0.15) 100%);
+  background: radial-gradient(79.18% 100% at 50% 0%, rgba(255, 255, 255, 0) 46.32%, rgba(11, 122, 102, 0.15) 100%);
   padding-top: 60px;
   overflow: hidden;
 }
@@ -7,24 +7,23 @@
 .inner {
   margin: 0 auto;
   max-width: 1200px;
-  padding: 0 0;
+  padding: 0 16px;
 }
 
 .columns {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
-  padding-bottom: 48px;
-}
-
-@media (max-width: 768px) {
-  .columns {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+  padding-bottom: 40px;
 }
 
 .col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.colContacts {
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -50,6 +49,7 @@
   font-size: 16px;
   line-height: 130%;
   color: #3c4a50;
+  text-decoration: none;
   transition: color 0.2s;
 }
 
@@ -57,7 +57,7 @@
   color: var(--accent);
 }
 
-.contactsRow {
+.contactsEmailRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -67,7 +67,6 @@
 .socials {
   display: flex;
   gap: 8px;
-  margin-top: 4px;
 }
 
 .socialBtn {
@@ -76,14 +75,21 @@
   justify-content: center;
 }
 
+.footerBottom {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 0 40px;
+  border-top: 1px solid rgba(60, 74, 80, 0.1);
+}
+
 .bottomItem {
-  margin-top: auto;
-  padding-top: 24px;
   font-size: 14px;
   color: #3c4a50;
   opacity: 0.5;
   text-decoration: none;
   transition: opacity 0.2s;
+  white-space: nowrap;
 }
 
 a.bottomItem:hover {
@@ -102,7 +108,7 @@ a.bottomItem:hover {
 .bigLogoAccent {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 153px;
+  font-size:clamp(43px, 10.75vw, 153px);
   text-transform: uppercase;
   text-align: center;
 }
@@ -113,4 +119,25 @@ a.bottomItem:hover {
 
 .bigLogoAccent {
   color: var(--accent);
+}
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .columns {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding-bottom: 32px;
+  }
+
+  .colContacts {
+    grid-column: 1 / -1;
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 24px 0 32px;
+  }
+
 }

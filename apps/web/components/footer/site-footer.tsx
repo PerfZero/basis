@@ -32,7 +32,6 @@ export function SiteFooter({ services }: { services: MenuItem[] }) {
                 </li>
               ))}
             </ul>
-            <span className={styles.bottomItem}>© {year}. Все права защищены</span>
           </div>
 
           {/* Информация */}
@@ -42,22 +41,27 @@ export function SiteFooter({ services }: { services: MenuItem[] }) {
               <li><Link href="/about" className={styles.colLink}>О компании</Link></li>
               <li><Link href="/#contacts" className={styles.colLink}>Контакты</Link></li>
             </ul>
-            <a href="#" className={styles.bottomItem}>Политика конфиденциальности</a>
           </div>
 
           {/* Контакты */}
-          <div id="contacts" className={styles.col}>
+          <div id="contacts" className={styles.colContacts}>
             <p className={styles.colLabel}>контакты</p>
-            <div className={styles.contactsRow}>
+            <div className={styles.contactsEmailRow}>
               <a href="mailto:info@basisthree.ru" className={styles.colLink}>info@basisthree.ru</a>
-              <a href="tel:+79896551212" className={styles.colLink}>+7 (989) 655–12–12</a>
+              <div className={styles.socials}>
+                <a href="#" className={styles.socialBtn} aria-label="Telegram"><TelegramIcon /></a>
+                <a href="#" className={styles.socialBtn} aria-label="WhatsApp"><WhatsAppIcon /></a>
+              </div>
             </div>
-            <div className={styles.socials}>
-              <a href="#" className={styles.socialBtn} aria-label="Telegram"><TelegramIcon /></a>
-              <a href="#" className={styles.socialBtn} aria-label="WhatsApp"><WhatsAppIcon /></a>
-            </div>
-            <a href="#" className={styles.bottomItem}>Договор оферты</a>
+            <a href="tel:+79896551212" className={styles.colLink}>+7 (989) 655–12–12</a>
           </div>
+        </div>
+
+        {/* Bottom links */}
+        <div className={styles.footerBottom}>
+          <span className={styles.bottomItem}>© {year}. Все права защищены</span>
+          <Link href="/privacy" className={styles.bottomItem}>Политика конфиденциальности</Link>
+          <Link href="/oferta" className={styles.bottomItem}>Договор оферты</Link>
         </div>
       </div>
 

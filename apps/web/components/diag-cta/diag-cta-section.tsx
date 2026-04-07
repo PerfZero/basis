@@ -1,8 +1,9 @@
 import Image from "next/image";
 import type { DiagCtaData } from "@/lib/strapi/diag-cta";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import styles from "./diag-cta-section.module.css";
 
-export function DiagCtaSection({ headingParts, subheading, buttonLabel, buttonHref, imageUrl }: DiagCtaData) {
+export function DiagCtaSection({ headingParts, subheading, buttonLabel, imageUrl }: DiagCtaData) {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
@@ -16,7 +17,7 @@ export function DiagCtaSection({ headingParts, subheading, buttonLabel, buttonHr
           )}
         </h2>
         {subheading && <p className={styles.subheading}>{subheading}</p>}
-        <a href={buttonHref} className={styles.btn}>{buttonLabel}</a>
+        <DiagnosticTriggerButton className={styles.btn}>{buttonLabel}</DiagnosticTriggerButton>
         {imageUrl && (
           <div className={styles.imageWrap}>
             <Image

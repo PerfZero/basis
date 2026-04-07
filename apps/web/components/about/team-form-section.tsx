@@ -52,31 +52,59 @@ export function TeamFormSection({
             {visibleMembers.map((member) => (
               <article key={member.id} className={s.card}>
                 <div className={s.cardInfo}>
-                  <p className={s.role}>{member.role}</p>
-                  <h3 className={s.name}>{member.name}</h3>
-                  <span className={s.line} />
-                  {member.description && <p className={s.description}>{member.description}</p>}
+                  {/* mobile: flex row (text left, qr right); desktop: transparent wrapper */}
+                  <div className={s.cardBody}>
+                    <div className={s.cardText}>
+                      <p className={s.role}>{member.role}</p>
+                      <h3 className={s.name}>{member.name}</h3>
+                      <span className={s.line} />
+                      {member.description && <p className={s.description}>{member.description}</p>}
+                    </div>
+                    {/* QR shown on mobile only */}
+                    <div className={s.cardQrMobile} aria-hidden="true">
+                      {member.contactHandle && <p className={s.handle}>{member.contactHandle}</p>}
+                      {member.qrCodeUrl ? (
+                        <Image
+                          src={member.qrCodeUrl}
+                          alt={`QR ${member.name}`}
+                          width={72}
+                          height={72}
+                          unoptimized
+                          className={s.qrImage}
+                        />
+                      ) : null}
+                    </div>
+                  </div>
+
                   <div className={s.spacer} />
-                  <p className={s.contactLabel}>связаться</p>
-                  <p className={s.phone}>{member.phone}</p>
-                  {member.email && (
-                    <a href={`mailto:${member.email}`} className={s.email}>
-                      {member.email}
-                    </a>
-                  )}
-                  {member.contactHandle && <p className={s.handle}>{member.contactHandle}</p>}
-                  {member.qrCodeUrl ? (
-                    <Image
-                      src={member.qrCodeUrl}
-                      alt={`QR ${member.name}`}
-                      width={94}
-                      height={94}
-                      unoptimized
-                      className={s.qrImage}
-                    />
-                  ) : (
-                    <div className={s.qrPlaceholder} aria-hidden="true" />
-                  )}
+
+                  {/* contact info */}
+                  <div className={s.cardContact}>
+                    <p className={s.contactLabel}>связаться</p>
+                    <p className={s.phone}>{member.phone}</p>
+                    {member.email && (
+                      <a href={`mailto:${member.email}`} className={s.email}>
+                        {member.email}
+                      </a>
+                    )}
+                  </div>
+
+                  {/* QR shown on desktop only */}
+                  <div className={s.cardQrDesktop}>
+                    {member.contactHandle && <p className={s.handle}>{member.contactHandle}</p>}
+                    {member.qrCodeUrl ? (
+                      <Image
+                        src={member.qrCodeUrl}
+                        alt={`QR ${member.name}`}
+                        width={94}
+                        height={94}
+                        unoptimized
+                        className={s.qrImage}
+                      />
+                    ) : (
+                      <div className={s.qrPlaceholder} aria-hidden="true" />
+                    )}
+                  </div>
                 </div>
 
                 <div className={s.photoWrap}>

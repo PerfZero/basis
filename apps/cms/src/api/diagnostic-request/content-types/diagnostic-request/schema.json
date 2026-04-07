@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "diagnostic_requests",
+  "info": {
+    "singularName": "diagnostic-request",
+    "pluralName": "diagnostic-requests",
+    "displayName": "Заявки на диагностику",
+    "description": "Лиды с кнопки «Начать диагностику»"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": { "type": "string", "required": true },
+    "phone": { "type": "string", "required": true },
+    "consent": { "type": "boolean", "required": true, "default": false }
+  }
+}
