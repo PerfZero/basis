@@ -1155,6 +1155,85 @@ const documentLabels = {
   },
 };
 
+const usersPermissionsUserLabels = {
+  uid: "plugin::users-permissions.user",
+  settings: {
+    bulkable: true,
+    filterable: true,
+    searchable: true,
+    pageSize: 20,
+    mainField: "username",
+    defaultSortBy: "id",
+    defaultSortOrder: "DESC",
+  },
+  metadatas: {
+    id: { edit: {}, list: { label: "ID", searchable: true, sortable: true } },
+    username: {
+      edit: { label: "Логин", visible: true, editable: true },
+      list: { label: "Логин", searchable: true, sortable: true },
+    },
+    email: {
+      edit: { label: "Email", visible: true, editable: true },
+      list: { label: "Email", searchable: true, sortable: true },
+    },
+    firstName: {
+      edit: { label: "Имя", visible: true, editable: true },
+      list: { label: "Имя", searchable: true, sortable: true },
+    },
+    lastName: {
+      edit: { label: "Фамилия", visible: true, editable: true },
+      list: { label: "Фамилия", searchable: true, sortable: true },
+    },
+    middleName: {
+      edit: { label: "Отчество", visible: true, editable: true },
+      list: { label: "Отчество", searchable: true, sortable: true },
+    },
+    phone: {
+      edit: { label: "Телефон", visible: true, editable: true },
+      list: { label: "Телефон", searchable: true, sortable: false },
+    },
+    company: {
+      edit: { label: "Компания", visible: true, editable: true },
+      list: { label: "Компания", searchable: true, sortable: false },
+    },
+    confirmed: {
+      edit: { label: "Подтвержден", visible: true, editable: true },
+      list: { label: "Подтвержден", searchable: false, sortable: true },
+    },
+    blocked: {
+      edit: { label: "Заблокирован", visible: true, editable: true },
+      list: { label: "Заблокирован", searchable: false, sortable: true },
+    },
+    role: {
+      edit: { label: "Роль", visible: true, editable: true },
+      list: { label: "Роль", searchable: false, sortable: false },
+    },
+  },
+  layouts: {
+    list: ["id", "username", "email", "phone", "company", "confirmed", "blocked"],
+    edit: [
+      [
+        { name: "username", size: 6 },
+        { name: "email", size: 6 },
+      ],
+      [
+        { name: "firstName", size: 4 },
+        { name: "lastName", size: 4 },
+        { name: "middleName", size: 4 },
+      ],
+      [
+        { name: "phone", size: 6 },
+        { name: "company", size: 6 },
+      ],
+      [
+        { name: "confirmed", size: 6 },
+        { name: "blocked", size: 6 },
+      ],
+      [{ name: "role", size: 12 }],
+    ],
+  },
+};
+
 const referralLabels = {
   uid: "api::referral.referral",
   settings: {
@@ -1413,6 +1492,7 @@ export default {
     await setContentManagerConfig(strapi, servicesSectionLabels);
     await setContentManagerConfig(strapi, serviceCardLabels);
     await setContentManagerConfig(strapi, documentLabels);
+    await setContentManagerConfig(strapi, usersPermissionsUserLabels);
     await setContentManagerConfig(strapi, referralLabels);
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
