@@ -24,7 +24,7 @@ services:
     env_file:
       - ./apps/cms/.env.production
     environment:
-      DATABASE_HOST: postgres
+      DATABASE_HOST: db
       DATABASE_PORT: 5432
       DATABASE_NAME: ${POSTGRES_DB:-strapi}
       DATABASE_USERNAME: ${POSTGRES_USER:-strapi}
