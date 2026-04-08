@@ -141,9 +141,10 @@ export function AboutHero({ data }: { data: AboutData }) {
               {principles.map((p) => (
                 <article key={p.id} className={s.principle}>
                   {p.badge && <span className={s.principleBadge}>{p.badge}</span>}
-                  <span className={s.principleDivider} />
                   <h3 className={s.principleTitle}>{p.title}</h3>
                   {p.paragraph1 && <p className={s.principleTextPrimary}>{p.paragraph1}</p>}
+                  <span className={s.principleDivider} />
+
                   {p.paragraph2 && <p className={s.principleTextSecondary}>{p.paragraph2}</p>}
                 </article>
               ))}

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useTransition } from "react";
-import { logoutAction, updateUserAction } from "@/app/actions/auth";
+import { Eye, EyeOff } from "lucide-react";
+import { changePasswordAction, logoutAction, updateUserAction } from "@/app/actions/auth";
 import type { AuthUser } from "@/lib/auth-server";
 import { DocumentsTab } from "./documents-tab";
 import { ReferralTab } from "./referral-tab";
@@ -125,6 +126,16 @@ function NameFields({ profile, onSave }: { profile: AuthUser; onSave: (f: string
 export function CabinetPage({ user }: { user: AuthUser }) {
   const [tab, setTab] = useState<TabId>("profile");
   const [profile, setProfile] = useState(user);
+  const [passwordOpen, setPasswordOpen] = useState(false);
+  const [pwdCurrent, setPwdCurrent] = useState("");
+  const [pwdNext, setPwdNext] = useState("");
+  const [pwdConfirm, setPwdConfirm] = useState("");
+  const [pwdError, setPwdError] = useState("");
+  const [pwdSuccess, setPwdSuccess] = useState("");
+  const [pwdPending, startPasswordTransition] = useTransition();
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const initials = (profile.firstName?.[0] ?? profile.username?.[0] ?? "А").toUpperCase();
 
   useEffect(() => {
@@ -143,6 +154,34 @@ export function CabinetPage({ user }: { user: AuthUser }) {
     if (!result) {
       setProfile((p) => ({ ...p, [field]: value }));
     }
+  }
+
+  function handlePasswordSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setPwdError("");
+    setPwdSuccess("");
+
+    startPasswordTransition(async () => {
+      const result = await changePasswordAction({
+        currentPassword: pwdCurrent,
+        newPassword: pwdNext,
+        confirmPassword: pwdConfirm,
+      });
+
+      if (result?.error) {
+        setPwdError(result.error);
+        return;
+      }
+
+      setPwdSuccess("Пароль успешно изменен.");
+      setPwdCurrent("");
+      setPwdNext("");
+      setPwdConfirm("");
+      setShowCurrentPassword(false);
+      setShowNewPassword(false);
+      setShowConfirmPassword(false);
+      setPasswordOpen(false);
+    });
   }
 
   return (
@@ -181,10 +220,116 @@ export function CabinetPage({ user }: { user: AuthUser }) {
 
           <hr className={s.divider} />
 
-          <button type="button" className={s.passwordBtn}>
+          <button
+            type="button"
+            className={s.passwordBtn}
+            onClick={() => {
+              setPwdError("");
+              setPwdSuccess("");
+              setPasswordOpen((v) => !v);
+            }}
+            aria-expanded={passwordOpen}
+            aria-controls="change-password-form"
+          >
             <LockIcon />
-            Изменить пароль
+            {passwordOpen ? "Скрыть смену пароля" : "Изменить пароль"}
           </button>
+          {passwordOpen && (
+            <form id="change-password-form" className={s.passwordForm} onSubmit={handlePasswordSubmit}>
+              <div className={s.passwordGrid}>
+                <div className={s.fieldGroup}>
+                  <label className={s.label} htmlFor="current-password">Текущий пароль</label>
+                  <div className={s.passwordInputWrap}>
+                    <input
+                      id="current-password"
+                      className={`${s.input} ${s.passwordInput}`}
+                      type={showCurrentPassword ? "text" : "password"}
+                      autoComplete="current-password"
+                      value={pwdCurrent}
+                      onChange={(e) => setPwdCurrent(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className={s.passwordToggle}
+                      onClick={() => setShowCurrentPassword((v) => !v)}
+                      aria-label={showCurrentPassword ? "Скрыть текущий пароль" : "Показать текущий пароль"}
+                    >
+                      {showCurrentPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+                <div className={s.fieldGroup}>
+                  <label className={s.label} htmlFor="new-password">Новый пароль</label>
+                  <div className={s.passwordInputWrap}>
+                    <input
+                      id="new-password"
+                      className={`${s.input} ${s.passwordInput}`}
+                      type={showNewPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      value={pwdNext}
+                      onChange={(e) => setPwdNext(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className={s.passwordToggle}
+                      onClick={() => setShowNewPassword((v) => !v)}
+                      aria-label={showNewPassword ? "Скрыть новый пароль" : "Показать новый пароль"}
+                    >
+                      {showNewPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+                <div className={s.fieldGroup}>
+                  <label className={s.label} htmlFor="confirm-password">Подтверждение нового пароля</label>
+                  <div className={s.passwordInputWrap}>
+                    <input
+                      id="confirm-password"
+                      className={`${s.input} ${s.passwordInput}`}
+                      type={showConfirmPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      value={pwdConfirm}
+                      onChange={(e) => setPwdConfirm(e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className={s.passwordToggle}
+                      onClick={() => setShowConfirmPassword((v) => !v)}
+                      aria-label={showConfirmPassword ? "Скрыть подтверждение пароля" : "Показать подтверждение пароля"}
+                    >
+                      {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {pwdError && <p className={s.errorText}>{pwdError}</p>}
+              {pwdSuccess && <p className={s.successText}>{pwdSuccess}</p>}
+              <div className={s.passwordActions}>
+                <button type="submit" className={s.saveBtn} disabled={pwdPending}>
+                  {pwdPending ? "Сохраняем..." : "Сохранить новый пароль"}
+                </button>
+                <button
+                  type="button"
+                  className={s.cancelBtn}
+                  onClick={() => {
+                    setPasswordOpen(false);
+                    setPwdError("");
+                    setPwdSuccess("");
+                    setPwdCurrent("");
+                    setPwdNext("");
+                    setPwdConfirm("");
+                    setShowCurrentPassword(false);
+                    setShowNewPassword(false);
+                    setShowConfirmPassword(false);
+                  }}
+                >
+                  Отмена
+                </button>
+              </div>
+            </form>
+          )}
 
           <form action={logoutAction}>
             <button type="submit" className={s.logoutBtn}>Выйти</button>

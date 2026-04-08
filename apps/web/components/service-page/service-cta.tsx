@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import type { ServicePageData } from "@/lib/strapi/service-page";
 import s from "./service-cta.module.css";
 
@@ -21,6 +22,7 @@ export function ServiceCta({
   ctaPrimaryButtonHref,
 }: Props) {
   if (!ctaHeading) return null;
+  const targetHref = ctaPrimaryButtonHref ?? "#contact";
 
   return (
     <section className={s.section}>
@@ -35,9 +37,9 @@ export function ServiceCta({
         {ctaSubheading && <p className={s.subheading}>{ctaSubheading}</p>}
 
         {ctaPrimaryButtonLabel && (
-          <a href={ctaPrimaryButtonHref ?? "#contact"} className={s.btn}>
+          <DiagnosticTriggerButton className={s.btn} dataTargetHref={targetHref}>
             {ctaPrimaryButtonLabel}
-          </a>
+          </DiagnosticTriggerButton>
         )}
 
         <div className={s.imageWrap}>

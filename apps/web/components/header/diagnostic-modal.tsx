@@ -31,6 +31,8 @@ export function DiagnosticModal({ onClose }: Props) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const phoneDigits = phone.replace(/\D/g, "");
+  const isPhoneValid = phoneDigits.length === 11 && phoneDigits.startsWith("7");
 
   useEffect(() => {
     const prev = document.body.style.overflow;
@@ -54,6 +56,11 @@ export function DiagnosticModal({ onClose }: Props) {
 
     if (!consent) {
       setMessage({ type: "error", text: "Подтвердите согласие на обработку персональных данных." });
+      return;
+    }
+
+    if (!isPhoneValid) {
+      setMessage({ type: "error", text: "Введите телефон в формате +7 (999) 999-99-99." });
       return;
     }
 
@@ -142,7 +149,7 @@ export function DiagnosticModal({ onClose }: Props) {
             </span>
           </label>
 
-          <button type="submit" className={s.submit} disabled={isSubmitting}>
+          <button type="submit" className={s.submit} disabled={!consent || !isPhoneValid || isSubmitting}>
             <span>{isSubmitting ? "Отправляем..." : "Отправить"}</span>
             <span className={s.submitCircle} aria-hidden="true">
               <ArrowRight size={18} />

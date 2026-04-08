@@ -73,7 +73,6 @@ export type ServicePageData = {
   heroDescription?: string;
   heroPrimaryButtonLabel?: string;
   heroPrimaryButtonHref?: string;
-  heroSecondaryButtonLabel?: string;
   heroBadges: ServiceBadge[];
 
   problemTitle?: string;
@@ -93,6 +92,7 @@ export type ServicePageData = {
   statsTitle?: string;
   statsColBefore?: string;
   statsColAfter?: string;
+  statsBottomText?: string;
   statsRows: ServiceStatRow[];
 
   recognizeTitle?: string;
@@ -152,7 +152,6 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
       heroDescription: d.heroDescription ?? undefined,
       heroPrimaryButtonLabel: d.heroPrimaryButtonLabel ?? undefined,
       heroPrimaryButtonHref: d.heroPrimaryButtonHref ?? undefined,
-      heroSecondaryButtonLabel: d.heroSecondaryButtonLabel ?? "Подробнее",
       heroBadges: Array.isArray(d.heroBadges)
         ? d.heroBadges.map((b: { id: number; icon?: { url?: string }; label?: string }) => ({
             id: b.id,
@@ -205,6 +204,7 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
       statsTitle: d.statsTitle ?? undefined,
       statsColBefore: d.statsColBefore ?? undefined,
       statsColAfter: d.statsColAfter ?? undefined,
+      statsBottomText: d.statsBottomText ?? undefined,
       statsRows: Array.isArray(d.statsRows)
         ? d.statsRows.map((r: { id: number; label?: string; valueBefore?: string; valueAfter?: string }) => ({
             id: r.id,

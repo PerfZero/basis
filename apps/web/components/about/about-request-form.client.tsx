@@ -36,7 +36,10 @@ function extractErrorMessage(body: unknown, fallback: string): string {
 export function AboutRequestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [phone, setPhone] = useState("");
+  const [consent, setConsent] = useState(false);
   const [state, setState] = useState<SubmitState>({ type: "idle", message: "" });
+  const phoneDigits = phone.replace(/\D/g, "");
+  const isPhoneValid = phoneDigits.length === 11 && phoneDigits.startsWith("7");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -52,7 +55,7 @@ export function AboutRequestForm() {
       turnover: String(formData.get("turnover") ?? "").trim(),
       employeeCount: String(formData.get("employeeCount") ?? "").trim(),
       phone: phone.trim(),
-      consent: formData.get("consent") === "on",
+      consent,
     };
 
     if (!payload.name || !payload.company || !payload.direction || !payload.pain || !payload.phone) {
@@ -90,6 +93,7 @@ export function AboutRequestForm() {
 
       form.reset();
       setPhone("");
+      setConsent(false);
       setState({ type: "success", message: "Заявка отправлена. Мы свяжемся с вами в ближайшее время." });
     } catch {
       setState({ type: "error", message: "Ошибка сети. Проверьте соединение и попробуйте снова." });
@@ -156,16 +160,43 @@ export function AboutRequestForm() {
         />
       </label>
 
-      <button type="submit" className={s.submit} disabled={isSubmitting}>
+      <button type="submit" className={s.submit} disabled={!isPhoneValid || !consent || isSubmitting}>
         <span>{isSubmitting ? "Отправляем..." : "Отправить запрос экспертам"}</span>
         <span className={s.submitCircle} aria-hidden="true">→</span>
       </button>
 
       <label className={s.consent}>
-        <input name="consent" type="checkbox" required />
-        <span>
-          Я даю согласие на обработку моих персональных данных в соответствии с Политикой
-          конфиденциальности в целях обработки моего обращения.
+        <span
+          className={`${s.checkboxWrap}${consent ? ` ${s.checked}` : ""}`}
+          onClick={() => setConsent((v) => !v)}
+          role="checkbox"
+          aria-checked={consent}
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === " " || e.key === "Enter") {
+              e.preventDefault();
+              setConsent((v) => !v);
+            }
+          }}
+        >
+          {consent && (
+            <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+              <path
+                d="M1 5L4.5 8.5L11 1"
+                stroke="#fff"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          )}
+        </span>
+        <span className={s.consentText} onClick={() => setConsent((v) => !v)}>
+          Я даю согласие на обработку моих персональных данных в соответствии с{" "}
+          <a href="/privacy" className={s.consentLink} onClick={(e) => e.stopPropagation()}>
+            Политикой конфиденциальности
+          </a>{" "}
+          в целях обработки моего обращения.
         </span>
       </label>
 

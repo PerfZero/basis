@@ -45,13 +45,23 @@
   font-weight: 500;
   color: #fff;
   background-color: var(--accent);
+  border: 1px solid transparent;
   text-decoration: none;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   margin-bottom: 32px;
 }
 
 .btn:hover {
-  background-color: var(--accent-strong);
+  background-color: #fff;
+  position: relative;
+  z-index: 9;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
 }
 
 .imageWrap {
@@ -64,6 +74,7 @@
   position: absolute;
   object-fit: cover;
   top: -80px;
+  pointer-events: none;
   width: 1000px;
   height: 1000px;
 }

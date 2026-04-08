@@ -39,7 +39,7 @@ export function SiteFooter({ services }: { services: MenuItem[] }) {
             <p className={styles.colLabel}>информация</p>
             <ul className={styles.colList}>
               <li><Link href="/about" className={styles.colLink}>О компании</Link></li>
-              <li><Link href="/#contacts" className={styles.colLink}>Контакты</Link></li>
+              <li><Link href="/about#contact" className={styles.colLink}>Контакты</Link></li>
             </ul>
           </div>
 

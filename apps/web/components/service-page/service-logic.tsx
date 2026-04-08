@@ -1,15 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ServicePageData, ServiceLogicSlide } from "@/lib/strapi/service-page";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import s from "./service-logic.module.css";
 
 type Props = Pick<NonNullable<ServicePageData>, "logicTitle" | "logicSlides">;
 
 export function ServiceLogic({ logicTitle, logicSlides }: Props) {
   const [active, setActive] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const wheelDeltaRef = useRef(0);
+  const lastStepTsRef = useRef(0);
 
   if (!logicTitle && logicSlides.length === 0) return null;
+  if (logicSlides.length === 0) return null;
+
+  useEffect(() => {
+    const el = contentRef.current;
+    if (!el || logicSlides.length <= 1) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (e.cancelable) e.preventDefault();
+      e.stopPropagation();
+
+      const delta =
+        e.deltaMode === WheelEvent.DOM_DELTA_LINE
+          ? e.deltaY * 16
+          : e.deltaMode === WheelEvent.DOM_DELTA_PAGE
+            ? e.deltaY * 220
+            : e.deltaY;
+
+      wheelDeltaRef.current += delta;
+
+      const now = Date.now();
+      const threshold = 40;
+      const cooldownMs = 170;
+
+      if (now - lastStepTsRef.current < cooldownMs) return;
+      if (Math.abs(wheelDeltaRef.current) < threshold) return;
+
+      const dir = wheelDeltaRef.current > 0 ? 1 : -1;
+      setActive((prev) => (prev + dir + logicSlides.length) % logicSlides.length);
+      wheelDeltaRef.current = 0;
+      lastStepTsRef.current = now;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => el.removeEventListener("wheel", onWheel as EventListener);
+  }, [logicSlides.length]);
 
   const slide = logicSlides[active];
 
@@ -25,7 +64,7 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
           )}
         </div>
 
-        <div className={s.content}>
+        <div className={s.content} ref={contentRef}>
           <div className={s.slides}>
             {logicSlides.map((item: ServiceLogicSlide, i: number) => (
               <div
@@ -37,10 +76,10 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
                   <p className={s.slideDesc}>{item.description}</p>
                 )}
                 {item.buttonLabel && (
-                  <a href={item.buttonHref ?? "#"} className={s.btn}>
+                  <DiagnosticTriggerButton className={s.btn} dataTargetHref={item.buttonHref ?? "#contact"}>
                     {item.buttonLabel}
                     <span className={s.btnArrow} aria-hidden>→</span>
-                  </a>
+                  </DiagnosticTriggerButton>
                 )}
               </div>
             ))}

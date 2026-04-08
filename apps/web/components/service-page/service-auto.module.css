@@ -1,5 +1,23 @@
 .section {
   padding: 80px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section::before{
+    content: '';
+    display: block;
+    width: 850px;
+    height: 490px;
+    position: absolute;
+    z-index: -1;
+    transform: rotate(-180deg);
+    right: 0;
+    bottom: -131px;
+    background: url('/left_two.png');
+    background-size: cover;
+
+
 }
 
 .title {
@@ -19,7 +37,9 @@
   border-radius: 20px;
   position: relative;
   box-shadow: 2px 4px 24px 0 rgba(11, 122, 102, 0.1);
-  background: radial-gradient(69.69% 112.26% at 69.69% 100%, #ebf9f7 0%, #fff 100%);  overflow: hidden;
+  background: radial-gradient(69.69% 112.26% at 69.69% 100%, #ebf9f7 0%, #fff 100%);
+  overflow: hidden;
+  overscroll-behavior: contain;
 }
 
 /* ── Tabs ── */

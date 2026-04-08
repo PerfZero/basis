@@ -742,6 +742,82 @@ async function setComponentConfig(
   }
 }
 
+async function setContentManagerFieldLabel(
+  strapi: Core.Strapi,
+  uid: string,
+  field: string,
+  label: string,
+) {
+  const key = `configuration_content_types::${uid}`;
+
+  for (const store of getContentManagerStores(strapi)) {
+    const current = (await store.get({ key })) as ContentManagerConfig | undefined;
+    const currentEditLayout = Array.isArray(current?.layouts?.edit)
+      ? current.layouts?.edit
+      : [];
+    const hasFieldInEditLayout = currentEditLayout.some((row) =>
+      Array.isArray(row)
+        ? row.some(
+            (cell) =>
+              typeof cell === "object" &&
+              cell !== null &&
+              "name" in cell &&
+              (cell as { name?: string }).name === field,
+          )
+        : false,
+    );
+    const statsRowsIndex = currentEditLayout.findIndex((row) =>
+      Array.isArray(row)
+        ? row.some(
+            (cell) =>
+              typeof cell === "object" &&
+              cell !== null &&
+              "name" in cell &&
+              (cell as { name?: string }).name === "statsRows",
+          )
+        : false,
+    );
+    const insertIndex = statsRowsIndex >= 0 ? statsRowsIndex + 1 : currentEditLayout.length;
+    const nextEditLayout =
+      currentEditLayout.length === 0
+        ? undefined
+        : hasFieldInEditLayout
+          ? currentEditLayout
+          : [
+              ...currentEditLayout.slice(0, insertIndex),
+              [{ name: field, size: 12 }],
+              ...currentEditLayout.slice(insertIndex),
+            ];
+
+    const next: ContentManagerConfig = {
+      uid,
+      ...(current ?? {}),
+      metadatas: {
+        ...(current?.metadatas ?? {}),
+        [field]: {
+          ...(current?.metadatas?.[field] ?? {}),
+          edit: {
+            ...((current?.metadatas?.[field]?.edit ?? {}) as Record<string, unknown>),
+            label,
+            visible: true,
+            editable: true,
+          },
+          list: {
+            ...((current?.metadatas?.[field]?.list ?? {}) as Record<string, unknown>),
+            label,
+          },
+        },
+      },
+      layouts: {
+        ...(current?.layouts ?? {}),
+        ...(nextEditLayout ? { edit: nextEditLayout } : {}),
+      },
+    };
+
+    await store.set({ key, value: normalizeContentManagerConfig(strapi, next) });
+  }
+}
+
 async function sanitizeExistingContentManagerConfigs(strapi: Core.Strapi) {
   const rows = await strapi.db.connection("strapi_core_store_settings")
     .select(["key", "value"])
@@ -1341,6 +1417,12 @@ export default {
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
     await setComponentConfig(strapi, principleComponentLabels);
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::service-page.service-page",
+      "statsBottomText",
+      "Текст под таблицей",
+    );
     await grantPublicPermissions(strapi);
     await grantAuthenticatedPermissions(strapi);
   },

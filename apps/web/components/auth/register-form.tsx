@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { IMaskInput } from "react-imask";
 import { registerAction } from "@/app/actions/auth";
 import s from "./register-form.module.css";
 
@@ -26,13 +27,20 @@ const fields = [
 ];
 
 export function RegisterForm({ refCode = "" }: { refCode?: string }) {
+  const [phone, setPhone] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const phoneDigits = phone.replace(/\D/g, "");
+  const isPhoneValid = phoneDigits.length === 11 && phoneDigits.startsWith("7");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!agreed) return;
+    if (!isPhoneValid) {
+      setError("Введите телефон в формате +7 (999) 999-99-99.");
+      return;
+    }
     setError("");
     setLoading(true);
 
@@ -82,13 +90,38 @@ export function RegisterForm({ refCode = "" }: { refCode?: string }) {
             </p>
           )}
           <input type="hidden" name="ref" value={refCode} />
-          {fields.map((f) => (
-            <div key={f.name} className={s.field}>
-              <span className={s.fieldIcon}>{f.icon}</span>
-              <input className={s.input} name={f.name} type={f.type} placeholder={f.placeholder}
-                required={f.name !== "phone" && f.name !== "company"} />
-            </div>
-          ))}
+          {fields.map((f) => {
+            if (f.name === "phone") {
+              return (
+                <div key={f.name} className={s.field}>
+                  <span className={s.fieldIcon}>{f.icon}</span>
+                  <IMaskInput
+                    className={s.input}
+                    name="phone"
+                    mask="+{7} (000) 000-00-00"
+                    value={phone}
+                    onAccept={(value: unknown) => setPhone(String(value))}
+                    placeholder={f.placeholder}
+                    required
+                    inputMode="tel"
+                  />
+                </div>
+              );
+            }
+
+            return (
+              <div key={f.name} className={s.field}>
+                <span className={s.fieldIcon}>{f.icon}</span>
+                <input
+                  className={s.input}
+                  name={f.name}
+                  type={f.type}
+                  placeholder={f.placeholder}
+                  required={f.name !== "company"}
+                />
+              </div>
+            );
+          })}
 
           {error && <p className={s.error}>{error}</p>}
 
@@ -97,7 +130,7 @@ export function RegisterForm({ refCode = "" }: { refCode?: string }) {
             <span>Я принимаю условия использования и политику конфиденциальности</span>
           </label>
 
-          <button type="submit" className={s.submit} disabled={!agreed || loading}>
+          <button type="submit" className={s.submit} disabled={!agreed || !isPhoneValid || loading}>
             {loading ? "Регистрация..." : "Зарегистрироваться"}
             <span className={s.submitArrow}>
               <svg width="13" height="8" viewBox="0 0 13 8" fill="none"><path d="M0.5 3.18198C0.223858 3.18198 0 3.40583 0 3.68198C0 3.95812 0.223858 4.18198 0.5 4.18198L0.5 3.18198ZM12.8536 4.03553C13.0488 3.84027 13.0488 3.52368 12.8536 3.32842L9.67157 0.146442C9.47631-0.0488206 9.15973-0.0488205 8.96447 0.146442C8.7692 0.341704 8.7692 0.658286 8.96447 0.853549L11.7929 3.68198L8.96447 6.5104C8.7692 6.70566 8.7692 7.02225 8.96447 7.21751C9.15973 7.41277 9.47631 7.41277 9.67157 7.21751L12.8536 4.03553ZM0.5 4.18198L12.5 4.18198L12.5 3.18198L0.5 3.18198L0.5 4.18198Z" fill="currentColor"/></svg>

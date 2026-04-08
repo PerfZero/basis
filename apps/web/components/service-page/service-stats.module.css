@@ -9,10 +9,10 @@
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  background: linear-gradient(135deg, #0b4a3f 0%, #0b7a66 100%);
-
-  gap: 40px;
+  align-items: flex-start;
+  background: url('/back_green.png');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .title {
@@ -20,6 +20,7 @@
     font-size: 35px;
     line-height: 110%;
     text-align: center;
+    margin: 0 auto 40px;
     color: #f6f5f1;
   letter-spacing: 0.04em;
 }
@@ -37,10 +38,23 @@
   border-collapse: collapse;
 }
 
+.bottomText {
+  width: 100%;
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  margin-top: 20px;
+  line-height: 130%;
+  color: #f6f5f1;
+  text-align: left;
+  max-width: 627px;
+}
+
 .thLabel {
   width: 40%;
   padding: 12px 20px;
   text-align: left;
+  border: 1px solid #6dafa3;
 }
 
 .thBefore,
@@ -59,6 +73,8 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 110%;
+    background: #fff;
+
     color: #3c4a50;
     border: 1px solid #6dafa3;
 
@@ -94,6 +110,7 @@
   padding: 16px 20px;
   font-weight: 600;
   font-size: 16px;
+  background: #fff;
   line-height: 110%;
   color: #3c4a50;
   text-align: center;
@@ -123,5 +140,9 @@
   .tdAfter {
     padding: 10px 8px;
     font-size: 13px;
+  }
+
+  .bottomText {
+    font-size: 14px;
   }
 }

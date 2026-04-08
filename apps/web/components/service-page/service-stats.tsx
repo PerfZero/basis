@@ -3,13 +3,14 @@ import s from "./service-stats.module.css";
 
 type Props = Pick<
   NonNullable<ServicePageData>,
-  "statsTitle" | "statsColBefore" | "statsColAfter" | "statsRows"
+  "statsTitle" | "statsColBefore" | "statsColAfter" | "statsBottomText" | "statsRows"
 >;
 
 export function ServiceStats({
   statsTitle,
   statsColBefore,
   statsColAfter,
+  statsBottomText,
   statsRows,
 }: Props) {
   if (!statsTitle && statsRows.length === 0) return null;
@@ -39,6 +40,8 @@ export function ServiceStats({
             </tbody>
           </table>
         </div>
+
+        {statsBottomText && <p className={s.bottomText}>{statsBottomText}</p>}
       </div>
     </section>
   );

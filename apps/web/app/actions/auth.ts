@@ -25,6 +25,14 @@ function parseInviterId(refCode?: string): number | null {
   return Number.isFinite(inviterId) && inviterId > 0 ? inviterId : null;
 }
 
+function splitFullName(fullName: string): { firstName: string; lastName: string; middleName: string } {
+  const [firstName = "", lastName = "", middleName = ""] = fullName
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  return { firstName, lastName, middleName };
+}
+
 export async function registerAction(data: {
   name: string;
   email: string;
@@ -33,6 +41,22 @@ export async function registerAction(data: {
   password: string;
   referralCode?: string;
 }): Promise<ActionResult> {
+  const name = data.name.trim();
+  const email = data.email.trim();
+  const password = data.password;
+  const phone = data.phone.trim();
+  const company = data.company.trim();
+  const phoneDigits = phone.replace(/\D/g, "");
+  const { firstName, lastName, middleName } = splitFullName(name);
+
+  if (!name || !email || !password || !phone) {
+    return { error: "Заполните обязательные поля." };
+  }
+
+  if (phoneDigits.length !== 11 || !phoneDigits.startsWith("7")) {
+    return { error: "Введите телефон в формате +7 (999) 999-99-99." };
+  }
+
   const cookieStore = await cookies();
   const cookieReferralCode = cookieStore.get(REF_COOKIE)?.value;
   const referralCode = (data.referralCode || cookieReferralCode || "").trim();
@@ -41,9 +65,9 @@ export async function registerAction(data: {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: data.name,
-      email: data.email,
-      password: data.password,
+      username: name,
+      email,
+      password,
     }),
   });
 
@@ -53,14 +77,18 @@ export async function registerAction(data: {
     return { error: json?.error?.message ?? "Ошибка регистрации" };
   }
 
-  // Сохраняем phone и company в Strapi
-  if (data.phone || data.company) {
-    await fetch(`${STRAPI_URL}/api/users/${json.user.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${json.jwt}` },
-      body: JSON.stringify({ phone: data.phone, company: data.company }),
-    });
-  }
+  // Сохраняем профильные поля в Strapi сразу после регистрации
+  await fetch(`${STRAPI_URL}/api/users/${json.user.id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${json.jwt}` },
+    body: JSON.stringify({
+      phone,
+      company,
+      firstName,
+      lastName,
+      middleName,
+    }),
+  });
 
   cookieStore.set("basis_jwt", json.jwt, COOKIE_OPTS);
   if (referralCode) {
@@ -81,9 +109,9 @@ export async function registerAction(data: {
         body: JSON.stringify({
           data: {
             contactPerson: data.name || json.user.username || "Новый клиент",
-            email: data.email || json.user.email || "",
-            phone: data.phone || "",
-            company: data.company || "Без компании",
+            email: email || json.user.email || "",
+            phone: phone || "",
+            company: company || "Без компании",
             product: "Не указан",
             status: "in_progress",
             payout: 0,
@@ -106,11 +134,11 @@ export async function registerAction(data: {
     id: json.user.id,
     username: json.user.username,
     email: json.user.email,
-    firstName: data.name.split(" ")[0] ?? data.name,
-    lastName: data.name.split(" ")[1] ?? "",
-    middleName: data.name.split(" ")[2] ?? "",
-    phone: data.phone,
-    company: data.company,
+    firstName,
+    lastName,
+    middleName,
+    phone,
+    company,
   }), { ...COOKIE_OPTS, httpOnly: false });
 
   redirect("/cabinet");
@@ -190,6 +218,52 @@ export async function updateUserAction(data: Partial<{
 
   const updated = { ...user, ...data };
   cookieStore.set("basis_user", JSON.stringify(updated), { ...COOKIE_OPTS, httpOnly: false });
+  return null;
+}
+
+export async function changePasswordAction(data: {
+  currentPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}): Promise<ActionResult> {
+  const currentPassword = data.currentPassword.trim();
+  const newPassword = data.newPassword.trim();
+  const confirmPassword = data.confirmPassword.trim();
+
+  if (!currentPassword || !newPassword || !confirmPassword) {
+    return { error: "Заполните все поля для смены пароля." };
+  }
+
+  if (newPassword.length < 6) {
+    return { error: "Новый пароль должен содержать минимум 6 символов." };
+  }
+
+  if (newPassword !== confirmPassword) {
+    return { error: "Подтверждение пароля не совпадает." };
+  }
+
+  const cookieStore = await cookies();
+  const token = cookieStore.get("basis_jwt")?.value;
+  if (!token) return { error: "Не авторизован" };
+
+  const res = await fetch(`${STRAPI_URL}/api/auth/change-password`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      currentPassword,
+      password: newPassword,
+      passwordConfirmation: confirmPassword,
+    }),
+  });
+
+  if (!res.ok) {
+    const json = await res.json().catch(() => null);
+    return { error: json?.error?.message ?? "Не удалось изменить пароль." };
+  }
+
   return null;
 }
 

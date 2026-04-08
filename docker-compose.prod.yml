@@ -24,7 +24,7 @@ services:
     env_file:
       - ./apps/cms/.env.production
     environment:
-      DATABASE_HOST: db
+      DATABASE_HOST: postgres
       DATABASE_PORT: 5432
       DATABASE_NAME: ${POSTGRES_DB:-strapi}
       DATABASE_USERNAME: ${POSTGRES_USER:-strapi}
@@ -32,10 +32,9 @@ services:
       DATABASE_CLIENT: postgres
       NODE_ENV: production
     depends_on:
-      db:
-        condition: service_healthy
+      - postgres
     ports:
-      - "127.0.0.1:31337:1337"
+      - "127.0.0.1:1337:1337"
 
   web:
     build:

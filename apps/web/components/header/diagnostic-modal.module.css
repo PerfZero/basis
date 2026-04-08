@@ -140,26 +140,31 @@
 .submit {
   height: 56px;
   border-radius: 9999px;
-  background: #0b7a66;
-  color: #fff;
+  background: #f0f0f0;
+  color: #3c4a50;
   border: none;
   padding: 0 8px 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  cursor: pointer;
+  cursor: not-allowed;
   font-family: var(--font-sans);
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
-  transition: opacity 0.2s;
+  transition: background 0.2s, color 0.2s;
   margin-top: 4px;
 }
 
-.submit:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.submit:not(:disabled) {
+  background: #0b7a66;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit:not(:disabled):hover {
+  background: var(--accent-strong);
 }
 
 .submitCircle {
@@ -172,6 +177,11 @@
   background: #fff;
   color: #0b7a66;
   flex-shrink: 0;
+}
+
+.submit:not(:disabled) .submitCircle {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .message {

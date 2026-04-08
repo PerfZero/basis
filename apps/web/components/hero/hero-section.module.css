@@ -75,14 +75,26 @@
   font-weight: 500;
   color: #fff;
   background-color: var(--accent-strong);
-  transition: background-color 0.2s;
-  border: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
   text-decoration: none;
   cursor: pointer;
 }
 
 .btnPrimary:hover {
-  background-color: var(--accent);
+  background-color: #fff;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btnPrimary:hover .btnArrow {
+  background: var(--accent-strong);
+  color: #fff;
+}
+
+.btnPrimary:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
 }
 
 .btnArrow {

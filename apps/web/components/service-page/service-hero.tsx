@@ -1,6 +1,7 @@
 import Image from "next/image";
 import blurBack from "@/app/blur_back.png";
 import type { ServicePageData, ServiceBadge } from "@/lib/strapi/service-page";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import s from "./service-hero.module.css";
 
 type Props = Pick<
@@ -11,7 +12,6 @@ type Props = Pick<
   | "heroDescription"
   | "heroPrimaryButtonLabel"
   | "heroPrimaryButtonHref"
-  | "heroSecondaryButtonLabel"
   | "heroBadges"
 >;
 
@@ -22,7 +22,6 @@ export function ServiceHero({
   heroDescription,
   heroPrimaryButtonLabel,
   heroPrimaryButtonHref,
-  heroSecondaryButtonLabel,
   heroBadges,
 }: Props) {
   return (
@@ -36,7 +35,7 @@ export function ServiceHero({
           {heroHeading && <span>{heroHeading}</span>}
           {heroHeadingAccent && (
             <>
-              <br />
+
               <span className={s.headingAccent}>{heroHeadingAccent}</span>
             </>
           )}
@@ -46,14 +45,14 @@ export function ServiceHero({
 
         <div className={s.buttons}>
           {heroPrimaryButtonLabel && (
-            <a href={heroPrimaryButtonHref ?? "#"} className={s.btnPrimary}>
+            <DiagnosticTriggerButton
+              className={s.btnPrimary}
+              dataTargetHref={heroPrimaryButtonHref ?? "#"}
+            >
               {heroPrimaryButtonLabel}
               <span className={s.btnArrow} aria-hidden>→</span>
-            </a>
+            </DiagnosticTriggerButton>
           )}
-          <a href="#" className={s.btnSecondary}>
-            {heroSecondaryButtonLabel ?? "Подробнее"}
-          </a>
         </div>
 
         {heroBadges.length > 0 && (

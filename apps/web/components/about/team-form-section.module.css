@@ -1,7 +1,21 @@
 .section {
-  background: #fff;
   padding: 60px 120px 80px;
+  position: relative;
 }
+
+.section::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150px;
+    width: 850px;
+    height:700px;
+    z-index: -1;
+    background-size: contain;
+    background: url('/left_two.png');
+}
+
 
 .inner {
   width: min(1200px, 100%);
@@ -310,14 +324,16 @@
   width: 100%;
   display: flex;
   align-items: flex-end;
-  gap: 60px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: nowrap;
 }
 
 .docsCol {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 0;
 }
 
 .docsLabel {
@@ -334,6 +350,7 @@
   font-weight: 700;
   line-height: 1.1;
   color: #fff;
+  white-space: nowrap;
 }
 
 .coffeeCard {
@@ -388,6 +405,7 @@
   border-radius: 30px;
   background: #0b7a66;
   color: #fff;
+  border: 1px solid transparent;
   text-decoration: none;
   padding: 0 6px 0 18px;
   display: inline-flex;
@@ -398,6 +416,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 
 .coffeeButtonCircle {
@@ -410,6 +429,18 @@
   background: #fff;
   color: #0b7a66;
   font-size: 18px;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.coffeeButton:hover {
+  background: #fff;
+  color: #0b7a66;
+  border-color: #0b7a66;
+}
+
+.coffeeButton:hover .coffeeButtonCircle {
+  background: #0b7a66;
+  color: #fff;
 }
 
 .form {
@@ -465,11 +496,11 @@
 }
 
 .submit {
-  height: 45px;
-  border-radius: 30px;
-  background: #0b7a66;
-  color: #fff;
-  padding: 0 6px 0 18px;
+  height: 56px;
+  border-radius: 9999px;
+  background: #f0f0f0;
+  color: #3c4a50;
+  padding: 0 8px 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -478,16 +509,24 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
+  border: none;
+  cursor: not-allowed;
+  transition: background 0.2s, color 0.2s;
 }
 
-.submit:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
+.submit:not(:disabled) {
+  background: #0b7a66;
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit:not(:disabled):hover {
+  background: var(--accent-strong);
 }
 
 .submitCircle {
-  width: 33px;
-  height: 33px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
@@ -495,6 +534,11 @@
   background: #fff;
   color: #0b7a66;
   font-size: 18px;
+}
+
+.submit:not(:disabled) .submitCircle {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }
 
 .formMessageSuccess,
@@ -519,19 +563,36 @@
   gap: 10px;
 }
 
-.consent input {
-  width: 15px;
-  height: 15px;
-  margin-top: 2px;
-  accent-color: #0b7a66;
+.checkboxWrap {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
 }
 
-.consent span {
+.checkboxWrap.checked {
+  border-color: #0b7a66;
+  background: #0b7a66;
+}
+
+.consentText {
   font-family: var(--font-sans);
   font-size: 12px;
   font-weight: 400;
   line-height: 1.45;
   color: #3c4a50;
+  cursor: pointer;
+}
+
+.consentLink {
+  color: #3c4a50;
+  text-decoration: underline;
 }
 
 @media (max-width: 1200px) {

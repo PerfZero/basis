@@ -86,6 +86,7 @@
     "statsTitle": { "type": "string" },
     "statsColBefore": { "type": "string" },
     "statsColAfter": { "type": "string" },
+    "statsBottomText": { "type": "text" },
     "statsRows": {
       "type": "component",
       "repeatable": true,

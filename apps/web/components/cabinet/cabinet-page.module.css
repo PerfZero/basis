@@ -289,3 +289,68 @@
   gap: 12px;
   align-items: center;
 }
+
+.passwordForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 16px;
+  max-width: 720px;
+}
+
+.passwordGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .passwordGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.passwordActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.passwordInputWrap {
+  position: relative;
+}
+
+.passwordInput {
+  padding-right: 46px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #8f8f8c;
+  cursor: pointer;
+  padding: 0;
+}
+
+.passwordToggle:hover {
+  color: #3c4a50;
+}
+
+.errorText {
+  color: #e53e3e;
+  font-size: 14px;
+}
+
+.successText {
+  color: #0b7a66;
+  font-size: 14px;
+}

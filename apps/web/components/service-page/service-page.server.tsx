@@ -23,7 +23,6 @@ export async function ServicePageServer({ slug }: { slug: string }) {
         heroDescription={data.heroDescription}
         heroPrimaryButtonLabel={data.heroPrimaryButtonLabel}
         heroPrimaryButtonHref={data.heroPrimaryButtonHref}
-        heroSecondaryButtonLabel={data.heroSecondaryButtonLabel}
         heroBadges={data.heroBadges}
       />
       <ServiceProblem
@@ -59,6 +58,7 @@ export async function ServicePageServer({ slug }: { slug: string }) {
         statsTitle={data.statsTitle}
         statsColBefore={data.statsColBefore}
         statsColAfter={data.statsColAfter}
+        statsBottomText={data.statsBottomText}
         statsRows={data.statsRows}
       />
       <ServiceCta
