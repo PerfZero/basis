@@ -1135,7 +1135,12 @@ const documentLabels = {
       list: { label: "Файл", searchable: false, sortable: false },
     },
     user: {
-      edit: { label: "Клиент", visible: true, editable: true },
+      edit: {
+        label: "Клиент",
+        visible: true,
+        editable: true,
+        mainField: "username",
+      },
       list: { label: "Клиент", searchable: false, sortable: false },
     },
   },
