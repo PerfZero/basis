@@ -33,11 +33,22 @@ function buildReferralLink(siteUrl: string, userId: number): string {
   return `${siteUrl.replace(/\/$/, "")}/ref/${referralCode}`;
 }
 
-function resolveSiteUrl(request: Request): string {
-  const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  if (envSiteUrl) return envSiteUrl;
+function isLocalUrl(value: string): boolean {
+  return /localhost|127\.0\.0\.1/.test(value);
+}
 
-  return new URL(request.url).origin;
+function resolveSiteUrl(request: Request): string {
+  const forwardedHost = request.headers.get("x-forwarded-host")?.split(",")[0]?.trim();
+  const forwardedProto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim() ?? "https";
+  if (forwardedHost) return `${forwardedProto}://${forwardedHost}`;
+
+  const requestOrigin = new URL(request.url).origin;
+  if (!isLocalUrl(requestOrigin)) return requestOrigin;
+
+  const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (envSiteUrl && !isLocalUrl(envSiteUrl)) return envSiteUrl;
+
+  return requestOrigin;
 }
 
 export async function GET(request: Request) {
