@@ -1139,7 +1139,7 @@ const documentLabels = {
         label: "Клиент",
         visible: true,
         editable: true,
-        mainField: "username",
+        mainField: "email",
       },
       list: { label: "Клиент", searchable: false, sortable: false },
     },
@@ -1153,7 +1153,7 @@ const documentLabels = {
       ],
       [
         { name: "docStatus", size: 4 },
-        { name: "user", size: 8 },
+        { name: "user", size: 8, mainField: "email" },
       ],
       [{ name: "file", size: 12 }],
     ],
@@ -1167,7 +1167,7 @@ const usersPermissionsUserLabels = {
     filterable: true,
     searchable: true,
     pageSize: 20,
-    mainField: "username",
+    mainField: "email",
     defaultSortBy: "id",
     defaultSortOrder: "DESC",
   },
@@ -1343,6 +1343,7 @@ const referralLabels = {
         placeholder: "",
         visible: true,
         editable: true,
+        mainField: "email",
       },
       list: { label: "Клиент", searchable: false, sortable: true },
     },
@@ -1372,7 +1373,7 @@ const referralLabels = {
         { name: "status", size: 4 },
         { name: "payout", size: 4 },
       ],
-      [{ name: "user", size: 12 }],
+      [{ name: "user", size: 12, mainField: "email" }],
     ],
   },
 };
@@ -1481,10 +1482,87 @@ async function grantAuthenticatedPermissions(strapi: Core.Strapi) {
   }
 }
 
+function patchDocumentUserRelationMainField(strapi: Core.Strapi) {
+  const contentTypesService = strapi.plugin("content-manager").service("content-types") as {
+    findConfiguration: (model: { uid: string }) => Promise<ContentManagerConfig>;
+  };
+
+  const originalFindConfiguration = contentTypesService.findConfiguration.bind(contentTypesService);
+
+  contentTypesService.findConfiguration = async (model: { uid: string }) => {
+    const config = await originalFindConfiguration(model);
+
+    if (model.uid !== "api::document.document") {
+      return config;
+    }
+
+    return {
+      ...config,
+      metadatas: {
+        ...(config.metadatas ?? {}),
+        user: {
+          ...(config.metadatas?.user ?? {}),
+          edit: {
+            ...((config.metadatas?.user?.edit ?? {}) as Record<string, unknown>),
+            mainField: "email",
+          },
+        },
+      },
+    };
+  };
+}
+
+function patchRelationsControllerMainField(strapi: Core.Strapi) {
+  const relationsController = strapi.plugin("content-manager").controller("relations") as unknown as {
+    extractAndValidateRequestInfo: (
+      ctx: unknown,
+      id?: string,
+    ) => Promise<{
+      mainField?: string;
+      fieldsToSelect?: string[];
+      target?: { schema?: { uid?: string } };
+    }>;
+  };
+
+  const originalExtract = relationsController.extractAndValidateRequestInfo.bind(relationsController);
+
+  relationsController.extractAndValidateRequestInfo = async (ctx: unknown, id?: string) => {
+    const info = await originalExtract(ctx, id);
+    const targetUid = info.target?.schema?.uid;
+    if (!targetUid) return info;
+
+    const targetSchema = (
+      strapi.contentTypes as unknown as Record<string, { attributes?: Record<string, unknown> }>
+    )[targetUid];
+    const attributes = targetSchema?.attributes ?? {};
+
+    const preferredField =
+      targetUid === "plugin::users-permissions.user"
+        ? "email"
+        : ["name", "title", "label", "username", "slug"].find((field) =>
+            Object.prototype.hasOwnProperty.call(attributes, field),
+          );
+
+    if (!preferredField) return info;
+
+    const nextFields = Array.from(
+      new Set([...(info.fieldsToSelect ?? []), preferredField, "id", "documentId"]),
+    );
+
+    return {
+      ...info,
+      mainField: preferredField,
+      fieldsToSelect: nextFields,
+    };
+  };
+}
+
 export default {
   register() {},
 
   async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    patchDocumentUserRelationMainField(strapi);
+    patchRelationsControllerMainField(strapi);
     await sanitizeExistingContentManagerConfigs(strapi);
     await setContentManagerConfig(strapi, heroBlockLabels);
     await setContentManagerConfig(strapi, menuServiceLabels);
