@@ -7,11 +7,13 @@ const strapiHostname = (process.env.STRAPI_URL ?? "http://localhost:1337")
 
 const isLocalStrapi = strapiHostname === "localhost" || strapiHostname === "127.0.0.1";
 const strapiInternalUrl = process.env.STRAPI_URL ?? "http://localhost:1337";
+const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(process.cwd(), "../../"),
   images: {
-    unoptimized: isLocalStrapi,
+    // Keep optimizer enabled in production even when Strapi is local (127.0.0.1 in host deploy).
+    unoptimized: !isProduction && isLocalStrapi,
     remotePatterns: [
       {
         protocol: "http",
