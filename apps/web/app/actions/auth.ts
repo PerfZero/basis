@@ -116,6 +116,7 @@ export async function registerAction(data: {
             status: "in_progress",
             payout: 0,
             inviterUserId: inviterId,
+            inviterUser: inviterId,
           },
         }),
       });

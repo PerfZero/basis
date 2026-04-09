@@ -10,7 +10,12 @@
   "options": { "draftAndPublish": false },
   "pluginOptions": {},
   "attributes": {
-    "inviterUserId": { "type": "integer", "required": true },
+    "inviterUserId": { "type": "integer" },
+    "inviterUser": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
     "contactPerson": { "type": "string", "required": true },
     "email": { "type": "email" },
     "phone": { "type": "string" },

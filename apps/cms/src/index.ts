@@ -1254,17 +1254,28 @@ const referralLabels = {
     id: { edit: {}, list: { label: "ID", searchable: true, sortable: true } },
     inviterUserId: {
       edit: {
-        label: "ID пригласившего пользователя",
-        description: "",
+        label: "ID пригласившего пользователя (техническое)",
+        description: "Заполняется автоматически из поля «Пригласивший пользователь»",
         placeholder: "",
-        visible: true,
-        editable: true,
+        visible: false,
+        editable: false,
       },
       list: {
         label: "ID пригласившего",
         searchable: true,
         sortable: true,
       },
+    },
+    inviterUser: {
+      edit: {
+        label: "Пригласивший пользователь",
+        description: "Выберите пользователя по email",
+        placeholder: "",
+        visible: true,
+        editable: true,
+        mainField: "email",
+      },
+      list: { label: "Пригласивший (email)", searchable: false, sortable: false },
     },
     contactPerson: {
       edit: {
@@ -1351,6 +1362,7 @@ const referralLabels = {
   layouts: {
     list: [
       "id",
+      "inviterUser",
       "inviterUserId",
       "contactPerson",
       "company",
@@ -1360,7 +1372,7 @@ const referralLabels = {
     ],
     edit: [
       [
-        { name: "inviterUserId", size: 4 },
+        { name: "inviterUser", size: 4, mainField: "email" },
         { name: "contactPerson", size: 4 },
         { name: "company", size: 4 },
       ],

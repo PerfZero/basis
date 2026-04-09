@@ -43,6 +43,21 @@ function normalizeReferralBody(body: unknown): { data: Record<string, unknown> }
     data.user = Number(data.user);
   }
 
+  if (data.inviterUser && typeof data.inviterUser === "object" && !Array.isArray(data.inviterUser)) {
+    const inviterObj = data.inviterUser as Record<string, unknown>;
+    const firstConnect = Array.isArray(inviterObj.connect)
+      ? (inviterObj.connect[0] as Record<string, unknown> | undefined)
+      : undefined;
+
+    if (firstConnect && typeof firstConnect.id === "number") {
+      data.inviterUser = firstConnect.id;
+    } else if (typeof inviterObj.id === "number") {
+      data.inviterUser = inviterObj.id;
+    }
+  } else if (typeof data.inviterUser === "string" && /^\d+$/.test(data.inviterUser)) {
+    data.inviterUser = Number(data.inviterUser);
+  }
+
   return { data };
 }
 
