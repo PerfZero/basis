@@ -5,7 +5,19 @@ Workflow file: `.github/workflows/deploy-production.yml`
 What it does on every push to `main`:
 1. Connects to `root@109.172.46.96` with SSH key.
 2. Runs `/opt/basis/scripts/deploy-prod.sh`.
-3. Pulls latest `main` and runs `docker compose -f docker-compose.prod.yml up -d --build --remove-orphans`.
+3. Pulls latest `main`.
+4. If `apps/web` changed: builds web and restarts `basis-web-host` (no Docker build).
+5. If `apps/cms` changed: by default only logs a warning and skips heavy rebuild.
+
+## Safe defaults
+
+`deploy-prod.sh` is intentionally conservative:
+- `DEPLOY_CMS=0` by default (prevents heavy `docker build` on production).
+- To rebuild CMS manually in a maintenance window:
+
+```bash
+DEPLOY_CMS=1 bash /opt/basis/scripts/deploy-prod.sh
+```
 
 ## Required GitHub Secret
 
