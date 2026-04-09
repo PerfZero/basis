@@ -93,7 +93,10 @@ export async function GET(request: Request) {
     phone: (item.phone as string) ?? "",
     company: (item.company as string) ?? "",
     product: (item.product as string) ?? "",
-    status: ((item.status as ReferralStatus) ?? "in_progress"),
+    status:
+      ((item.referralStatus as ReferralStatus | undefined) ??
+        (item.status as ReferralStatus | undefined) ??
+        "in_progress"),
     payout: Number(item.payout ?? 0),
   }));
 

@@ -1327,7 +1327,7 @@ const referralLabels = {
       },
       list: { label: "Продукт", searchable: true, sortable: true },
     },
-    status: {
+    referralStatus: {
       edit: {
         label: "Статус",
         description: "",
@@ -1367,7 +1367,7 @@ const referralLabels = {
       "contactPerson",
       "company",
       "product",
-      "status",
+      "referralStatus",
       "payout",
     ],
     edit: [
@@ -1382,7 +1382,7 @@ const referralLabels = {
       ],
       [
         { name: "product", size: 4 },
-        { name: "status", size: 4 },
+        { name: "referralStatus", size: 4 },
         { name: "payout", size: 4 },
       ],
       [{ name: "user", size: 12, mainField: "email" }],

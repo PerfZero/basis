@@ -113,7 +113,7 @@ export async function registerAction(data: {
             phone: phone || "",
             company: company || "Без компании",
             product: "Не указан",
-            status: "in_progress",
+            referralStatus: "in_progress",
             payout: 0,
             inviterUserId: inviterId,
             inviterUser: inviterId,

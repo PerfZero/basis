@@ -19,14 +19,20 @@ function normalizeReferralBody(body: unknown): { data: Record<string, unknown> }
       ? { ...(candidateData as Record<string, unknown>) }
       : { ...raw };
 
-  if (typeof raw.status === "string" && typeof data.status !== "string") {
-    data.status = raw.status;
+  if (typeof raw.status === "string" && typeof data.referralStatus !== "string") {
+    data.referralStatus = raw.status;
   }
 
-  if (typeof data.status === "string") {
-    const normalized = STATUS_ALIASES[data.status.trim().toLowerCase()];
-    if (normalized) data.status = normalized;
+  if (typeof data.status === "string" && typeof data.referralStatus !== "string") {
+    data.referralStatus = data.status;
   }
+
+  if (typeof data.referralStatus === "string") {
+    const normalized = STATUS_ALIASES[data.referralStatus.trim().toLowerCase()];
+    if (normalized) data.referralStatus = normalized;
+  }
+
+  delete data.status;
 
   if (data.user && typeof data.user === "object" && !Array.isArray(data.user)) {
     const userObj = data.user as Record<string, unknown>;
