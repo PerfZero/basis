@@ -1,220 +1,284 @@
-.section {
-  padding: 80px 24px;
-  overflow: hidden;
+/* section_background */
+.sectionBackground {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  overflow: clip;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 64px;
+/* padding-global — var(--_grid-padding-global---padding-global--size) = 2.7rem */
+.paddingGlobal {
+  padding-right: 2.7rem;
+  padding-left: 2.7rem;
 }
 
-.left {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  height: 520px;
-  justify-content: center;
-}
-
-.title {
-  font-family: var(--font-display);
-  font-size: 30px;
-  font-weight: 700;
-  max-width: 450px;
+/* container-large */
+.containerLarge {
   width: 100%;
+  max-width: 100rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* align-center */
+.alignCenter {
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+/* text-align-center */
+.textAlignCenter {
+  text-align: center;
+}
+
+/* spacer-1-5 */
+.spacer15 {
+  width: 100%;
+  padding-top: 1.5rem;
+}
+
+/* spacer-1 */
+.spacer1 {
+  width: 100%;
+  padding-top: 1rem;
+}
+
+/* max-width-53-3 */
+.maxWidth533 {
+  width: 100%;
+  max-width: 53.3rem;
+}
+
+/* on-click-general_wrapper */
+.onClickGeneralWrapper {
+  grid-column-gap: 1.4375rem;
+  grid-row-gap: 1.4375rem;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+/* on-click_wrapper */
+.onClickWrapper {
+  z-index: 1;
+  grid-column-gap: 1.4375rem;
+  grid-row-gap: 1.4375rem;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 22.6rem;
+  padding-bottom: 20rem;
+  display: flex;
+  position: relative;
+}
+
+/* text-align-right */
+.textAlignRight {
   text-align: right;
-  text-transform: uppercase;
-  line-height: 1.15;
-  color: var(--foreground);
+      width: 60%;
+
 }
 
-.titleAccent {
-  color: #0b7a66;
+/* heading-style-h4 */
+.headingStyleH4 {
+  letter-spacing: -0.02em;
 }
 
-.titleIcon {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 20px;
-  background: #0b7a66;
-  display: flex;
-  align-items: center;
+/* text-color-gradient */
+.textColorGradient {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 120%;
+    font-family: "Wadik", sans-serif;
+
+    text-align: right;
+    color: #000;
+}
+
+
+/* text-align-left-tablet — desktop: no effect (Webflow only defines at ≤991px) */
+
+/* on-click-icon */
+.onClickIcon {
   justify-content: center;
-}
-
-.titleIconImg {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-}
-
-/* ── Wheel viewport ── */
-.viewport {
-  position: relative;
-  height: 520px;
-  padding: 0 16px;
-  overflow: hidden;
-  display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.orbitStage {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  max-width: 640px;
-  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(232, 255, 251, 0.5) 0%, rgba(109, 175, 163, 0.8) 100%);
+  border-radius: 10px;
+  width: 66px;
+  height: 66px;
+  padding: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.orbit {
-  --orbit-size: 460px;
-  --orbit-radius: 210px;
+/* circle-fade_wrapper */
+.circleFadeWrapper {
+  z-index: -1;
+  width: 70rem;
   position: absolute;
-  width: var(--orbit-size);
-  height: var(--orbit-size);
-  border-radius: 50%;
-  border: 1px solid #0b7a66;
-  animation: orbitSpin 16s linear infinite;
-  will-change: transform;
+  inset: 50% auto auto 50%;
+  transform: translate(-100%, -50%);
 }
 
-.orbitWord {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform:
-    translate(-50%, -50%)
-    rotate(calc((360deg / var(--count)) * var(--index)))
-    translateY(calc(-1 * var(--orbit-radius)))
-    rotate(calc((-360deg / var(--count)) * var(--index)));
-  transform-origin: center center;
-  font-family: var(--font-display);
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: #0b7a66;
-  white-space: nowrap;
-  text-transform: uppercase;
+/* circle-fade */
+.circleFade {
+  z-index: 3;
+  background-image: linear-gradient(180deg, #fff 92%, #fafafa00);
   pointer-events: none;
+  width: 230%;
+  height: 100rem;
+  position: absolute;
+  inset: 28.3rem 0% auto;
+  transform: rotate(-12deg) translateY(-100%);
 }
 
-.centerCard {
-  width: min(420px, 90%);
-  min-height: 180px;
-  padding: 28px 30px;
-  border-radius: 24px;
-  background: #fff;
-  border: 1px solid #0b7a66;
-  box-shadow: 0 18px 34px rgba(17, 38, 63, 0.08);
+/* circle-fade.is-bottom */
+.isBottom {
+  background-image: linear-gradient(180deg, #fafafa00, #fff 8%);
+  top: auto;
+  bottom: 23.7rem;
+  transform: rotate(12deg) translateY(100%);
+}
+
+/* circle-wrapper */
+.circleWrapper {
+    z-index: -1;
+    aspect-ratio: 1;
+    border-radius: 100vw;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-end;
+    display: flex;
+    position: relative;
+    top: -3rem;
+}
+
+/* sentence */
+.sentence {
+  grid-column-gap: 0.6875rem;
+  grid-row-gap: 0.6875rem;
+  transform-origin: 0 0;
+  flex-flow: column;
+  width: 23.8125rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 12px;
 }
 
-.itemTitle {
-  font-family: var(--font-display);
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-  color: #0b7a66;
-  line-height: 1.1;
+.sentence {
+    position: absolute;
+    top: 50%;
+    left: 50%;
 }
 
-.itemDesc {
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.35;
-  color: #2f4147;
+/* heading-style-h5 */
+.headingStyleH5 {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 110%;
+    color: #0b7a66;
 }
 
-.mobileList {
-  display: none;
+/* text-color-gray-36 — var(--_colors---colors--greyscale-36) = #9f9ea3 */
+.textColorGray36 {
+    font-family: "Gilroy", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    color: #000;}
+
+/* text-size-small */
+.textSizeSmall {
+  font-size: 0.9rem;
+  line-height: 1.2em;
+  letter-spacing: -0.01em;
 }
 
-.mobileItem {
-  border: 1px solid #0b7a66;
-  background: #fff;
-  border-radius: 16px;
-  padding: 14px 16px;
-}
-
-@keyframes orbitSpin {
-  from {
-    transform: rotate(0turn);
-  }
-  to {
-    transform: rotate(1turn);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .orbit {
-    animation: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .section {
-    padding: 56px 16px;
+/* ≤991px */
+@media screen and (max-width: 991px) {
+  .onClickWrapper {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    padding-top: 4rem;
   }
 
-  .container {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .circleFadeWrapper {
+    top: 17.3rem;
+    left: 0%;
   }
 
-  .left {
-    height: auto;
-    justify-content: flex-start;
-    gap: 12px;
+  .circleFade {
+    background-image: linear-gradient(180deg, #fafafa 98%, #fafafa00);
+    inset: 29.3rem 0% auto;
+    transform: translateY(-100%);
   }
 
-  .title {
-    max-width: none;
+  .isBottom {
+    bottom: 27.5rem;
+    transform: rotate(3deg) translateY(100%);
+  }
+
+  .onClickIcon {
+    order: -1;
+  }
+
+  .onClickGeneralWrapper {
+    padding-left: 0%;
+  }
+
+  .textAlignLeftTablet {
     text-align: left;
-    font-size: 26px;
+  }
+}
+
+/* ≤767px */
+@media screen and (max-width: 767px) {
+  .sectionBackground {
+    padding-bottom: 3rem;
   }
 
-  .titleIcon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+  /* var(--_grid-padding-global---padding-global--size) = 1.2rem at ≤767px */
+  .paddingGlobal {
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
   }
 
-  .titleIconImg {
-    width: 24px;
-    height: 24px;
+  .sentence {
+    max-width: 90vw;
   }
 
-  .viewport {
-    height: auto;
-    padding: 0;
-    display: block;
+  .onClickWrapper {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 21.9rem;
   }
 
-  .orbitStage {
-    display: none;
+  .circleFadeWrapper {
+    left: 0%;
   }
 
-  .mobileList {
-    display: grid;
-    gap: 10px;
+  .onClickIcon {
+    order: -1;
+    width: 4rem;
   }
 
-  .itemTitle {
-    font-size: 18px;
-    margin-bottom: 8px;
+  .onClickGeneralWrapper {
+    padding-top: 3rem;
+    padding-left: 0%;
   }
 
-  .itemDesc {
-    font-size: 14px;
+  /* --h5--font-size = 1.2rem at ≤767px */
+  .headingStyleH5 {
+    font-size: 1.2rem;
+  }
+}
+
+/* ≤479px */
+@media screen and (max-width: 479px) {
+  .spacer15 {
+    z-index: 999;
+    position: relative;
   }
 }
