@@ -31,7 +31,9 @@ jobs:
             image: ghcr.io/perfzero/basis-cms
             context: ./apps/cms
             file: ./apps/cms/Dockerfile
-            build_args: ""
+            build_args: |
+              STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
+              ADMIN_PATH=/admin
 
     steps:
       - name: Checkout

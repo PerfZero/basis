@@ -7,6 +7,10 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ARG STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
+ARG ADMIN_PATH=/admin
+ENV STRAPI_ADMIN_BACKEND_URL=${STRAPI_ADMIN_BACKEND_URL}
+ENV ADMIN_PATH=${ADMIN_PATH}
 RUN npm run build
 
 FROM node:22-alpine AS runner
