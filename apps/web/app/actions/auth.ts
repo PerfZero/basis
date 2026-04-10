@@ -115,6 +115,7 @@ export async function registerAction(data: {
             product: "Не указан",
             referralStatus: "in_progress",
             payout: 0,
+            user: registeredUserId,
             inviterUserId: inviterId,
             inviterUser: inviterId,
           },

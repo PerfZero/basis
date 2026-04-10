@@ -6,10 +6,22 @@ const STATUS_ALIASES: Record<string, ReferralStatus> = {
   in_progress: "in_progress",
   inprogress: "in_progress",
   "in-progress": "in_progress",
+  "in progress": "in_progress",
+  progress: "in_progress",
+  "в работе": "in_progress",
+  "в процессе": "in_progress",
   contract_signed: "contract_signed",
   contractsigned: "contract_signed",
   "contract-signed": "contract_signed",
+  "contract signed": "contract_signed",
+  signed: "contract_signed",
+  "договор подписан": "contract_signed",
 };
+
+function normalizeStatus(value: unknown): ReferralStatus | null {
+  if (typeof value !== "string") return null;
+  return STATUS_ALIASES[value.trim().toLowerCase()] ?? null;
+}
 
 function normalizeReferralBody(body: unknown): { data: Record<string, unknown> } {
   const raw = body && typeof body === "object" ? (body as Record<string, unknown>) : {};
@@ -19,17 +31,23 @@ function normalizeReferralBody(body: unknown): { data: Record<string, unknown> }
       ? { ...(candidateData as Record<string, unknown>) }
       : { ...raw };
 
-  if (typeof raw.status === "string" && typeof data.referralStatus !== "string") {
-    data.referralStatus = raw.status;
+  if (typeof data.referralStatus !== "string") {
+    const normalizedRawStatus = normalizeStatus(raw.status);
+    if (normalizedRawStatus) {
+      data.referralStatus = normalizedRawStatus;
+    }
   }
 
-  if (typeof data.status === "string" && typeof data.referralStatus !== "string") {
-    data.referralStatus = data.status;
+  if (typeof data.referralStatus !== "string") {
+    const normalizedDataStatus = normalizeStatus(data.status);
+    if (normalizedDataStatus) {
+      data.referralStatus = normalizedDataStatus;
+    }
   }
 
-  if (typeof data.referralStatus === "string") {
-    const normalized = STATUS_ALIASES[data.referralStatus.trim().toLowerCase()];
-    if (normalized) data.referralStatus = normalized;
+  const normalizedReferralStatus = normalizeStatus(data.referralStatus);
+  if (normalizedReferralStatus) {
+    data.referralStatus = normalizedReferralStatus;
   }
 
   delete data.status;
