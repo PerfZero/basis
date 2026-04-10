@@ -15,9 +15,8 @@ services:
       retries: 5
 
   cms:
-    build:
-      context: ./apps/cms
-      dockerfile: Dockerfile
+    image: ${CMS_IMAGE:-ghcr.io/perfzero/basis-cms:main}
+    pull_policy: always
     restart: unless-stopped
     environment:
       HOST: ${CMS_HOST:-0.0.0.0}
@@ -44,9 +43,8 @@ services:
       - "127.0.0.1:1337:1337"
 
   web:
-    build:
-      context: ./apps/web
-      dockerfile: Dockerfile
+    image: ${WEB_IMAGE:-ghcr.io/perfzero/basis-web:main}
+    pull_policy: always
     restart: unless-stopped
     environment:
       NODE_ENV: production
