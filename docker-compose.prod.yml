@@ -21,15 +21,22 @@ services:
       dockerfile: Dockerfile
     container_name: basis-cms
     restart: unless-stopped
-    env_file:
-      - ./apps/cms/.env.production
     environment:
+      HOST: ${CMS_HOST:-0.0.0.0}
+      PORT: ${CMS_PORT:-1337}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      TRANSFER_TOKEN_SALT: ${TRANSFER_TOKEN_SALT}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY}
+      JWT_SECRET: ${JWT_SECRET}
       DATABASE_HOST: db
       DATABASE_PORT: 5432
       DATABASE_NAME: ${POSTGRES_DB:-strapi}
       DATABASE_USERNAME: ${POSTGRES_USER:-strapi}
       DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-strapi}
       DATABASE_CLIENT: postgres
+      DATABASE_SSL: ${DATABASE_SSL:-false}
       NODE_ENV: production
     depends_on:
       - db
@@ -44,11 +51,10 @@ services:
       dockerfile: Dockerfile
     container_name: basis-web
     restart: unless-stopped
-    env_file:
-      - ./apps/web/.env.production
     environment:
       NODE_ENV: production
-      STRAPI_URL: http://cms:1337
+      STRAPI_URL: ${STRAPI_URL:-http://cms:1337}
+      STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-}
     depends_on:
       - cms
     ports:
