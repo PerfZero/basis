@@ -1,8 +1,10 @@
 # Autodeploy (GitHub Actions + SSH key)
 
+> Status: legacy flow. If you use Dockploy, keep this workflow disabled (manual only).
+
 Workflow file: `.github/workflows/deploy-production.yml`
 
-What it does on every push to `main`:
+What it does on manual run:
 1. Connects to `root@109.172.46.96` with SSH key.
 2. Runs `/opt/basis/scripts/deploy-prod.sh`.
 3. Pulls latest `main`.
@@ -25,4 +27,4 @@ Create repo secret:
 - Name: `PROD_SSH_PRIVATE_KEY`
 - Value: private SSH key that has access to `root@109.172.46.96`
 
-After adding the secret, push to `main` to trigger deploy.
+After adding the secret, run workflow manually in GitHub Actions.
