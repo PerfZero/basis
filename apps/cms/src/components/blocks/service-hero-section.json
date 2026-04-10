@@ -8,7 +8,14 @@
   "attributes": {
     "heroEyebrow": { "type": "string", "required": true },
     "heroHeading": { "type": "string" },
-    "heroHeadingAccent": { "type": "string" },
+    "heroHeadingAccent": {
+      "type": "string",
+      "pluginOptions": {
+        "content-manager": {
+          "visible": false
+        }
+      }
+    },
     "heroDescription": { "type": "text" },
     "heroPrimaryButtonLabel": { "type": "string" },
     "heroPrimaryButtonHref": { "type": "string" },

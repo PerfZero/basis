@@ -818,6 +818,66 @@ async function setContentManagerFieldLabel(
   }
 }
 
+async function setContentManagerFieldVisibility(
+  strapi: Core.Strapi,
+  uid: string,
+  field: string,
+  visible: boolean,
+) {
+  const key = `configuration_content_types::${uid}`;
+
+  for (const store of getContentManagerStores(strapi)) {
+    const current = (await store.get({ key })) as ContentManagerConfig | undefined;
+    if (!current) continue;
+
+    const nextEditLayout = (current.layouts?.edit ?? []).map((row) =>
+      Array.isArray(row)
+        ? row.filter(
+            (cell) =>
+              !(
+                typeof cell === "object" &&
+                cell !== null &&
+                "name" in cell &&
+                (cell as { name?: string }).name === field &&
+                !visible
+              ),
+          )
+        : row,
+    );
+
+    const nextListLayout = (current.layouts?.list ?? []).filter(
+      (item) => !(item === field && !visible),
+    );
+
+    const next: ContentManagerConfig = {
+      uid,
+      ...current,
+      metadatas: {
+        ...(current.metadatas ?? {}),
+        [field]: {
+          ...(current.metadatas?.[field] ?? {}),
+          edit: {
+            ...((current.metadatas?.[field]?.edit ?? {}) as Record<string, unknown>),
+            visible,
+          },
+          list: {
+            ...((current.metadatas?.[field]?.list ?? {}) as Record<string, unknown>),
+            searchable: visible,
+            sortable: visible,
+          },
+        },
+      },
+      layouts: {
+        ...(current.layouts ?? {}),
+        edit: nextEditLayout,
+        list: nextListLayout,
+      },
+    };
+
+    await store.set({ key, value: normalizeContentManagerConfig(strapi, next) });
+  }
+}
+
 async function sanitizeExistingContentManagerConfigs(strapi: Core.Strapi) {
   const rows = await strapi.db.connection("strapi_core_store_settings")
     .select(["key", "value"])
@@ -1592,6 +1652,18 @@ export default {
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
     await setComponentConfig(strapi, principleComponentLabels);
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::service-page.service-page",
+      "heroHeading",
+      "Заголовок Hero (акцент выделяй через %%текст%%)",
+    );
+    await setContentManagerFieldVisibility(
+      strapi,
+      "api::service-page.service-page",
+      "heroHeadingAccent",
+      false,
+    );
     await setContentManagerFieldLabel(
       strapi,
       "api::service-page.service-page",

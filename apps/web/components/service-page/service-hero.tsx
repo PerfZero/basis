@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Fragment } from "react";
 import blurBack from "@/app/blur_back.png";
 import type { ServicePageData, ServiceBadge } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
@@ -15,16 +16,53 @@ type Props = Pick<
   | "heroBadges"
 >;
 
-function renderWithLineBreaks(value: string) {
-  const normalized = value
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n");
+type HeadingPart = { text: string; accent: boolean };
 
-  return normalized.split("\n").map((line, index) => (
-    <span key={`${line}-${index}`}>
+function normalizeHeading(value: string): string {
+  return value
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/[\u2028\u2029]/g, "\n");
+}
+
+function parseHeadingParts(value: string): HeadingPart[] {
+  const normalized = normalizeHeading(value);
+  const parts: HeadingPart[] = [];
+  const markerRegex = /%%([^%]+)%%|\[([^\]]+)\]/g;
+  let last = 0;
+  let match: RegExpExecArray | null = null;
+
+  while ((match = markerRegex.exec(normalized)) !== null) {
+    if (match.index > last) {
+      parts.push({ text: normalized.slice(last, match.index), accent: false });
+    }
+
+    const accentText = match[1] ?? match[2] ?? "";
+    if (accentText) {
+      parts.push({ text: accentText, accent: true });
+    }
+
+    last = match.index + match[0].length;
+  }
+
+  if (last < normalized.length) {
+    parts.push({ text: normalized.slice(last), accent: false });
+  }
+
+  if (parts.length === 0) {
+    return [{ text: normalized, accent: false }];
+  }
+
+  return parts;
+}
+
+function renderTextWithBreaks(value: string, keyPrefix: string) {
+  return normalizeHeading(value).split("\n").map((line, index) => (
+    <Fragment key={`${keyPrefix}-${index}`}>
       {index > 0 && <br />}
       {line}
-    </span>
+    </Fragment>
   ));
 }
 
@@ -37,6 +75,18 @@ export function ServiceHero({
   heroPrimaryButtonHref,
   heroBadges,
 }: Props) {
+  const composedHeading = (() => {
+    if (!heroHeading) return "";
+    if (heroHeading.includes("%%") || /\[[^\]]+\]/.test(heroHeading)) {
+      return heroHeading;
+    }
+    if (heroHeadingAccent) {
+      return `${heroHeading} %%${heroHeadingAccent}%%`;
+    }
+    return heroHeading;
+  })();
+  const headingParts = composedHeading ? parseHeadingParts(composedHeading) : [];
+
   return (
     <section className={s.section}>
 
@@ -45,12 +95,16 @@ export function ServiceHero({
         <span className={s.divider} />
 
         <h1 className={s.heading}>
-          {heroHeading && <span>{renderWithLineBreaks(heroHeading)}</span>}
-          {heroHeadingAccent && (
-            <>
-
-              <span className={s.headingAccent}>{renderWithLineBreaks(heroHeadingAccent)}</span>
-            </>
+          {headingParts.map((part, index) =>
+            part.accent ? (
+              <span key={`accent-${index}`} className={s.headingAccent}>
+                {renderTextWithBreaks(part.text, `accent-${index}`)}
+              </span>
+            ) : (
+              <span key={`plain-${index}`}>
+                {renderTextWithBreaks(part.text, `plain-${index}`)}
+              </span>
+            )
           )}
         </h1>
 
