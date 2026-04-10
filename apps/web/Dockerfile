@@ -7,6 +7,8 @@ FROM node:22-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+ARG STRAPI_URL=http://cms:1337
+ENV STRAPI_URL=${STRAPI_URL}
 RUN npm run build
 
 FROM node:22-alpine AS runner
