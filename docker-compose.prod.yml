@@ -39,8 +39,8 @@ services:
       - db
     volumes:
       - basis_cms_uploads:/app/public/uploads
-    ports:
-      - "127.0.0.1:1337:1337"
+    expose:
+      - "1337"
 
   web:
     image: ${WEB_IMAGE:-ghcr.io/perfzero/basis-web:main}
@@ -52,8 +52,8 @@ services:
       STRAPI_API_TOKEN: ${STRAPI_API_TOKEN:-}
     depends_on:
       - cms
-    ports:
-      - "127.0.0.1:3100:3000"
+    expose:
+      - "3000"
 
 volumes:
   basis_postgres_data:
