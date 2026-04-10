@@ -1,7 +1,6 @@
 services:
   db:
     image: postgres:16-alpine
-    container_name: basis-db
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-strapi}
@@ -19,7 +18,6 @@ services:
     build:
       context: ./apps/cms
       dockerfile: Dockerfile
-    container_name: basis-cms
     restart: unless-stopped
     environment:
       HOST: ${CMS_HOST:-0.0.0.0}
@@ -49,7 +47,6 @@ services:
     build:
       context: ./apps/web
       dockerfile: Dockerfile
-    container_name: basis-web
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -62,4 +59,8 @@ services:
 
 volumes:
   basis_postgres_data:
+    external: true
+    name: ${POSTGRES_VOLUME_NAME:-basis_basis_postgres_data}
   basis_cms_uploads:
+    external: true
+    name: ${CMS_UPLOADS_VOLUME_NAME:-basis_basis_cms_uploads}
