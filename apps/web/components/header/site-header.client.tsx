@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { type MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 import type { NavItem } from "@/lib/navigation";
@@ -19,6 +20,7 @@ type SiteHeaderClientProps = {
 };
 
 export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeaderClientProps) {
+  const pathname = usePathname();
   const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const desktopServicesRef = useRef<HTMLLIElement>(null);
@@ -41,12 +43,39 @@ export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeade
   }, [mobileMenuOpen]);
 
   const closeMenu = () => setMobileMenuOpen(false);
+  const normalizePath = (value: string) => {
+    const [pathOnly = "/"] = value.split(/[?#]/);
+    if (pathOnly === "/") return "/";
+    return pathOnly.replace(/\/+$/, "") || "/";
+  };
+
+  const currentPath = normalizePath(pathname ?? "/");
+  const handleHeaderLinkClick = (
+    event: ReactMouseEvent<HTMLAnchorElement>,
+    href: string,
+    closeMobile = false,
+  ) => {
+    if (closeMobile) closeMenu();
+
+    if (normalizePath(href) !== currentPath) {
+      return;
+    }
+
+    event.preventDefault();
+    window.location.assign(href);
+  };
+
+  const handleLogoClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    if (pathname !== "/") return;
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
       <header className={s.header}>
         <div className={s.inner}>
-          <Link href="/" aria-label="На главную">
+          <Link href="/" aria-label="На главную" onClick={handleLogoClick}>
             <Image src="/logo.svg" alt="Логотип" width={142} height={40} priority />
           </Link>
 
@@ -57,11 +86,18 @@ export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeade
                 open={desktopServicesOpen}
                 onToggle={() => setDesktopServicesOpen(p => !p)}
                 onClose={() => setDesktopServicesOpen(false)}
+                onItemClick={handleHeaderLinkClick}
                 containerRef={desktopServicesRef}
               />
               {staticNavItems.map((item) => (
                 <li key={item.id}>
-                  <Link href={item.href} className={s.navLink}>{item.label}</Link>
+                  <Link
+                    href={item.href}
+                    className={s.navLink}
+                    onClick={(event) => handleHeaderLinkClick(event, item.href)}
+                  >
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -86,7 +122,14 @@ export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeade
         <div className={s.mobileOverlay} role="dialog" aria-modal="true" aria-label="Навигация">
           {/* Top bar */}
           <div className={s.mobileOverlayTop}>
-            <Link href="/" onClick={closeMenu} aria-label="На главную">
+            <Link
+              href="/"
+              onClick={(event) => {
+                closeMenu();
+                handleLogoClick(event);
+              }}
+              aria-label="На главную"
+            >
               <Image src="/logo.svg" alt="Логотип" width={120} height={34} priority />
             </Link>
             <button type="button" className={s.mobileCloseBtn} onClick={closeMenu} aria-label="Закрыть меню">
@@ -101,7 +144,11 @@ export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeade
               <ul className={s.mobileSectionList}>
                 {serviceMenuItems.map((item) => (
                   <li key={item.id} className={s.mobileSectionItem}>
-                    <Link href={item.href} className={s.mobileSectionLink} onClick={closeMenu}>
+                    <Link
+                      href={item.href}
+                      className={s.mobileSectionLink}
+                      onClick={(event) => handleHeaderLinkClick(event, item.href, true)}
+                    >
                       {item.title}
                     </Link>
                   </li>
@@ -114,7 +161,11 @@ export function SiteHeaderClient({ staticNavItems, serviceMenuItems }: SiteHeade
               <ul className={s.mobileSectionList}>
                 {staticNavItems.map((item) => (
                   <li key={item.id} className={s.mobileSectionItem}>
-                    <Link href={item.href} className={s.mobileSectionLink} onClick={closeMenu}>
+                    <Link
+                      href={item.href}
+                      className={s.mobileSectionLink}
+                      onClick={(event) => handleHeaderLinkClick(event, item.href, true)}
+                    >
                       {item.label}
                     </Link>
                   </li>
