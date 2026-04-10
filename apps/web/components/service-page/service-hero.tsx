@@ -15,6 +15,19 @@ type Props = Pick<
   | "heroBadges"
 >;
 
+function renderWithLineBreaks(value: string) {
+  const normalized = value
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n");
+
+  return normalized.split("\n").map((line, index) => (
+    <span key={`${line}-${index}`}>
+      {index > 0 && <br />}
+      {line}
+    </span>
+  ));
+}
+
 export function ServiceHero({
   heroEyebrow,
   heroHeading,
@@ -32,11 +45,11 @@ export function ServiceHero({
         <span className={s.divider} />
 
         <h1 className={s.heading}>
-          {heroHeading && <span>{heroHeading}</span>}
+          {heroHeading && <span>{renderWithLineBreaks(heroHeading)}</span>}
           {heroHeadingAccent && (
             <>
 
-              <span className={s.headingAccent}>{heroHeadingAccent}</span>
+              <span className={s.headingAccent}>{renderWithLineBreaks(heroHeadingAccent)}</span>
             </>
           )}
         </h1>

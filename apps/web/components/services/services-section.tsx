@@ -5,6 +5,7 @@ import styles from "./services-section.module.css";
 
 function splitHeadingLines(value: string): string[] {
   return value
+    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
     .split(/(?:<br\s*\/?>|\r?\n)/gi)
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
