@@ -3,12 +3,30 @@ import Link from "next/link";
 import type { ServicesSectionData } from "@/lib/strapi/services";
 import styles from "./services-section.module.css";
 
+function splitHeadingLines(value: string): string[] {
+  return value
+    .split(/(?:<br\s*\/?>|\r?\n)/gi)
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
+}
+
 export function ServicesSection({ heading, subheading, cards }: ServicesSectionData) {
+  const headingLines = splitHeadingLines(heading);
+
   return (
     <section id="services" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.header}>
-          <h2 className={styles.heading}>{heading}</h2>
+          <h2 className={styles.heading}>
+            {headingLines.length > 0
+              ? headingLines.map((line, index) => (
+                  <span key={`${line}-${index}`}>
+                    {index > 0 && <br />}
+                    {line}
+                  </span>
+                ))
+              : heading}
+          </h2>
         </div>
         <div className={styles.grid}>
           {cards.map((card) => (
