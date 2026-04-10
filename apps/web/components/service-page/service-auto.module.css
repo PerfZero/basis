@@ -39,7 +39,6 @@
   box-shadow: 2px 4px 24px 0 rgba(11, 122, 102, 0.1);
   background: radial-gradient(69.69% 112.26% at 69.69% 100%, #ebf9f7 0%, #fff 100%);
   overflow: hidden;
-  overscroll-behavior: contain;
 }
 
 /* ── Tabs ── */
@@ -148,14 +147,24 @@
   font-size: 16px;
   font-weight: 500;
   color: #fff;
-  background: #0b7a66;  text-decoration: none;
-  transition: background-color 0.2s;
+  background-color: var(--accent-strong);
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
   width: fit-content;
   margin-top: 8px;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: var(--accent);
+  background-color: #f6f5f1;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btn:hover .btnArrow {
+  background: var(--accent-strong);
+  color: #fff;
 }
 
 .btnArrow {
@@ -168,6 +177,7 @@
   background: rgba(255, 255, 255, 0.9);
   color: var(--accent-strong);
   flex-shrink: 0;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 /* ── Right image ── */

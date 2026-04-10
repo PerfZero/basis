@@ -111,7 +111,12 @@ export interface BlocksServiceHeroSection extends Struct.ComponentSchema {
     heroDescription: Schema.Attribute.Text;
     heroEyebrow: Schema.Attribute.String & Schema.Attribute.Required;
     heroHeading: Schema.Attribute.String;
-    heroHeadingAccent: Schema.Attribute.String;
+    heroHeadingAccent: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        'content-manager': {
+          visible: false;
+        };
+      }>;
     heroPrimaryButtonHref: Schema.Attribute.String;
     heroPrimaryButtonLabel: Schema.Attribute.String;
     heroSecondaryButtonLabel: Schema.Attribute.String &

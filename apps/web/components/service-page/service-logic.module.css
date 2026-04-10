@@ -79,40 +79,42 @@
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  border: 1px solid var(--accent);
+  gap: 16px;
+  border: 1px solid transparent;
   border-radius: 9999px;
-  padding: 3px 3px 3px 28px;
-  font-weight: 400;
+  padding: 4px 4px 4px 32px;
+  font-weight: 500;
   font-size: 16px;
   text-align: center;
-  color: #0b7a66;
+  color: #fff;
+  background-color: var(--accent-strong);
   text-decoration: none;
-  width: fit-content;
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: var(--accent);
-  color: #fff;
+  background-color: #f6f5f1;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
 }
 
 .btnArrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
+  width: 39px;
+  height: 39px;
   border-radius: 9999px;
-  background: var(--accent);
-  color: #fff;
-  font-size: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--accent-strong);
+  font-size: 18px;
   flex-shrink: 0;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .btn:hover .btnArrow {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--accent-strong);
   color: #fff;
 }
 

@@ -726,7 +726,11 @@ export interface ApiReferralReferral extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     email: Schema.Attribute.Email;
-    inviterUserId: Schema.Attribute.Integer & Schema.Attribute.Required;
+    inviterUser: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+    inviterUserId: Schema.Attribute.Integer;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -737,7 +741,9 @@ export interface ApiReferralReferral extends Struct.CollectionTypeSchema {
     phone: Schema.Attribute.String;
     product: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    status: Schema.Attribute.Enumeration<['in_progress', 'contract_signed']> &
+    referralStatus: Schema.Attribute.Enumeration<
+      ['in_progress', 'contract_signed']
+    > &
       Schema.Attribute.DefaultTo<'in_progress'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -818,7 +824,12 @@ export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
     heroDescription: Schema.Attribute.Text;
     heroEyebrow: Schema.Attribute.String & Schema.Attribute.Required;
     heroHeading: Schema.Attribute.String;
-    heroHeadingAccent: Schema.Attribute.String;
+    heroHeadingAccent: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        'content-manager': {
+          visible: false;
+        };
+      }>;
     heroPrimaryButtonHref: Schema.Attribute.String;
     heroPrimaryButtonLabel: Schema.Attribute.String;
     heroSecondaryButtonLabel: Schema.Attribute.String &
@@ -845,6 +856,7 @@ export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
     >;
     recognizeTitle: Schema.Attribute.String;
     slug: Schema.Attribute.UID<'heroEyebrow'> & Schema.Attribute.Required;
+    statsBottomText: Schema.Attribute.Text;
     statsColAfter: Schema.Attribute.String;
     statsColBefore: Schema.Attribute.String;
     statsRows: Schema.Attribute.Component<'blocks.service-stat-row', true>;
@@ -1440,7 +1452,7 @@ export interface PluginUsersPermissionsUser
   extends Struct.CollectionTypeSchema {
   collectionName: 'up_users';
   info: {
-    displayName: 'User';
+    displayName: '\u041F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C';
     pluralName: 'users';
     singularName: 'user';
   };

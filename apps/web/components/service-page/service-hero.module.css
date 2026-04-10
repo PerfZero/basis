@@ -97,7 +97,7 @@
 }
 
 .btnPrimary:hover {
-  background-color: #fff;
+  background-color: #f6f5f1;
   color: var(--accent-strong);
   border-color: var(--accent-strong);
 }

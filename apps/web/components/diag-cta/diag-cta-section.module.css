@@ -50,18 +50,23 @@
   transition: background 0.2s;
   margin-bottom: 48px;
   border: none;
+  border: 1px solid transparent;
   cursor: pointer;
 }
 
 .btn:hover {
-  background: var(--accent-strong);
+    background-color: #F6F5F1;
+    color: var(--accent-strong);
+    border-color: var(--accent-strong);
 }
 
 .imageWrap {
-  width: 100%;
-  display: flex;
-  pointer-events: none;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    position: static;
+    pointer-events: none;
+    justify-content: center;
+    z-index: -1;
 
 }
 

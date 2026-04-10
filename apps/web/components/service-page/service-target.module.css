@@ -124,12 +124,21 @@
   font-weight: 500;
   color: #fff;
   background-color: var(--accent-strong);
+  border: 1px solid transparent;
   text-decoration: none;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
 }
 
 .btn:hover {
-  background-color: var(--accent);
+  background-color: #f6f5f1;
+  color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.btn:hover .btnArrow {
+  background: var(--accent-strong);
+  color: #fff;
 }
 
 .btnArrow {
@@ -143,6 +152,7 @@
   color: var(--accent-strong);
   font-size: 18px;
   flex-shrink: 0;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 @media (max-width: 900px) {
