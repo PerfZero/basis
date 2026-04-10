@@ -62,6 +62,18 @@
   position: relative;
 }
 
+.wheelZone {
+  position: absolute;
+  top: 4rem;
+  right: 0;
+  width: min(38rem, 46%);
+  height: calc(100% - 8rem);
+  border: none;
+  background: transparent;
+  z-index: 2;
+  cursor: default;
+}
+
 /* on-click_wrapper */
 .onClickWrapper {
   z-index: 1;
@@ -229,6 +241,10 @@
 
   .textAlignLeftTablet {
     text-align: left;
+  }
+
+  .wheelZone {
+    display: none;
   }
 }
 

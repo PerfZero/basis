@@ -87,7 +87,7 @@ export function ServiceProblem({
         <div className={s.containerLarge}>
           <div className={s.onClickGeneralWrapper}>
             <div className={s.onClickWrapper}>
-              <div className={s.textAlignRight} ref={scrollControlRef}>
+              <div className={s.textAlignRight}>
                 <div className={s.headingStyleH4}>
                   <div className={s.textColorGradient}>
                     <div className={s.textAlignLeftTablet}>
@@ -144,6 +144,12 @@ export function ServiceProblem({
                 </div>
               </div>
             </div>
+
+            <div
+              className={s.wheelZone}
+              ref={scrollControlRef}
+              aria-hidden="true"
+            />
           </div>
         </div>
       </div>
