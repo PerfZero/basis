@@ -6,6 +6,15 @@ import s from "./hero-section.module.css";
 
 type Props = HeroBlockData;
 
+function renderTextWithBreaks(text: string) {
+  return text.split("\n").map((line, index) => (
+    <span key={`${line}-${index}`}>
+      {index > 0 && <br />}
+      {line}
+    </span>
+  ));
+}
+
 export function HeroSection({
   eyebrow,
   headingParts,
@@ -25,9 +34,11 @@ export function HeroSection({
         <h1 className={s.heading}>
           {headingParts.map((part, i) =>
             part.accent ? (
-              <span key={i} className={s.headingAccent}>[{part.text}]</span>
+              <span key={i} className={s.headingAccent}>
+                {renderTextWithBreaks(`[${part.text}]`)}
+              </span>
             ) : (
-              <span key={i}>{part.text}</span>
+              <span key={i}>{renderTextWithBreaks(part.text)}</span>
             )
           )}
         </h1>

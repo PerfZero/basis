@@ -14,16 +14,17 @@ const FALLBACK_HEADING = "Строим системы, которые [Увел�
 
 /** "Hello [World] foo" → [{text:"Hello ", accent:false}, {text:"World", accent:true}, {text:" foo", accent:false}] */
 function parseHeading(raw: string): HeadingPart[] {
+  const normalized = raw.replace(/<br\s*\/?>/gi, "\n");
   const parts: HeadingPart[] = [];
   const regex = /\[([^\]]+)\]/g;
   let last = 0;
   let match;
-  while ((match = regex.exec(raw)) !== null) {
-    if (match.index > last) parts.push({ text: raw.slice(last, match.index), accent: false });
+  while ((match = regex.exec(normalized)) !== null) {
+    if (match.index > last) parts.push({ text: normalized.slice(last, match.index), accent: false });
     parts.push({ text: match[1], accent: true });
     last = match.index + match[0].length;
   }
-  if (last < raw.length) parts.push({ text: raw.slice(last), accent: false });
+  if (last < normalized.length) parts.push({ text: normalized.slice(last), accent: false });
   return parts;
 }
 
