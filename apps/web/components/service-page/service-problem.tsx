@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import type { ServicePageData, ServiceProblemItem } from "@/lib/strapi/service-page";
 import s from "./service-problem.module.css";
 
 const DEGREE_STEP = 20;
+const PROBLEM_REPEAT_COUNT = 8;
 
 type Props = Pick<
   NonNullable<ServicePageData>,
@@ -20,16 +20,21 @@ export function ServiceProblem({
   problemIcon,
   problemItems,
 }: Props) {
+  const scrollControlRef = useRef<HTMLDivElement | null>(null);
   const circleRef = useRef<HTMLDivElement | null>(null);
+  const renderedItems = useMemo(() => {
+    if (problemItems.length <= 1) return problemItems;
+    const safeRepeatCount = Math.max(1, PROBLEM_REPEAT_COUNT);
+    return Array.from({ length: safeRepeatCount }, () => problemItems).flat();
+  }, [problemItems]);
 
   if (!problemTitle && problemItems.length === 0) return null;
   if (problemItems.length === 0) return null;
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
+    const scrollControl = scrollControlRef.current;
     const wrapper = circleRef.current;
-    if (!wrapper) return;
+    if (!scrollControl || !wrapper) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const radius = wrapper.offsetWidth / 2;
@@ -49,30 +54,32 @@ export function ServiceProblem({
       });
     });
 
-    if (reducedMotion || sentenceCount <= 1) {
+    if (reducedMotion || problemItems.length <= 1 || sentenceCount <= 1) {
       gsap.set(wrapper, { rotation: 0 });
       return;
     }
 
-    const totalRotation = -(sentenceCount - 1) * DEGREE_STEP;
     gsap.set(wrapper, { rotation: 0 });
+    let currentRotation = 0;
 
-    const tween = gsap.to(wrapper, {
-      rotation: totalRotation,
-      ease: "none",
-      scrollTrigger: {
-        trigger: wrapper,
-        start: "center 80%",
-        end: "center 40%",
-        scrub: true,
-      },
-    });
+    const onWheel = (event: WheelEvent) => {
+      event.preventDefault();
+      currentRotation -= event.deltaY * 0.3;
+
+      gsap.to(wrapper, {
+        rotation: currentRotation,
+        duration: 0.25,
+        ease: "power2.out",
+        overwrite: true,
+      });
+    };
+
+    scrollControl.addEventListener("wheel", onWheel, { passive: false });
 
     return () => {
-      tween.scrollTrigger?.kill();
-      tween.kill();
+      scrollControl.removeEventListener("wheel", onWheel);
     };
-  }, [problemItems.length]);
+  }, [problemItems.length, renderedItems.length]);
 
   return (
     <section className={s.sectionBackground}>
@@ -80,7 +87,7 @@ export function ServiceProblem({
         <div className={s.containerLarge}>
           <div className={s.onClickGeneralWrapper}>
             <div className={s.onClickWrapper}>
-              <div className={s.textAlignRight}>
+              <div className={s.textAlignRight} ref={scrollControlRef}>
                 <div className={s.headingStyleH4}>
                   <div className={s.textColorGradient}>
                     <div className={s.textAlignLeftTablet}>
@@ -117,8 +124,8 @@ export function ServiceProblem({
               <div id="holder" className={s.circleWrapper} ref={circleRef}>
                 <div className={s.wDynList}>
                   <div role="list" className={s.wDynItems}>
-                    {problemItems.map((item: ServiceProblemItem) => (
-                      <div role="listitem" className={s.wDynItem} key={item.id}>
+                    {renderedItems.map((item: ServiceProblemItem, index) => (
+                      <div role="listitem" className={s.wDynItem} key={`${item.id}-${index}`}>
                         <div className={s.sentence}>
                           <div className={s.headingStyleH5}>
                             <div>{item.title}</div>

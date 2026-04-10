@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
+import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import "./globals.css";
 
 const golosText = Golos_Text({
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" className={`h-full antialiased ${golosText.variable}`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <ScrollToTopButton />
+      </body>
     </html>
   );
 }
