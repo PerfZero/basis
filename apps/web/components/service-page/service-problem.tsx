@@ -157,11 +157,16 @@ export function ServiceProblem({
       const direction = wheelDeltaBuffer > 0 ? 1 : -1;
       wheelDeltaBuffer = 0;
       currentStep += direction;
-      setDesktopOffset((current) => {
-        if (problemItems.length === 0) return 0;
-        const next = current + direction;
-        return ((next % problemItems.length) + problemItems.length) % problemItems.length;
-      });
+      if (problemItems.length > sentenceCount) {
+        const cycleShift = Math.trunc(currentStep / sentenceCount);
+        const normalizedOffset =
+          ((cycleShift % problemItems.length) + problemItems.length) %
+          problemItems.length;
+
+        setDesktopOffset((current) =>
+          current === normalizedOffset ? current : normalizedOffset,
+        );
+      }
       applyRotation(currentStep * angleStep, true);
     };
 
