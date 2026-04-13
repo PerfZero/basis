@@ -6,8 +6,8 @@ import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import type { ServicePageData, ServiceProblemItem } from "@/lib/strapi/service-page";
 import s from "./service-problem.module.css";
 
-const DEGREE_STEP = 20;
-const PROBLEM_REPEAT_COUNT = 8;
+const DEFAULT_DEGREE_STEP = 20;
+const DESKTOP_VISIBLE_SLOTS = 18;
 const WHEEL_DELTA_THRESHOLD = 40;
 
 type Props = Pick<
@@ -70,11 +70,29 @@ export function ServiceProblem({
   const circleRef = useRef<HTMLDivElement | null>(null);
   const mobileListRef = useRef<HTMLDivElement | null>(null);
   const [activeMobileIndex, setActiveMobileIndex] = useState(0);
-  const renderedItems = useMemo(() => {
-    if (problemItems.length <= 1) return problemItems;
-    const safeRepeatCount = Math.max(1, PROBLEM_REPEAT_COUNT);
-    return Array.from({ length: safeRepeatCount }, () => problemItems).flat();
-  }, [problemItems]);
+  const [desktopOffset, setDesktopOffset] = useState(0);
+
+  const desktopWheelItems = useMemo(() => {
+    if (problemItems.length === 0) return [];
+
+    return Array.from({ length: DESKTOP_VISIBLE_SLOTS }, (_, slotIndex) => {
+      const itemIndex = (slotIndex + desktopOffset) % problemItems.length;
+      return problemItems[itemIndex];
+    });
+  }, [problemItems, desktopOffset]);
+
+  useEffect(() => {
+    if (problemItems.length === 0) {
+      setDesktopOffset(0);
+      return;
+    }
+
+    setDesktopOffset((current) => {
+      const normalized = ((current % problemItems.length) + problemItems.length) % problemItems.length;
+      return normalized;
+    });
+  }, [problemItems.length]);
+
   const headingParts = problemTitle ? parseHeadingParts(problemTitle) : [];
 
   if (!problemTitle && problemItems.length === 0) return null;
@@ -94,9 +112,10 @@ export function ServiceProblem({
 
     const sentences = wrapper.querySelectorAll<HTMLElement>(`.${s.sentence}`);
     const sentenceCount = sentences.length;
+    const angleStep = sentenceCount > 0 ? 360 / sentenceCount : DEFAULT_DEGREE_STEP;
 
     sentences.forEach((el, i) => {
-      const angle = i * DEGREE_STEP;
+      const angle = i * angleStep;
       const rad = angle * (Math.PI / 180);
       const x = radius * Math.cos(rad);
       const y = radius * Math.sin(rad);
@@ -130,7 +149,7 @@ export function ServiceProblem({
 
     let currentStep = 0;
     let wheelDeltaBuffer = 0;
-    applyRotation(currentStep * DEGREE_STEP, false);
+    applyRotation(currentStep * angleStep, false);
 
     const onWheel = (event: WheelEvent) => {
       event.preventDefault();
@@ -140,7 +159,12 @@ export function ServiceProblem({
       const direction = wheelDeltaBuffer > 0 ? 1 : -1;
       wheelDeltaBuffer = 0;
       currentStep += direction;
-      applyRotation(currentStep * DEGREE_STEP, true);
+      setDesktopOffset((current) => {
+        if (problemItems.length === 0) return 0;
+        const next = current + direction;
+        return ((next % problemItems.length) + problemItems.length) % problemItems.length;
+      });
+      applyRotation(currentStep * angleStep, true);
     };
 
     scrollControl.addEventListener("wheel", onWheel, { passive: false });
@@ -148,7 +172,7 @@ export function ServiceProblem({
     return () => {
       scrollControl.removeEventListener("wheel", onWheel);
     };
-  }, [problemItems.length, renderedItems.length]);
+  }, [problemItems.length, desktopWheelItems.length]);
 
   useEffect(() => {
     const list = mobileListRef.current;
@@ -243,8 +267,8 @@ export function ServiceProblem({
               <div id="holder" className={s.circleWrapper} ref={circleRef}>
                 <div className={s.wDynList}>
                   <div role="list" className={s.wDynItems}>
-                    {renderedItems.map((item: ServiceProblemItem, index) => (
-                      <div role="listitem" className={s.wDynItem} key={`${item.id}-${index}`}>
+                    {desktopWheelItems.map((item: ServiceProblemItem, index) => (
+                      <div role="listitem" className={s.wDynItem} key={`slot-${index}`}>
                         <div className={s.sentence}>
                           <div className={s.headingStyleH5}>
                             <div>{item.title}</div>
