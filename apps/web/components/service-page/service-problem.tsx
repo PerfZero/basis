@@ -2,31 +2,80 @@
 
 import Image from "next/image";
 import gsap from "gsap";
-import { useEffect, useMemo, useRef } from "react";
+import { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import type { ServicePageData, ServiceProblemItem } from "@/lib/strapi/service-page";
 import s from "./service-problem.module.css";
 
 const DEGREE_STEP = 20;
 const PROBLEM_REPEAT_COUNT = 8;
+const WHEEL_DELTA_THRESHOLD = 40;
 
 type Props = Pick<
   NonNullable<ServicePageData>,
-  "problemTitle" | "problemTitleAccent" | "problemIcon" | "problemItems"
+  "problemTitle" | "problemIcon" | "problemItems"
 >;
+
+type HeadingPart = { text: string; accent: boolean };
+
+function normalizeHeading(value: string): string {
+  return value
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/[\u2028\u2029]/g, "\n");
+}
+
+function parseHeadingParts(value: string): HeadingPart[] {
+  const normalized = normalizeHeading(value);
+  const parts: HeadingPart[] = [];
+  const markerRegex = /%%([^%]+)%%|\[([^\]]+)\]/g;
+  let last = 0;
+  let match: RegExpExecArray | null = null;
+
+  while ((match = markerRegex.exec(normalized)) !== null) {
+    if (match.index > last) {
+      parts.push({ text: normalized.slice(last, match.index), accent: false });
+    }
+
+    const accentText = match[1] ?? match[2] ?? "";
+    if (accentText) {
+      parts.push({ text: accentText, accent: true });
+    }
+
+    last = match.index + match[0].length;
+  }
+
+  if (last < normalized.length) {
+    parts.push({ text: normalized.slice(last), accent: false });
+  }
+
+  return parts.length > 0 ? parts : [{ text: normalized, accent: false }];
+}
+
+function renderTextWithBreaks(value: string, keyPrefix: string) {
+  return normalizeHeading(value).split("\n").map((line, index) => (
+    <Fragment key={`${keyPrefix}-${index}`}>
+      {index > 0 && <br />}
+      {line}
+    </Fragment>
+  ));
+}
 
 export function ServiceProblem({
   problemTitle,
-  problemTitleAccent,
   problemIcon,
   problemItems,
 }: Props) {
   const scrollControlRef = useRef<HTMLDivElement | null>(null);
   const circleRef = useRef<HTMLDivElement | null>(null);
+  const mobileListRef = useRef<HTMLDivElement | null>(null);
+  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
   const renderedItems = useMemo(() => {
     if (problemItems.length <= 1) return problemItems;
     const safeRepeatCount = Math.max(1, PROBLEM_REPEAT_COUNT);
     return Array.from({ length: safeRepeatCount }, () => problemItems).flat();
   }, [problemItems]);
+  const headingParts = problemTitle ? parseHeadingParts(problemTitle) : [];
 
   if (!problemTitle && problemItems.length === 0) return null;
   if (problemItems.length === 0) return null;
@@ -36,8 +85,13 @@ export function ServiceProblem({
     const wrapper = circleRef.current;
     if (!scrollControl || !wrapper) return;
 
+    const isMobileViewport = window.matchMedia("(max-width: 991px)").matches;
+    if (isMobileViewport) return;
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const radius = wrapper.offsetWidth / 2;
+    if (radius <= 0) return;
+
     const sentences = wrapper.querySelectorAll<HTMLElement>(`.${s.sentence}`);
     const sentenceCount = sentences.length;
 
@@ -54,24 +108,39 @@ export function ServiceProblem({
       });
     });
 
+    const applyRotation = (rotation: number, animate: boolean) => {
+      const update = animate ? gsap.to : gsap.set;
+
+      update(wrapper, {
+        rotation,
+        ...(animate
+          ? {
+              duration: 0.25,
+              ease: "power2.out",
+              overwrite: true,
+            }
+          : {}),
+      });
+    };
+
     if (reducedMotion || problemItems.length <= 1 || sentenceCount <= 1) {
-      gsap.set(wrapper, { rotation: 0 });
+      applyRotation(0, false);
       return;
     }
 
-    gsap.set(wrapper, { rotation: 0 });
-    let currentRotation = 0;
+    let currentStep = 0;
+    let wheelDeltaBuffer = 0;
+    applyRotation(currentStep * DEGREE_STEP, false);
 
     const onWheel = (event: WheelEvent) => {
       event.preventDefault();
-      currentRotation -= event.deltaY * 0.3;
+      wheelDeltaBuffer += event.deltaY;
+      if (Math.abs(wheelDeltaBuffer) < WHEEL_DELTA_THRESHOLD) return;
 
-      gsap.to(wrapper, {
-        rotation: currentRotation,
-        duration: 0.25,
-        ease: "power2.out",
-        overwrite: true,
-      });
+      const direction = wheelDeltaBuffer > 0 ? 1 : -1;
+      wheelDeltaBuffer = 0;
+      currentStep += direction;
+      applyRotation(currentStep * DEGREE_STEP, true);
     };
 
     scrollControl.addEventListener("wheel", onWheel, { passive: false });
@@ -80,6 +149,47 @@ export function ServiceProblem({
       scrollControl.removeEventListener("wheel", onWheel);
     };
   }, [problemItems.length, renderedItems.length]);
+
+  useEffect(() => {
+    const list = mobileListRef.current;
+    if (!list || problemItems.length === 0) return;
+
+    const isMobileViewport = window.matchMedia("(max-width: 991px)").matches;
+    if (!isMobileViewport) return;
+
+    const items = Array.from(
+      list.querySelectorAll<HTMLElement>("[data-mobile-item]"),
+    );
+    if (items.length === 0) return;
+
+    const updateActive = () => {
+      const center = list.scrollTop + list.clientHeight / 2;
+      let nextIndex = 0;
+      let minDistance = Number.POSITIVE_INFINITY;
+
+      items.forEach((item, index) => {
+        const itemCenter = item.offsetTop + item.offsetHeight / 2;
+        const distance = Math.abs(itemCenter - center);
+        if (distance < minDistance) {
+          minDistance = distance;
+          nextIndex = index;
+        }
+      });
+
+      setActiveMobileIndex((current) =>
+        current === nextIndex ? current : nextIndex,
+      );
+    };
+
+    updateActive();
+    list.addEventListener("scroll", updateActive, { passive: true });
+    window.addEventListener("resize", updateActive);
+
+    return () => {
+      list.removeEventListener("scroll", updateActive);
+      window.removeEventListener("resize", updateActive);
+    };
+  }, [problemItems.length]);
 
   return (
     <section className={s.sectionBackground}>
@@ -91,8 +201,17 @@ export function ServiceProblem({
                 <div className={s.headingStyleH4}>
                   <div className={s.textColorGradient}>
                     <div className={s.textAlignLeftTablet}>
-                      {problemTitle}
-                      {problemTitleAccent ? <><br />{problemTitleAccent}</> : null}
+                      {headingParts.map((part, index) =>
+                        part.accent ? (
+                          <span key={`accent-${index}`} className={s.titleAccent}>
+                            {renderTextWithBreaks(part.text, `accent-${index}`)}
+                          </span>
+                        ) : (
+                          <span key={`plain-${index}`}>
+                            {renderTextWithBreaks(part.text, `plain-${index}`)}
+                          </span>
+                        ),
+                      )}
                     </div>
                   </div>
                 </div>
@@ -117,7 +236,7 @@ export function ServiceProblem({
               </div>
             </div>
 
-            <div className={s.circleFadeWrapper}>
+            <div className={`${s.circleFadeWrapper} ${s.desktopOnly}`}>
               <div className={s.circleFade} />
               <div className={`${s.circleFade} ${s.isBottom}`} />
 
@@ -146,10 +265,35 @@ export function ServiceProblem({
             </div>
 
             <div
-              className={s.wheelZone}
+              className={`${s.wheelZone} ${s.desktopOnly}`}
               ref={scrollControlRef}
               aria-hidden="true"
             />
+
+            <div className={s.mobileOnly}>
+              <div className={s.mobileFadeTop} aria-hidden="true" />
+              <div className={s.mobileFadeBottom} aria-hidden="true" />
+
+              <div className={s.mobileWheel} ref={mobileListRef} role="list">
+                {problemItems.map((item: ServiceProblemItem, index) => (
+                  <article
+                    key={item.id}
+                    role="listitem"
+                    data-mobile-item
+                    className={`${s.mobileSentence} ${
+                      index === activeMobileIndex
+                        ? s.mobileSentenceActive
+                        : s.mobileSentenceMuted
+                    }`}
+                  >
+                    <h3 className={s.mobileSentenceTitle}>{item.title}</h3>
+                    {item.description && (
+                      <p className={s.mobileSentenceDescription}>{item.description}</p>
+                    )}
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

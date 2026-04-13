@@ -1,4 +1,5 @@
 import { resolveStrapiMediaUrl } from "./media-url";
+import { mapStrapiSeo, type StrapiSeo } from "./seo";
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -36,6 +37,7 @@ export type AboutPageData = {
   contactCoffeeText?: string;
   contactCoffeeButtonLabel?: string;
   contactCoffeeImage?: { url?: string };
+  seo?: StrapiSeo;
 } | null;
 
 export async function getAboutPage(): Promise<AboutPageData> {
@@ -44,8 +46,12 @@ export async function getAboutPage(): Promise<AboutPageData> {
     : {};
 
   try {
+    const query = new URLSearchParams();
+    query.set("populate", "*");
+    query.set("populate[seo][populate][0]", "ogImage");
+
     const res = await fetch(
-      `${STRAPI_URL}/api/about-page?populate=*`,
+      `${STRAPI_URL}/api/about-page?${query.toString()}`,
       {
         headers,
         next: { revalidate: 60 },
@@ -102,6 +108,7 @@ export async function getAboutPage(): Promise<AboutPageData> {
       contactCoffeeImage: d.contactCoffeeImage?.url
         ? { url: resolveStrapiMediaUrl(d.contactCoffeeImage.url) ?? undefined }
         : undefined,
+      seo: mapStrapiSeo(d.seo),
     };
   } catch {
     return null;

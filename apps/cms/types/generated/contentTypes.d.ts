@@ -477,6 +477,7 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
     principles: Schema.Attribute.Component<'blocks.principle', true>;
     publishedAt: Schema.Attribute.DateTime;
     sectionTitle: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -669,6 +670,7 @@ export interface ApiHeroBlockHeroBlock extends Struct.SingleTypeSchema {
       Schema.Attribute.DefaultTo<'#services'>;
     secondaryButtonLabel: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u041D\u0430\u0448\u0438 \u0443\u0441\u043B\u0443\u0433\u0438'>;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -848,13 +850,13 @@ export interface ApiServicePageServicePage extends Struct.CollectionTypeSchema {
       true
     >;
     problemTitle: Schema.Attribute.String;
-    problemTitleAccent: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     recognizeCards: Schema.Attribute.Component<
       'blocks.service-recognize-card',
       true
     >;
     recognizeTitle: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     slug: Schema.Attribute.UID<'heroEyebrow'> & Schema.Attribute.Required;
     statsBottomText: Schema.Attribute.Text;
     statsColAfter: Schema.Attribute.String;

@@ -39,7 +39,6 @@
     },
 
     "problemTitle": { "type": "string" },
-    "problemTitleAccent": { "type": "string" },
     "problemIcon": {
       "type": "media",
       "multiple": false,
@@ -110,6 +109,11 @@
       "allowedTypes": ["images"]
     },
     "ctaPrimaryButtonLabel": { "type": "string" },
-    "ctaPrimaryButtonHref": { "type": "string" }
+    "ctaPrimaryButtonHref": { "type": "string" },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
   }
 }

@@ -1,3 +1,5 @@
+import { mapStrapiSeo, type StrapiSeo } from "./seo";
+
 export type HeadingPart = { text: string; accent: boolean };
 
 export type HeroBlockData = {
@@ -8,6 +10,7 @@ export type HeroBlockData = {
   primaryButtonHref: string;
   secondaryButtonLabel: string;
   secondaryButtonHref: string;
+  seo?: StrapiSeo;
 };
 
 const FALLBACK_HEADING = "Строим системы, которые [Увеличивают] Маржинальность";
@@ -39,6 +42,7 @@ const fallback: HeroBlockData = {
   primaryButtonHref: "#contact",
   secondaryButtonLabel: "Наши услуги",
   secondaryButtonHref: "#services",
+  seo: undefined,
 };
 
 export async function getHeroBlock(): Promise<HeroBlockData> {
@@ -46,7 +50,10 @@ export async function getHeroBlock(): Promise<HeroBlockData> {
   const token = process.env.STRAPI_API_TOKEN;
 
   try {
-    const response = await fetch(`${baseUrl}/api/hero-block`, {
+    const query = new URLSearchParams();
+    query.set("populate[seo][populate][0]", "ogImage");
+
+    const response = await fetch(`${baseUrl}/api/hero-block?${query.toString()}`, {
       headers: token ? { Authorization: `Bearer ${token}` } : {},
       next: { revalidate: 60 },
     });
@@ -64,6 +71,7 @@ export async function getHeroBlock(): Promise<HeroBlockData> {
       primaryButtonHref: d.primaryButtonHref || fallback.primaryButtonHref,
       secondaryButtonLabel: d.secondaryButtonLabel || fallback.secondaryButtonLabel,
       secondaryButtonHref: d.secondaryButtonHref || fallback.secondaryButtonHref,
+      seo: mapStrapiSeo(d.seo),
     };
   } catch {
     return fallback;

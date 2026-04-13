@@ -7,7 +7,6 @@
   "options": {},
   "attributes": {
     "problemTitle": { "type": "string" },
-    "problemTitleAccent": { "type": "string" },
     "problemIcon": {
       "type": "media",
       "multiple": false,

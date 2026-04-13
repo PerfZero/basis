@@ -1,4 +1,5 @@
 import { resolveStrapiMediaUrl } from "./media-url";
+import { mapStrapiSeo, type StrapiSeo } from "./seo";
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
@@ -76,7 +77,6 @@ export type ServicePageData = {
   heroBadges: ServiceBadge[];
 
   problemTitle?: string;
-  problemTitleAccent?: string;
   problemIcon?: { url?: string };
   problemItems: ServiceProblemItem[];
 
@@ -110,6 +110,7 @@ export type ServicePageData = {
   ctaImage?: { url?: string };
   ctaPrimaryButtonLabel?: string;
   ctaPrimaryButtonHref?: string;
+  seo?: StrapiSeo;
 } | null;
 
 export async function getServicePage(slug: string): Promise<ServicePageData> {
@@ -129,6 +130,7 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
   query.set("populate[autoTabs][populate][0]", "image");
   query.set("populate[logicSlides][populate][0]", "image");
   query.set("populate[ctaImage]", "true");
+  query.set("populate[seo][populate][0]", "ogImage");
 
   try {
     const res = await fetch(
@@ -163,7 +165,6 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
         : [],
 
       problemTitle: d.problemTitle ?? undefined,
-      problemTitleAccent: d.problemTitleAccent ?? undefined,
       problemIcon: d.problemIcon?.url
         ? { url: resolveStrapiMediaUrl(d.problemIcon.url) ?? undefined }
         : undefined,
@@ -265,6 +266,7 @@ export async function getServicePage(slug: string): Promise<ServicePageData> {
         : undefined,
       ctaPrimaryButtonLabel: d.ctaPrimaryButtonLabel ?? undefined,
       ctaPrimaryButtonHref: d.ctaPrimaryButtonHref ?? undefined,
+      seo: mapStrapiSeo(d.seo),
     };
   } catch {
     return null;

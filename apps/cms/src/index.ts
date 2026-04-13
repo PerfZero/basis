@@ -1122,6 +1122,114 @@ const principleComponentLabels = {
   },
 };
 
+const seoComponentLabels = {
+  uid: "shared.seo",
+  settings: {
+    bulkable: false,
+    filterable: false,
+    searchable: false,
+    pageSize: 10,
+    mainField: "metaTitle",
+    defaultSortBy: "id",
+    defaultSortOrder: "ASC",
+  },
+  metadatas: {
+    id: {
+      edit: {},
+      list: { label: "ID", searchable: false, sortable: false },
+    },
+    metaTitle: {
+      edit: {
+        label: "Мета-заголовок",
+        description: "Заголовок страницы в поисковой выдаче",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Мета-заголовок", searchable: true, sortable: false },
+    },
+    metaDescription: {
+      edit: {
+        label: "Мета-описание",
+        description: "Краткое описание страницы для SEO",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Мета-описание", searchable: false, sortable: false },
+    },
+    keywords: {
+      edit: {
+        label: "Ключевые слова",
+        description: "Через запятую",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Ключевые слова", searchable: false, sortable: false },
+    },
+    canonicalUrl: {
+      edit: {
+        label: "Канонический URL",
+        description: "Полный канонический адрес страницы",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Канонический URL", searchable: false, sortable: false },
+    },
+    robotsNoIndex: {
+      edit: {
+        label: "Запретить индексацию",
+        description: "Если включено, страница будет с meta robots noindex, nofollow",
+        visible: true,
+        editable: true,
+      },
+      list: {
+        label: "Индексация запрещена",
+        searchable: false,
+        sortable: false,
+      },
+    },
+    ogTitle: {
+      edit: {
+        label: "Заголовок превью (OG)",
+        description: "Заголовок для превью в соцсетях",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "OG заголовок", searchable: false, sortable: false },
+    },
+    ogDescription: {
+      edit: {
+        label: "Описание превью (OG)",
+        description: "Описание для превью в соцсетях",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "OG описание", searchable: false, sortable: false },
+    },
+    ogImage: {
+      edit: {
+        label: "Изображение превью (OG)",
+        description: "Картинка для карточки ссылки",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "OG изображение", searchable: false, sortable: false },
+    },
+  },
+  layouts: {
+    list: ["id", "metaTitle", "robotsNoIndex"],
+    edit: [
+      [{ name: "metaTitle", size: 12 }],
+      [{ name: "metaDescription", size: 12 }],
+      [{ name: "keywords", size: 12 }],
+      [{ name: "canonicalUrl", size: 12 }],
+      [{ name: "robotsNoIndex", size: 12 }],
+      [{ name: "ogTitle", size: 12 }],
+      [{ name: "ogDescription", size: 12 }],
+      [{ name: "ogImage", size: 12 }],
+    ],
+  },
+};
+
 const PUBLIC_UIDS = [
   "api::hero-block.hero-block",
   "api::menu-service.menu-service",
@@ -1652,11 +1760,30 @@ export default {
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
     await setComponentConfig(strapi, principleComponentLabels);
+    await setComponentConfig(strapi, seoComponentLabels);
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::hero-block.hero-block",
+      "seo",
+      "SEO-настройки",
+    );
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::about-page.about-page",
+      "seo",
+      "SEO-настройки",
+    );
     await setContentManagerFieldLabel(
       strapi,
       "api::service-page.service-page",
       "heroHeading",
       "Заголовок Hero (акцент выделяй через %%текст%%)",
+    );
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::service-page.service-page",
+      "problemTitle",
+      "Заголовок проблем (акцент выделяй через %%текст%%)",
     );
     await setContentManagerFieldVisibility(
       strapi,
@@ -1664,11 +1791,23 @@ export default {
       "heroHeadingAccent",
       false,
     );
+    await setContentManagerFieldVisibility(
+      strapi,
+      "api::service-page.service-page",
+      "problemTitleAccent",
+      false,
+    );
     await setContentManagerFieldLabel(
       strapi,
       "api::service-page.service-page",
       "statsBottomText",
       "Текст под таблицей",
+    );
+    await setContentManagerFieldLabel(
+      strapi,
+      "api::service-page.service-page",
+      "seo",
+      "SEO-настройки",
     );
     await grantPublicPermissions(strapi);
     await grantAuthenticatedPermissions(strapi);

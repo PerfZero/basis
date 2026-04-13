@@ -164,7 +164,6 @@ export interface BlocksServiceProblemSection extends Struct.ComponentSchema {
       true
     >;
     problemTitle: Schema.Attribute.String;
-    problemTitleAccent: Schema.Attribute.String;
   };
 }
 
@@ -277,6 +276,27 @@ export interface BlocksStatCard extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedSeo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_seos';
+  info: {
+    description: '\u041C\u0435\u0442\u0430-\u0434\u0430\u043D\u043D\u044B\u0435 \u0441\u0442\u0440\u0430\u043D\u0438\u0446\u044B \u0434\u043B\u044F \u043F\u043E\u0438\u0441\u043A\u043E\u0432\u0438\u043A\u043E\u0432 \u0438 \u0441\u043E\u0446\u0441\u0435\u0442\u0435\u0439';
+    displayName: 'SEO-\u043D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438';
+  };
+  attributes: {
+    canonicalUrl: Schema.Attribute.String;
+    keywords: Schema.Attribute.String;
+    metaDescription: Schema.Attribute.Text;
+    metaTitle: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 70;
+      }>;
+    ogDescription: Schema.Attribute.Text;
+    ogImage: Schema.Attribute.Media<'images'>;
+    ogTitle: Schema.Attribute.String;
+    robotsNoIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -299,6 +319,7 @@ declare module '@strapi/strapi' {
       'blocks.service-target-card': BlocksServiceTargetCard;
       'blocks.service-target-section': BlocksServiceTargetSection;
       'blocks.stat-card': BlocksStatCard;
+      'shared.seo': SharedSeo;
     }
   }
 }

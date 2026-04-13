@@ -27,7 +27,6 @@ export async function ServicePageServer({ slug }: { slug: string }) {
       />
       <ServiceProblem
         problemTitle={data.problemTitle}
-        problemTitleAccent={data.problemTitleAccent}
         problemIcon={data.problemIcon}
         problemItems={data.problemItems}
       />
