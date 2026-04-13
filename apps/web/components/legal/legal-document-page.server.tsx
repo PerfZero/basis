@@ -1,6 +1,11 @@
 import { SiteFooterServer } from "@/components/footer/site-footer.server";
 import { SiteHeader } from "@/components/header/site-header.server";
 import { CompanyDocumentText, getCompanyDocuments } from "@/lib/strapi/company-documents";
+import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import remarkBreaks from "remark-breaks";
+import remarkGfm from "remark-gfm";
 import s from "./legal-document-page.module.css";
 
 type DocumentType = "privacyPolicy" | "offerAgreement" | "referralProgramTerms";
@@ -11,27 +16,15 @@ const DEFAULT_TITLE: Record<DocumentType, string> = {
   referralProgramTerms: "Условия программы",
 };
 
-const HTML_TAG_PATTERN = /<\/?[a-z][^>]*>/i;
-
-function toHtmlContent(content: string): string {
-  const trimmed = content.trim();
-  if (!trimmed) return "";
-
-  if (HTML_TAG_PATTERN.test(trimmed)) {
-    return trimmed;
-  }
-
-  return trimmed
-    .split(/\n{2,}/)
-    .map((chunk) => `<p>${chunk.replace(/\n/g, "<br />")}</p>`)
-    .join("");
+function isExternalHref(href: string): boolean {
+  return /^https?:\/\//i.test(href);
 }
 
 export async function LegalDocumentPage({ documentType }: { documentType: DocumentType }) {
   const docs = await getCompanyDocuments();
   const document: CompanyDocumentText | undefined = docs?.[documentType];
   const title = document?.title || DEFAULT_TITLE[documentType];
-  const contentHtml = toHtmlContent(document?.content ?? "");
+  const content = document?.content?.trim() ?? "";
 
   return (
     <>
@@ -39,8 +32,33 @@ export async function LegalDocumentPage({ documentType }: { documentType: Docume
       <main className={s.main}>
         <article className={s.article}>
           <h1 className={s.title}>{title}</h1>
-          {contentHtml ? (
-            <div className={s.content} dangerouslySetInnerHTML={{ __html: contentHtml }} />
+          {content ? (
+            <div className={s.content}>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm, remarkBreaks]}
+                rehypePlugins={[rehypeRaw, rehypeSanitize]}
+                components={{
+                  a: ({ href, children, ...props }) => {
+                    const hrefValue = href ?? "";
+                    if (hrefValue && isExternalHref(hrefValue)) {
+                      return (
+                        <a href={hrefValue} target="_blank" rel="noopener noreferrer" {...props}>
+                          {children}
+                        </a>
+                      );
+                    }
+
+                    return (
+                      <a href={hrefValue || "#"} {...props}>
+                        {children}
+                      </a>
+                    );
+                  },
+                }}
+              >
+                {content}
+              </ReactMarkdown>
+            </div>
           ) : (
             <p className={s.empty}>Документ пока не заполнен в админке.</p>
           )}
