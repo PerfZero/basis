@@ -76,12 +76,17 @@ export function ReferralTab() {
 
   useEffect(() => {
     fetch("/api/referrals")
-      .then((res) => res.json())
-      .then((payload: ReferralPayload) => {
+      .then(async (res) => {
+        if (res.status === 401) {
+          window.location.href = "/login";
+          return null;
+        }
+
+        const payload = (await res.json()) as ReferralPayload;
         if (payload && payload.summary) setData(payload);
-        setLoading(false);
+        return payload;
       })
-      .catch(() => setLoading(false));
+      .finally(() => setLoading(false));
   }, []);
 
   const stats = useMemo(() => data.summary, [data.summary]);

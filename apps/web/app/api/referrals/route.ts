@@ -92,7 +92,11 @@ export async function GET(request: Request) {
   }
 
   if (!response.ok) {
-    console.error("[referrals] fetch failed", response.status, await response.text());
+    const errorText = await response.text();
+    console.error("[referrals] fetch failed", response.status, errorText);
+    if (response.status === 401) {
+      return NextResponse.json({ message: "session_expired" }, { status: 401 });
+    }
     return NextResponse.json(fallback);
   }
 
