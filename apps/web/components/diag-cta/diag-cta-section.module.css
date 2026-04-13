@@ -70,14 +70,28 @@
 
 }
 
+.imageWrap::before{
+    content: '';
+    display: block;
+    border-radius: 100%;
+    background-color: rgba(11, 122, 102, 0.9);
+    filter: blur(150px);
+    width: 500px;
+    position: absolute;
+    height: 400px;
+
+}
+
 .image {
-  position: absolute;
-  object-fit: cover;
-  top: -140px;
-  pointer-events: none;
-  display: block;
-  width: 1000px;
-  height: 1000px;
+    position: absolute;
+    object-fit: cover;
+    top: 110px;
+    pointer-events: none;
+    display: block;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 630px;
+    height: 470px;
 }
 
 @media (max-width: 768px) {
@@ -107,4 +121,18 @@
     height: auto;
     max-width: 500px;
   }
+
+
+  .imageWrap::before{
+      content: '';
+      display: block;
+      border-radius: 100%;
+      background-color: rgba(11, 122, 102, 0.2);
+      filter: blur(150px);
+      width: 500px;
+      position: absolute;
+      height: 400px;
+
+  }
+
 }

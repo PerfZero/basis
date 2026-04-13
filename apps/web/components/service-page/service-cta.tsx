@@ -3,7 +3,7 @@ import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-
 import type { ServicePageData } from "@/lib/strapi/service-page";
 import s from "./service-cta.module.css";
 
-const CTA_IMAGE_URL = "/uploads/logo_blurpng_c2af2874a6.png";
+const CTA_IMAGE_URL = "/Group 111.png";
 
 type Props = Pick<
   NonNullable<ServicePageData>,
