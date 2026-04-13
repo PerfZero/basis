@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
+const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN?.trim();
 const REFERRAL_TERMS_URL = process.env.NEXT_PUBLIC_REFERRAL_TERMS_URL ?? "#";
 
 type ReferralStatus = "in_progress" | "contract_signed";
@@ -69,7 +70,7 @@ export async function GET(request: Request) {
 
   const siteUrl = resolveSiteUrl(request);
   const url = `${STRAPI_URL}/api/referrals?filters[inviterUserId][$eq]=${userId}&sort[0]=createdAt:desc&pagination[pageSize]=200`;
-  const response = await fetch(url, {
+  let response = await fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
   });
@@ -81,7 +82,17 @@ export async function GET(request: Request) {
     entries: [],
   };
 
+  if (!response.ok && STRAPI_API_TOKEN && STRAPI_API_TOKEN !== token) {
+    const firstError = await response.text();
+    console.error("[referrals] fetch failed (user token)", response.status, firstError);
+    response = await fetch(url, {
+      headers: { Authorization: `Bearer ${STRAPI_API_TOKEN}` },
+      cache: "no-store",
+    });
+  }
+
   if (!response.ok) {
+    console.error("[referrals] fetch failed", response.status, await response.text());
     return NextResponse.json(fallback);
   }
 

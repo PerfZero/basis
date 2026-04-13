@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import { resolveStrapiMediaUrl } from "@/lib/strapi/media-url";
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
+const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN?.trim();
 const REF_COOKIE = "basis_ref_code";
 
 const COOKIE_OPTS = {
@@ -100,27 +101,36 @@ export async function registerAction(data: {
 
   if (inviterId && inviterId !== registeredUserId) {
     try {
-      const referralRes = await fetch(`${STRAPI_URL}/api/referrals`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${json.jwt}`,
+      const referralBody = JSON.stringify({
+        data: {
+          contactPerson: data.name || json.user.username || "Новый клиент",
+          email: email || json.user.email || "",
+          phone: phone || "",
+          company: company || "Без компании",
+          product: "Не указан",
+          referralStatus: "in_progress",
+          payout: 0,
+          inviterUserId: inviterId,
         },
-        body: JSON.stringify({
-          data: {
-            contactPerson: data.name || json.user.username || "Новый клиент",
-            email: email || json.user.email || "",
-            phone: phone || "",
-            company: company || "Без компании",
-            product: "Не указан",
-            referralStatus: "in_progress",
-            payout: 0,
-            user: registeredUserId,
-            inviterUserId: inviterId,
-            inviterUser: inviterId,
-          },
-        }),
       });
+
+      const createWithToken = async (token: string) =>
+        fetch(`${STRAPI_URL}/api/referrals`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: referralBody,
+        });
+
+      let referralRes = await createWithToken(json.jwt);
+
+      if (!referralRes.ok && STRAPI_API_TOKEN && STRAPI_API_TOKEN !== json.jwt) {
+        const firstError = await referralRes.text();
+        console.error("[referral] create failed (user token)", referralRes.status, firstError);
+        referralRes = await createWithToken(STRAPI_API_TOKEN);
+      }
 
       if (!referralRes.ok) {
         console.error("[referral] create failed", referralRes.status, await referralRes.text());
