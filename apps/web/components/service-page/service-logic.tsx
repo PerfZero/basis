@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type TouchEventHandler } from "react";
 import type { ServicePageData, ServiceLogicSlide } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import s from "./service-logic.module.css";
@@ -12,9 +12,17 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
   const contentRef = useRef<HTMLDivElement>(null);
   const wheelDeltaRef = useRef(0);
   const lastStepTsRef = useRef(0);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
 
   if (!logicTitle && logicSlides.length === 0) return null;
   if (logicSlides.length === 0) return null;
+
+  useEffect(() => {
+    setActive((prev) => {
+      if (logicSlides.length === 0) return 0;
+      return ((prev % logicSlides.length) + logicSlides.length) % logicSlides.length;
+    });
+  }, [logicSlides.length]);
 
   useEffect(() => {
     const el = contentRef.current;
@@ -51,6 +59,43 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
   }, [logicSlides.length]);
 
   const slide = logicSlides[active];
+  const changeSlide = (direction: 1 | -1) => {
+    setActive((prev) => (prev + direction + logicSlides.length) % logicSlides.length);
+  };
+
+  const onTouchStart: TouchEventHandler<HTMLDivElement> = (event) => {
+    const touch = event.touches[0];
+    if (!touch) return;
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const onTouchEnd: TouchEventHandler<HTMLDivElement> = (event) => {
+    const start = touchStartRef.current;
+    touchStartRef.current = null;
+    if (!start || logicSlides.length <= 1) return;
+
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    const threshold = 42;
+
+    if (absDx < threshold && absDy < threshold) return;
+
+    if (absDx >= absDy) {
+      changeSlide(dx < 0 ? 1 : -1);
+      return;
+    }
+
+    changeSlide(dy < 0 ? 1 : -1);
+  };
+
+  const onTouchCancel: TouchEventHandler<HTMLDivElement> = () => {
+    touchStartRef.current = null;
+  };
 
   return (
     <section className={s.section}>
@@ -64,7 +109,13 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
           )}
         </div>
 
-        <div className={s.content} ref={contentRef}>
+        <div
+          className={s.content}
+          ref={contentRef}
+          onTouchStart={onTouchStart}
+          onTouchEnd={onTouchEnd}
+          onTouchCancel={onTouchCancel}
+        >
           <div className={s.slides}>
             {logicSlides.map((item: ServiceLogicSlide, i: number) => (
               <div
@@ -90,6 +141,7 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
               {logicSlides.map((_, i) => (
                 <button
                   key={i}
+                  type="button"
                   className={[s.dot, i === active ? s.dotActive : ""].join(" ")}
                   onClick={() => setActive(i)}
                   aria-label={`Слайд ${i + 1}`}

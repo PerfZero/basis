@@ -1,0 +1,109 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "На главную" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Логотип" [ref=e5]
+      - navigation "Основная навигация" [ref=e6]:
+        - list [ref=e7]:
+          - listitem [ref=e8]:
+            - button "Услуги" [ref=e9] [cursor=pointer]:
+              - text: Услуги
+              - img [ref=e10]
+          - listitem [ref=e12]:
+            - link "О компании" [ref=e13] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e14]:
+            - link "Контакты" [ref=e15] [cursor=pointer]:
+              - /url: /#contacts
+      - generic [ref=e16]:
+        - link "Профиль" [ref=e17] [cursor=pointer]:
+          - /url: /cabinet
+          - img [ref=e18]
+        - button "Начать диагностику" [ref=e21] [cursor=pointer]:
+          - text: Начать диагностику
+          - img [ref=e22]
+  - main [ref=e24]:
+    - generic [ref=e26]:
+      - paragraph [ref=e27]: О компании
+      - heading "Инженерное бюро BasisThree" [level=1] [ref=e29]:
+        - text: Инженерное бюро
+        - text: BasisThree
+      - paragraph [ref=e30]: Мы ценим личное общение и глубокое погружение в задачу. Если ваш бизнес требует инженерного подхода к автоматизации — мы готовы к диалогу.
+      - generic [ref=e31]:
+        - generic [ref=e34]: САНКТ-ПЕТЕРБУРГ
+        - generic [ref=e37]: РАБОТАЕМ ПО ВСЕЙ РОССИИ
+    - generic [ref=e41]:
+      - heading "«Цифровой фундамент»" [level=2] [ref=e42]
+      - generic [ref=e43]:
+        - article [ref=e44]:
+          - generic [ref=e45]: Принцип 1
+          - heading "Сначала — диагностика" [level=3] [ref=e47]
+          - paragraph [ref=e48]: Не предлагаем решения без понимания задачи. Каждый проект начинается с глубокого аудита процессов.
+          - paragraph [ref=e49]: Вы получаете решение, которое действительно устраняет вашу боль, а не красивую демку.
+        - article [ref=e50]:
+          - generic [ref=e51]: Принцип 2
+          - heading "Инженерная точность" [level=3] [ref=e53]
+          - paragraph [ref=e54]: Проектируем архитектуру до написания первой строки кода. Строгий технологический нейтралитет.
+          - paragraph [ref=e55]: Системы, которые работают под нагрузкой и не требуют переработки через год.
+        - article [ref=e56]:
+          - generic [ref=e57]: Принцип 3
+          - heading "Полевое мышление" [level=3] [ref=e59]
+          - paragraph [ref=e60]: Проектируем не для «пользователей», а для живых людей с конкретными рабочими ситуациями.
+          - paragraph [ref=e61]: Интерфейсы, которые реально используются, а не саботируются сотрудниками.
+  - contentinfo [ref=e62]:
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - paragraph [ref=e66]: услуги
+        - list [ref=e67]:
+          - listitem [ref=e68]:
+            - link "B2B-порталы" [ref=e69] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e70]:
+            - link "BI-аналитика" [ref=e71] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e72]:
+            - link "Операционные ERP" [ref=e73] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e74]:
+            - link "Кастомные CRM" [ref=e75] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e76]:
+            - link "ERP для Ozon" [ref=e77] [cursor=pointer]:
+              - /url: "#services"
+          - listitem [ref=e78]:
+            - link "Веб-разработка (R&D)" [ref=e79] [cursor=pointer]:
+              - /url: "#services"
+        - generic [ref=e80]: © 2026. Все права защищены
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: информация
+        - list [ref=e83]:
+          - listitem [ref=e84]:
+            - link "О компании" [ref=e85] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e86]:
+            - link "Контакты" [ref=e87] [cursor=pointer]:
+              - /url: /#contacts
+        - link "Политика конфиденциальности" [ref=e88] [cursor=pointer]:
+          - /url: "#"
+      - generic [ref=e89]:
+        - paragraph [ref=e90]: контакты
+        - generic [ref=e91]:
+          - link "info@basisthree.ru" [ref=e92] [cursor=pointer]:
+            - /url: mailto:info@basisthree.ru
+          - link "+7 (989) 655–12–12" [ref=e93] [cursor=pointer]:
+            - /url: tel:+79896551212
+        - generic [ref=e94]:
+          - link "Telegram" [ref=e95] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e96]
+          - link "WhatsApp" [ref=e98] [cursor=pointer]:
+            - /url: "#"
+            - img [ref=e99]
+        - link "Договор оферты" [ref=e101] [cursor=pointer]:
+          - /url: "#"
+    - generic [ref=e102]:
+      - generic [ref=e103]: BASIS
+      - generic [ref=e104]: THREE
+  - button "Open Next.js Dev Tools" [ref=e110] [cursor=pointer]:
+    - img [ref=e111]

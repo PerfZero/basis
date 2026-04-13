@@ -1,0 +1,38 @@
+- generic [ref=e2]:
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - combobox "Select interface language" [ref=e6] [cursor=pointer]:
+        - generic [ref=e8]: English
+        - img [ref=e11]
+    - main [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]:
+          - img [ref=e17]
+          - heading "Welcome to Strapi!" [level=1] [ref=e19]
+          - generic [ref=e21]: Log in to your Strapi account
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - generic [ref=e26]: Email*
+            - textbox "Email" [ref=e28]:
+              - /placeholder: e.g. kai@doe.com
+          - generic [ref=e29]:
+            - generic [ref=e31]: Password*
+            - generic [ref=e32]:
+              - textbox "Password" [ref=e33]
+              - button "Show password" [ref=e35]:
+                - img [ref=e36]
+                - generic [ref=e38]: Show password
+          - generic [ref=e40]:
+            - checkbox "Remember me" [ref=e41]
+            - checkbox
+            - generic [ref=e43]: Remember me
+          - button "Login" [ref=e44] [cursor=pointer]:
+            - generic [ref=e45]: Login
+      - link "Forgot your password?" [ref=e48] [cursor=pointer]:
+        - /url: /admin/auth/forgot-password
+        - generic [ref=e49]: Forgot your password?
+  - generic [ref=e50]:
+    - log
+    - status
+    - alert

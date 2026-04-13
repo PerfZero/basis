@@ -68,8 +68,6 @@ export function ServiceProblem({
 }: Props) {
   const scrollControlRef = useRef<HTMLDivElement | null>(null);
   const circleRef = useRef<HTMLDivElement | null>(null);
-  const mobileListRef = useRef<HTMLDivElement | null>(null);
-  const [activeMobileIndex, setActiveMobileIndex] = useState(0);
   const [desktopOffset, setDesktopOffset] = useState(0);
 
   const desktopWheelItems = useMemo(() => {
@@ -174,47 +172,6 @@ export function ServiceProblem({
     };
   }, [problemItems.length, desktopWheelItems.length]);
 
-  useEffect(() => {
-    const list = mobileListRef.current;
-    if (!list || problemItems.length === 0) return;
-
-    const isMobileViewport = window.matchMedia("(max-width: 991px)").matches;
-    if (!isMobileViewport) return;
-
-    const items = Array.from(
-      list.querySelectorAll<HTMLElement>("[data-mobile-item]"),
-    );
-    if (items.length === 0) return;
-
-    const updateActive = () => {
-      const center = list.scrollTop + list.clientHeight / 2;
-      let nextIndex = 0;
-      let minDistance = Number.POSITIVE_INFINITY;
-
-      items.forEach((item, index) => {
-        const itemCenter = item.offsetTop + item.offsetHeight / 2;
-        const distance = Math.abs(itemCenter - center);
-        if (distance < minDistance) {
-          minDistance = distance;
-          nextIndex = index;
-        }
-      });
-
-      setActiveMobileIndex((current) =>
-        current === nextIndex ? current : nextIndex,
-      );
-    };
-
-    updateActive();
-    list.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("resize", updateActive);
-
-    return () => {
-      list.removeEventListener("scroll", updateActive);
-      window.removeEventListener("resize", updateActive);
-    };
-  }, [problemItems.length]);
-
   return (
     <section className={s.sectionBackground}>
       <div className={s.paddingGlobal}>
@@ -295,20 +252,12 @@ export function ServiceProblem({
             />
 
             <div className={s.mobileOnly}>
-              <div className={s.mobileFadeTop} aria-hidden="true" />
-              <div className={s.mobileFadeBottom} aria-hidden="true" />
-
-              <div className={s.mobileWheel} ref={mobileListRef} role="list">
+              <div className={s.mobileList} role="list">
                 {problemItems.map((item: ServiceProblemItem, index) => (
                   <article
-                    key={item.id}
+                    key={`${item.id}-${index}`}
                     role="listitem"
-                    data-mobile-item
-                    className={`${s.mobileSentence} ${
-                      index === activeMobileIndex
-                        ? s.mobileSentenceActive
-                        : s.mobileSentenceMuted
-                    }`}
+                    className={s.mobileItem}
                   >
                     <h3 className={s.mobileSentenceTitle}>{item.title}</h3>
                     {item.description && (

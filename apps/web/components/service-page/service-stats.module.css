@@ -2,6 +2,14 @@
   padding: 64px 24px;
 }
 
+.desktopOnly {
+  display: block;
+}
+
+.mobileOnly {
+  display: none;
+}
+
 .container {
   max-width: 1200px;
   padding: 95px 150px;
@@ -116,33 +124,102 @@
   text-align: center;
 }
 
+.mobileCard {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #f6f5f1;
+  border: 1px solid #6dafa3;
+}
+
+.mobileSectionTitle {
+  margin: 0;
+  padding: 14px 14px 13px;
+  font-family: "Gilroy", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.1;
+  color: #3c4a50;
+  border-bottom: 1px solid #6dafa3;
+}
+
+.mobileSectionTitleAfter {
+  color: #111;
+}
+
+.mobileRows {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  border-bottom: 1px solid #6dafa3;
+  padding: 12px 14px;
+}
+
+.mobileRows .mobileRow:last-child {
+  border-bottom: none;
+}
+
+.mobileLabel {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #3c4a50;
+}
+
+.mobileValue {
+  font-family: "Gilroy", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.15;
+  color: #3c4a50;
+  text-align: left;
+}
+
+.mobileValueAfter {
+  font-weight: 600;
+  color: #111;
+}
+
 @media (max-width: 600px) {
   .section {
-    padding: 56px 16px;
+    padding: 36px 0 48px;
   }
 
   .container {
-    padding: 24px 12px;
-    gap: 20px;
+    padding: 28px 12px 28px;
+    gap: 16px;
+    border-radius: 20px 20px;
+    background: #0b7a66;
   }
 
   .title {
-    font-size: 26px;
-    text-align: left;
-    width: 100%;
+    font-size: 20px;
+    line-height: 0.95;
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
   }
 
-  .thLabel,
-  .thBefore,
-  .thAfter,
-  .tdLabel,
-  .tdBefore,
-  .tdAfter {
-    padding: 10px 8px;
-    font-size: 13px;
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
   }
 
   .bottomText {
-    font-size: 14px;
+    font-family: "Gilroy", sans-serif;
+    font-size: 12px;
+    line-height: 1.15;
+    margin-top: 10px;
+    max-width: none;
   }
 }

@@ -1,0 +1,3 @@
+title: Стройхолдин
+project_date: Январь 2026
+project_location: Москва

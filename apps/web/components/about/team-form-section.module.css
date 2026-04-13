@@ -721,8 +721,15 @@
     min-height: auto;
   }
 
+  .section::before{
+      left: 0;
+      width: 100%;
+  }
+
   .docsRow {
     gap: 16px;
+    flex-direction: column;
+        align-items: flex-start;
   }
 
   /* Coffee card */

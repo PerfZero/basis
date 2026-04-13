@@ -20,7 +20,7 @@ export function ServiceStats({
       <div className={s.container}>
         {statsTitle && <h2 className={s.title}>{statsTitle}</h2>}
 
-        <div className={s.tableWrap}>
+        <div className={`${s.tableWrap} ${s.desktopOnly}`}>
           <table className={s.table}>
             <thead>
               <tr>
@@ -39,6 +39,32 @@ export function ServiceStats({
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className={s.mobileOnly}>
+          <div className={s.mobileCard}>
+            <h3 className={s.mobileSectionTitle}>{statsColBefore ?? "До внедрения"}</h3>
+            <div className={s.mobileRows}>
+              {statsRows.map((row: ServiceStatRow) => (
+                <div key={`before-${row.id}`} className={s.mobileRow}>
+                  <div className={s.mobileLabel}>{row.label}</div>
+                  <div className={s.mobileValue}>{row.valueBefore}</div>
+                </div>
+              ))}
+            </div>
+
+            <h3 className={`${s.mobileSectionTitle} ${s.mobileSectionTitleAfter}`}>
+              {statsColAfter ?? "После внедрения"}
+            </h3>
+            <div className={s.mobileRows}>
+              {statsRows.map((row: ServiceStatRow) => (
+                <div key={`after-${row.id}`} className={s.mobileRow}>
+                  <div className={s.mobileLabel}>{row.label}</div>
+                  <div className={`${s.mobileValue} ${s.mobileValueAfter}`}>{row.valueAfter}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
 
         {statsBottomText && <p className={s.bottomText}>{statsBottomText}</p>}
