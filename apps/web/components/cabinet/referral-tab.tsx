@@ -143,50 +143,94 @@ export function ReferralTab() {
       {loading ? (
         <p className={s.empty}>Загружаем данные...</p>
       ) : (
-        <div className={s.tableWrap}>
-          <table className={s.table}>
-            <thead>
-              <tr>
-                <th>Контактное лицо</th>
-                <th>Контакты</th>
-                <th>Компания</th>
-                <th>Продукт</th>
-                <th>Статус</th>
-                <th>Выплата</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.entries.length === 0 ? (
+        <>
+          <div className={s.tableWrap}>
+            <table className={s.table}>
+              <thead>
                 <tr>
-                  <td colSpan={6} className={s.noRows}>
-                    История пока пуста
-                  </td>
+                  <th>Контактное лицо</th>
+                  <th>Контакты</th>
+                  <th>Компания</th>
+                  <th>Продукт</th>
+                  <th>Статус</th>
+                  <th>Выплата</th>
                 </tr>
-              ) : (
-                data.entries.map((entry) => (
-                  <tr key={entry.id}>
-                    <td>{entry.contactPerson}</td>
-                    <td>
-                      {entry.email && <div>{entry.email}</div>}
-                      {entry.phone && <div>{entry.phone}</div>}
+              </thead>
+              <tbody>
+                {data.entries.length === 0 ? (
+                  <tr>
+                    <td colSpan={6} className={s.noRows}>
+                      История пока пуста
                     </td>
-                    <td>{entry.company}</td>
-                    <td>
-                      <span className={s.productBadge}>{entry.product}</span>
-                    </td>
-                    <td>
-                      <span className={`${s.status} ${STATUS_CLASS[entry.status]}`}>
-                        <span className={s.dot} />
-                        {STATUS_LABELS[entry.status]}
-                      </span>
-                    </td>
-                    <td className={s.payoutCell}>{entry.payout > 0 ? formatMoney(entry.payout) : "—"}</td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+                ) : (
+                  data.entries.map((entry) => (
+                    <tr key={entry.id}>
+                      <td>{entry.contactPerson}</td>
+                      <td>
+                        {entry.email && <div>{entry.email}</div>}
+                        {entry.phone && <div>{entry.phone}</div>}
+                      </td>
+                      <td>{entry.company}</td>
+                      <td>
+                        <span className={s.productBadge}>{entry.product}</span>
+                      </td>
+                      <td>
+                        <span className={`${s.status} ${STATUS_CLASS[entry.status]}`}>
+                          <span className={s.dot} />
+                          {STATUS_LABELS[entry.status]}
+                        </span>
+                      </td>
+                      <td className={s.payoutCell}>{entry.payout > 0 ? formatMoney(entry.payout) : "—"}</td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          <div className={s.mobileHistory}>
+            {data.entries.length === 0 ? (
+              <p className={s.noRows}>История пока пуста</p>
+            ) : (
+              data.entries.map((entry) => (
+                <article key={`mobile-${entry.id}`} className={s.mobileCard}>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Контактное лицо</span>
+                    <span className={s.mobileValue}>{entry.contactPerson || "—"}</span>
+                  </div>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Контакты</span>
+                    <span className={s.mobileValue}>
+                      {entry.email && <span>{entry.email}</span>}
+                      {entry.phone && <span>{entry.phone}</span>}
+                      {!entry.email && !entry.phone && "—"}
+                    </span>
+                  </div>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Компания</span>
+                    <span className={s.mobileValue}>{entry.company || "—"}</span>
+                  </div>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Продукт</span>
+                    <span className={s.productBadge}>{entry.product}</span>
+                  </div>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Статус</span>
+                    <span className={`${s.status} ${STATUS_CLASS[entry.status]}`}>
+                      <span className={s.dot} />
+                      {STATUS_LABELS[entry.status]}
+                    </span>
+                  </div>
+                  <div className={s.mobileRow}>
+                    <span className={s.mobileLabel}>Выплата</span>
+                    <span className={s.mobilePayout}>{entry.payout > 0 ? formatMoney(entry.payout) : "—"}</span>
+                  </div>
+                </article>
+              ))
+            )}
+          </div>
+        </>
       )}
     </section>
   );

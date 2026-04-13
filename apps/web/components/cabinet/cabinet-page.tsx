@@ -190,7 +190,25 @@ export function CabinetPage({ user }: { user: AuthUser }) {
         <h1 className={s.heading}>Личный кабинет</h1>
       </div>
 
-      <nav className={s.tabs}>
+      <div className={s.mobileTabSelectWrap}>
+        <label className={s.mobileTabSelectLabel} htmlFor="cabinet-tab-select">
+          Раздел кабинета
+        </label>
+        <select
+          id="cabinet-tab-select"
+          className={s.mobileTabSelect}
+          value={tab}
+          onChange={(e) => setTab(e.target.value as TabId)}
+        >
+          {TABS.map((t) => (
+            <option key={`mobile-${t.id}`} value={t.id}>
+              {t.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <nav className={s.tabs} aria-label="Разделы кабинета">
         {TABS.map((t) => (
           <button key={t.id} type="button"
             className={tab === t.id ? `${s.tab} ${s.tabActive}` : s.tab}

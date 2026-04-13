@@ -24,6 +24,36 @@
   position: relative;
 }
 
+.mobileTabSelectWrap {
+  display: none;
+}
+
+.mobileTabSelectLabel {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 12px;
+  color: #8f9b9f;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.mobileTabSelect {
+  width: 100%;
+  border: 1px solid #d5d9d9;
+  border-radius: 9999px;
+  padding: 11px 16px;
+  background: #fff;
+  color: #3c4a50;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.mobileTabSelect:focus {
+  border-color: var(--accent);
+}
+
 
 
 .tab {
@@ -353,4 +383,110 @@
 .successText {
   color: #0b7a66;
   font-size: 14px;
+}
+
+@media (max-width: 1200px) {
+  .page {
+    padding: 48px 24px 72px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 28px 16px 56px;
+  }
+
+  .topRow {
+    margin-bottom: 24px;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .mobileTabSelectWrap {
+    display: block;
+    margin-bottom: 20px;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 24px;
+    margin: 0 auto 20px;
+  }
+
+  .nameSection {
+    margin-bottom: 24px;
+  }
+
+  .nameActions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .infoLabel {
+    font-size: 14px;
+  }
+
+  .infoValue {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .input {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+
+  .inlineInput {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .changeBtn {
+    font-size: 14px;
+  }
+
+  .divider {
+    margin: 18px 0;
+  }
+
+  .passwordBtn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .passwordForm {
+    max-width: none;
+  }
+
+  .passwordActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .passwordActions .saveBtn,
+  .passwordActions .cancelBtn {
+    width: 100%;
+    text-align: center;
+    padding: 10px 14px;
+  }
+
+  .logoutBtn {
+    margin-top: 24px;
+    width: 100%;
+  }
 }

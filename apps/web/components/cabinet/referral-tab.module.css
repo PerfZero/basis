@@ -156,6 +156,10 @@
   border-collapse: collapse;
 }
 
+.mobileHistory {
+  display: none;
+}
+
 .table th {
   text-align: left;
   padding: 14px 0;
@@ -222,31 +226,36 @@
 @media (max-width: 1024px) {
   .title,
   .historyTitle {
-    font-size: 42px;
-  }
-
-  .linkText {
-    font-size: 24px;
-  }
-
-  .statLabel {
     font-size: 28px;
   }
 
+  .linkText {
+    font-size: 15px;
+  }
+
+  .statLabel {
+    font-size: 18px;
+    margin-bottom: 18px;
+  }
+
   .statValue {
-    font-size: 58px;
+    font-size: 44px;
   }
 
   .statSub {
-    font-size: 30px;
+    font-size: 16px;
   }
 
   .statMoney {
-    font-size: 52px;
+    font-size: 40px;
   }
 }
 
 @media (max-width: 768px) {
+  .wrap {
+    gap: 20px;
+  }
+
   .headerRow {
     flex-direction: column;
     align-items: stretch;
@@ -263,11 +272,20 @@
   }
 
   .linkText {
-    font-size: 18px;
+    font-size: 14px;
+    line-height: 1.4;
   }
 
   .copyBtn {
     justify-content: space-between;
+    font-size: 14px;
+    padding-left: 16px;
+  }
+
+  .copyArrow {
+    width: 34px;
+    height: 34px;
+    font-size: 18px;
   }
 
   .statsGrid {
@@ -275,28 +293,87 @@
   }
 
   .statCard {
-    min-height: 180px;
+    min-height: 140px;
+    border-radius: 18px;
+    padding: 16px;
   }
 
   .title,
   .historyTitle {
-    font-size: 32px;
+    font-size: 22px;
   }
 
   .statLabel {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 16px;
+    margin-bottom: 10px;
   }
 
   .statValue {
-    font-size: 48px;
+    font-size: 36px;
   }
 
   .statSub {
-    font-size: 24px;
+    font-size: 15px;
   }
 
   .statMoney {
-    font-size: 42px;
+    font-size: 30px;
+  }
+
+  .historyTitle {
+    margin-top: 6px;
+  }
+
+  .tableWrap {
+    display: none;
+  }
+
+  .mobileHistory {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .mobileCard {
+    border: 1px solid #d8ddde;
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+  }
+
+  .mobileRow {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .mobileLabel {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #8f9b9f;
+    font-weight: 600;
+  }
+
+  .mobileValue {
+    font-size: 14px;
+    color: #3c4a50;
+    line-height: 1.35;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .mobilePayout {
+    color: #131313;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .status {
+    font-size: 14px;
   }
 }
