@@ -198,7 +198,8 @@
   }
 
   .btn {
-    width: 100%;
+    width: fit-content;
+    margin: 0 auto;
     justify-content: center;
     padding: 6px 6px 6px 18px;
   }

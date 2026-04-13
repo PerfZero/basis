@@ -101,7 +101,12 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
     <section className={s.section}>
       {logicTitle && <h2 className={s.title}>{logicTitle}</h2>}
 
-      <div className={s.container}>
+      <div
+        className={s.container}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchCancel}
+      >
         <div className={s.imageWrap}>
           {slide?.image?.url && (
             // eslint-disable-next-line @next/next/no-img-element
@@ -109,13 +114,7 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
           )}
         </div>
 
-        <div
-          className={s.content}
-          ref={contentRef}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onTouchCancel={onTouchCancel}
-        >
+        <div className={s.content} ref={contentRef}>
           <div className={s.slides}>
             {logicSlides.map((item: ServiceLogicSlide, i: number) => (
               <div
