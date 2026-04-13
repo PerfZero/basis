@@ -1354,7 +1354,7 @@ const companyDocumentsLabels = {
     privacyPolicyContent: {
       edit: {
         label: "Текст: Политика конфиденциальности",
-        description: "Отображается на странице /privacy",
+        description: "Отображается на странице /privacy. Можно вставлять HTML-теги.",
         visible: true,
         editable: true,
       },
@@ -1372,7 +1372,7 @@ const companyDocumentsLabels = {
     offerAgreementContent: {
       edit: {
         label: "Текст: Договор оферты",
-        description: "Отображается на странице /oferta",
+        description: "Отображается на странице /oferta. Можно вставлять HTML-теги.",
         visible: true,
         editable: true,
       },
@@ -1390,7 +1390,7 @@ const companyDocumentsLabels = {
     referralProgramTermsContent: {
       edit: {
         label: "Текст: Условия программы",
-        description: "Кнопка «Условия программы» в кабинете открывает страницу /referral-terms",
+        description: "Кнопка «Условия программы» в кабинете открывает страницу /referral-terms. Можно вставлять HTML-теги.",
         visible: true,
         editable: true,
       },

@@ -11,8 +11,20 @@ const DEFAULT_TITLE: Record<DocumentType, string> = {
   referralProgramTerms: "Условия программы",
 };
 
+const HTML_TAG_PATTERN = /<\/?[a-z][^>]*>/i;
+
 function toHtmlContent(content: string): string {
-  return content.trim();
+  const trimmed = content.trim();
+  if (!trimmed) return "";
+
+  if (HTML_TAG_PATTERN.test(trimmed)) {
+    return trimmed;
+  }
+
+  return trimmed
+    .split(/\n{2,}/)
+    .map((chunk) => `<p>${chunk.replace(/\n/g, "<br />")}</p>`)
+    .join("");
 }
 
 export async function LegalDocumentPage({ documentType }: { documentType: DocumentType }) {

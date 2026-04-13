@@ -11,10 +11,10 @@
   "pluginOptions": {},
   "attributes": {
     "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
-    "privacyPolicyContent": { "type": "richtext" },
+    "privacyPolicyContent": { "type": "text" },
     "offerAgreementTitle": { "type": "string", "default": "Договор оферты" },
-    "offerAgreementContent": { "type": "richtext" },
+    "offerAgreementContent": { "type": "text" },
     "referralProgramTermsTitle": { "type": "string", "default": "Условия программы" },
-    "referralProgramTermsContent": { "type": "richtext" }
+    "referralProgramTermsContent": { "type": "text" }
   }
 }
