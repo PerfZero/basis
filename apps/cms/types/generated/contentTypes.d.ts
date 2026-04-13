@@ -506,14 +506,14 @@ export interface ApiCompanyDocumentCompanyDocument
       'api::company-document.company-document'
     > &
       Schema.Attribute.Private;
-    offerAgreementContent: Schema.Attribute.Text;
+    offerAgreementContent: Schema.Attribute.RichText;
     offerAgreementTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0414\u043E\u0433\u043E\u0432\u043E\u0440 \u043E\u0444\u0435\u0440\u0442\u044B'>;
-    privacyPolicyContent: Schema.Attribute.Text;
+    privacyPolicyContent: Schema.Attribute.RichText;
     privacyPolicyTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u041F\u043E\u043B\u0438\u0442\u0438\u043A\u0430 \u043A\u043E\u043D\u0444\u0438\u0434\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u0438'>;
     publishedAt: Schema.Attribute.DateTime;
-    referralProgramTermsContent: Schema.Attribute.Text;
+    referralProgramTermsContent: Schema.Attribute.RichText;
     referralProgramTermsTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0423\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B'>;
     updatedAt: Schema.Attribute.DateTime;
