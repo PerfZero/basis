@@ -48,7 +48,6 @@ export async function getAboutPage(): Promise<AboutPageData> {
   try {
     const query = new URLSearchParams();
     query.set("populate", "*");
-    query.set("populate[seo][populate][0]", "ogImage");
 
     const res = await fetch(
       `${STRAPI_URL}/api/about-page?${query.toString()}`,
