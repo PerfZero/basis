@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+import { getCompanyDocuments } from "@/lib/strapi/company-documents";
 
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN?.trim();
@@ -70,6 +71,10 @@ export async function GET(request: Request) {
 
   const siteUrl = resolveSiteUrl(request);
   const url = `${STRAPI_URL}/api/referrals?filters[inviterUserId][$eq]=${userId}&sort[0]=createdAt:desc&pagination[pageSize]=200`;
+  const companyDocuments = await getCompanyDocuments();
+  const referralTermsFromCms = companyDocuments?.referralProgramTerms?.content?.trim()
+    ? "/referral-terms"
+    : undefined;
   let response = await fetch(url, {
     headers: { Authorization: `Bearer ${token}` },
     cache: "no-store",
@@ -77,7 +82,7 @@ export async function GET(request: Request) {
 
   const fallback: ReferralApiResponse = {
     referralLink: buildReferralLink(siteUrl, userId),
-    termsUrl: REFERRAL_TERMS_URL,
+    termsUrl: referralTermsFromCms ?? REFERRAL_TERMS_URL,
     summary: { totalInvited: 0, closedContracts: 0, totalPayout: 0 },
     entries: [],
   };
@@ -118,7 +123,7 @@ export async function GET(request: Request) {
   const closedEntries = entries.filter((entry) => entry.status === "contract_signed");
   const payload: ReferralApiResponse = {
     referralLink: buildReferralLink(siteUrl, userId),
-    termsUrl: REFERRAL_TERMS_URL,
+    termsUrl: referralTermsFromCms ?? REFERRAL_TERMS_URL,
     summary: {
       totalInvited: entries.length,
       closedContracts: closedEntries.length,

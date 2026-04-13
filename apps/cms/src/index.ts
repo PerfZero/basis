@@ -1240,6 +1240,7 @@ const PUBLIC_UIDS = [
   "api::service-card.service-card",
   "api::diag-cta.diag-cta",
   "api::about-page.about-page",
+  "api::company-document.company-document",
   "api::contact-request.contact-request",
 ];
 
@@ -1324,6 +1325,87 @@ const documentLabels = {
         { name: "user", size: 8, mainField: "email" },
       ],
       [{ name: "file", size: 12 }],
+    ],
+  },
+};
+
+const companyDocumentsLabels = {
+  uid: "api::company-document.company-document",
+  settings: {
+    bulkable: false,
+    filterable: false,
+    searchable: false,
+    pageSize: 10,
+    mainField: "id",
+    defaultSortBy: "id",
+    defaultSortOrder: "ASC",
+  },
+  metadatas: {
+    id: { edit: {}, list: { label: "ID", searchable: false, sortable: false } },
+    privacyPolicyTitle: {
+      edit: {
+        label: "Заголовок: Политика конфиденциальности",
+        description: "",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Заголовок политики", searchable: true, sortable: false },
+    },
+    privacyPolicyContent: {
+      edit: {
+        label: "Текст: Политика конфиденциальности",
+        description: "Отображается на странице /privacy",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Текст политики", searchable: false, sortable: false },
+    },
+    offerAgreementTitle: {
+      edit: {
+        label: "Заголовок: Договор оферты",
+        description: "",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Заголовок оферты", searchable: true, sortable: false },
+    },
+    offerAgreementContent: {
+      edit: {
+        label: "Текст: Договор оферты",
+        description: "Отображается на странице /oferta",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Текст оферты", searchable: false, sortable: false },
+    },
+    referralProgramTermsTitle: {
+      edit: {
+        label: "Заголовок: Условия программы",
+        description: "",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Заголовок условий", searchable: true, sortable: false },
+    },
+    referralProgramTermsContent: {
+      edit: {
+        label: "Текст: Условия программы",
+        description: "Кнопка «Условия программы» в кабинете открывает страницу /referral-terms",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Текст условий", searchable: false, sortable: false },
+    },
+  },
+  layouts: {
+    list: ["id"],
+    edit: [
+      [{ name: "privacyPolicyTitle", size: 12 }],
+      [{ name: "privacyPolicyContent", size: 12 }],
+      [{ name: "offerAgreementTitle", size: 12 }],
+      [{ name: "offerAgreementContent", size: 12 }],
+      [{ name: "referralProgramTermsTitle", size: 12 }],
+      [{ name: "referralProgramTermsContent", size: 12 }],
     ],
   },
 };
@@ -1759,6 +1841,7 @@ export default {
     await setContentManagerConfig(strapi, referralLabels);
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
+    await setContentManagerConfig(strapi, companyDocumentsLabels);
     await setComponentConfig(strapi, principleComponentLabels);
     await setComponentConfig(strapi, seoComponentLabels);
     await setContentManagerFieldLabel(

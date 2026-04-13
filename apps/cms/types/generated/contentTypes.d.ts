@@ -484,6 +484,44 @@ export interface ApiAboutPageAboutPage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCompanyDocumentCompanyDocument
+  extends Struct.SingleTypeSchema {
+  collectionName: 'company_documents';
+  info: {
+    description: '\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B \u0434\u043B\u044F \u0444\u0443\u0442\u0435\u0440\u0430 \u0438 \u043B\u0438\u0447\u043D\u043E\u0433\u043E \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0430';
+    displayName: '\u0414\u043E\u043A\u0443\u043C\u0435\u043D\u0442\u044B \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438';
+    pluralName: 'company-documents';
+    singularName: 'company-document';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-document.company-document'
+    > &
+      Schema.Attribute.Private;
+    offerAgreementContent: Schema.Attribute.RichText;
+    offerAgreementTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0414\u043E\u0433\u043E\u0432\u043E\u0440 \u043E\u0444\u0435\u0440\u0442\u044B'>;
+    privacyPolicyContent: Schema.Attribute.RichText;
+    privacyPolicyTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u041F\u043E\u043B\u0438\u0442\u0438\u043A\u0430 \u043A\u043E\u043D\u0444\u0438\u0434\u0435\u043D\u0446\u0438\u0430\u043B\u044C\u043D\u043E\u0441\u0442\u0438'>;
+    publishedAt: Schema.Attribute.DateTime;
+    referralProgramTermsContent: Schema.Attribute.RichText;
+    referralProgramTermsTitle: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'\u0423\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactRequestContactRequest
   extends Struct.CollectionTypeSchema {
   collectionName: 'contact_requests';
@@ -1520,6 +1558,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about-page.about-page': ApiAboutPageAboutPage;
+      'api::company-document.company-document': ApiCompanyDocumentCompanyDocument;
       'api::contact-request.contact-request': ApiContactRequestContactRequest;
       'api::diag-cta.diag-cta': ApiDiagCtaDiagCta;
       'api::diagnostic-request.diagnostic-request': ApiDiagnosticRequestDiagnosticRequest;

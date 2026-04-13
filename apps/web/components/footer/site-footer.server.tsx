@@ -26,5 +26,6 @@ async function getMenuServices(): Promise<MenuItem[]> {
 
 export async function SiteFooterServer() {
   const services = await getMenuServices();
+
   return <SiteFooter services={services} />;
 }

@@ -83,7 +83,7 @@ export function LoginForm() {
         <span className={s.footerSep}>/</span>
         <Link href="/about" className={s.footerLink}>О компании</Link>
         <span className={s.footerSep}>/</span>
-        <Link href="#" className={s.footerLink}>Политика конфиденциальности</Link>
+        <Link href="/privacy" className={s.footerLink}>Политика конфиденциальности</Link>
       </footer>
     </div>
   );

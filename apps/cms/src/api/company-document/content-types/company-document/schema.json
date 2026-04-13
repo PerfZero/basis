@@ -1,0 +1,20 @@
+{
+  "kind": "singleType",
+  "collectionName": "company_documents",
+  "info": {
+    "singularName": "company-document",
+    "pluralName": "company-documents",
+    "displayName": "Документы компании",
+    "description": "Документы для футера и личного кабинета"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
+    "privacyPolicyContent": { "type": "richtext" },
+    "offerAgreementTitle": { "type": "string", "default": "Договор оферты" },
+    "offerAgreementContent": { "type": "richtext" },
+    "referralProgramTermsTitle": { "type": "string", "default": "Условия программы" },
+    "referralProgramTermsContent": { "type": "richtext" }
+  }
+}

@@ -15,7 +15,11 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-export function SiteFooter({ services }: { services: MenuItem[] }) {
+export function SiteFooter({
+  services,
+}: {
+  services: MenuItem[];
+}) {
   const year = new Date().getFullYear();
 
   return (
@@ -60,8 +64,12 @@ export function SiteFooter({ services }: { services: MenuItem[] }) {
         {/* Bottom links */}
         <div className={styles.footerBottom}>
           <span className={styles.bottomItem}>© {year}. Все права защищены</span>
-          <Link href="/privacy" className={styles.bottomItem}>Политика конфиденциальности</Link>
-          <Link href="/oferta" className={styles.bottomItem}>Договор оферты</Link>
+          <Link href="/privacy" className={styles.bottomItem}>
+            Политика конфиденциальности
+          </Link>
+          <Link href="/oferta" className={styles.bottomItem}>
+            Договор оферты
+          </Link>
         </div>
       </div>
 
