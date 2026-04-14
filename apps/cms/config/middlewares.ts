@@ -9,8 +9,8 @@ const config: Core.Config.Middlewares = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'script-src': ["'self'", 'https:', 'cdn.ckeditor.com'],
-          'connect-src': ["'self'", 'https:', 'proxy-event.ckeditor.com'],
+          'script-src': ["'self'", "'unsafe-inline'", 'https:', 'cdn.ckeditor.com'],
+          'connect-src': ["'self'", 'https:', 'http:', 'ws:', 'wss:', 'proxy-event.ckeditor.com'],
           'img-src': ["'self'", 'data:', 'blob:', 'cdn.ckeditor.com', 'res.cloudinary.com'],
           'media-src': ["'self'", 'data:', 'blob:'],
           upgradeInsecureRequests: null,
