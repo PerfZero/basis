@@ -2,6 +2,7 @@ import Link from "next/link";
 import styles from "./site-footer.module.css";
 
 type MenuItem = { id: number; title: string; link: string };
+type SocialLink = { id: number; title: string; url: string; kind: string };
 
 const TelegramIcon = () => (
   <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,10 +16,47 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
+const LinkIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="3" y="3" width="20" height="20" rx="6" fill="#0B7A66" fillOpacity="0.12" />
+    <path
+      d="M11.0864 13.9173L14.9143 10.0894"
+      stroke="#0B7A66"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <path
+      d="M10.0041 15.0041C8.7161 13.7161 8.7161 11.6274 10.0041 10.3394L11.3394 9.00413C12.6274 7.71616 14.7161 7.71616 16.0041 9.00413"
+      stroke="#0B7A66"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+    <path
+      d="M15.9957 10.9959C17.2837 12.2839 17.2837 14.3726 15.9957 15.6606L14.6604 16.9959C13.3724 18.2838 11.2837 18.2838 9.99573 16.9959"
+      stroke="#0B7A66"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+    />
+  </svg>
+);
+
+function getSocialIcon(kind: string) {
+  switch (kind) {
+    case "telegram":
+      return <TelegramIcon />;
+    case "whatsapp":
+      return <WhatsAppIcon />;
+    default:
+      return <LinkIcon />;
+  }
+}
+
 export function SiteFooter({
   services,
+  socialLinks,
 }: {
   services: MenuItem[];
+  socialLinks: SocialLink[];
 }) {
   const year = new Date().getFullYear();
 
@@ -53,8 +91,18 @@ export function SiteFooter({
             <div className={styles.contactsEmailRow}>
               <a href="mailto:info@basisthree.ru" className={styles.colLink}>info@basisthree.ru</a>
               <div className={styles.socials}>
-                <a href="#" className={styles.socialBtn} aria-label="Telegram"><TelegramIcon /></a>
-                <a href="#" className={styles.socialBtn} aria-label="WhatsApp"><WhatsAppIcon /></a>
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.url}
+                    className={styles.socialBtn}
+                    aria-label={link.title || link.kind}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {getSocialIcon(link.kind)}
+                  </a>
+                ))}
               </div>
             </div>
             <a href="tel:+79896551212" className={styles.colLink}>+7 (989) 655–12–12</a>

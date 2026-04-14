@@ -1396,6 +1396,15 @@ const companyDocumentsLabels = {
       },
       list: { label: "Текст условий", searchable: false, sortable: false },
     },
+    socialLinks: {
+      edit: {
+        label: "Соцсети в футере",
+        description: "Ссылки на соцсети для футера сайта.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Соцсети", searchable: false, sortable: false },
+    },
   },
   layouts: {
     list: ["id"],
@@ -1406,6 +1415,42 @@ const companyDocumentsLabels = {
       [{ name: "offerAgreementContent", size: 12 }],
       [{ name: "referralProgramTermsTitle", size: 12 }],
       [{ name: "referralProgramTermsContent", size: 12 }],
+      [{ name: "socialLinks", size: 12 }],
+    ],
+  },
+};
+
+const socialLinkComponentLabels = {
+  uid: "shared.social-link",
+  settings: {
+    bulkable: false,
+    filterable: false,
+    searchable: false,
+    pageSize: 20,
+    mainField: "title",
+    defaultSortBy: "id",
+    defaultSortOrder: "ASC",
+  },
+  metadatas: {
+    id: { edit: {}, list: { label: "ID", searchable: false, sortable: false } },
+    title: {
+      edit: { label: "Название", visible: true, editable: true },
+      list: { label: "Название", searchable: true, sortable: false },
+    },
+    url: {
+      edit: { label: "Ссылка", visible: true, editable: true },
+      list: { label: "Ссылка", searchable: false, sortable: false },
+    },
+    kind: {
+      edit: { label: "Тип", visible: true, editable: true },
+      list: { label: "Тип", searchable: false, sortable: false },
+    },
+  },
+  layouts: {
+    list: ["title", "kind"],
+    edit: [
+      [{ name: "title", size: 6 }, { name: "kind", size: 6 }],
+      [{ name: "url", size: 12 }],
     ],
   },
 };
@@ -1844,6 +1889,7 @@ export default {
     await setContentManagerConfig(strapi, companyDocumentsLabels);
     await setComponentConfig(strapi, principleComponentLabels);
     await setComponentConfig(strapi, seoComponentLabels);
+    await setComponentConfig(strapi, socialLinkComponentLabels);
     await setContentManagerFieldLabel(
       strapi,
       "api::hero-block.hero-block",

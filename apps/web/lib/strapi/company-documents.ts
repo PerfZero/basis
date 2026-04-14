@@ -6,10 +6,18 @@ export type CompanyDocumentText = {
   content: string;
 };
 
+export type SocialLink = {
+  id: number;
+  title: string;
+  url: string;
+  kind: string;
+};
+
 export type CompanyDocumentsData = {
   privacyPolicy?: CompanyDocumentText;
   offerAgreement?: CompanyDocumentText;
   referralProgramTerms?: CompanyDocumentText;
+  socialLinks?: SocialLink[];
 } | null;
 
 type StrapiData = Record<string, unknown>;
@@ -44,6 +52,30 @@ function extractSingleTypeData(json: unknown): StrapiData | null {
   return data as StrapiData;
 }
 
+function normalizeSocialLinks(value: unknown): SocialLink[] {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((item, index) => {
+      if (!item || typeof item !== "object") return null;
+      const record = item as StrapiData;
+      const url = normalizeString(record.url);
+      if (!url) return null;
+
+      const title = normalizeString(record.title);
+      const kind = normalizeString(record.kind) || "website";
+      const id = typeof record.id === "number" ? (record.id as number) : index;
+
+      return {
+        id,
+        title: title || kind,
+        url,
+        kind,
+      };
+    })
+    .filter((item): item is SocialLink => Boolean(item));
+}
+
 export async function getCompanyDocuments(): Promise<CompanyDocumentsData> {
   const headers: Record<string, string> = STRAPI_TOKEN
     ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
@@ -65,8 +97,32 @@ export async function getCompanyDocuments(): Promise<CompanyDocumentsData> {
       privacyPolicy: normalizeDocument(data, "privacyPolicyTitle", "privacyPolicyContent"),
       offerAgreement: normalizeDocument(data, "offerAgreementTitle", "offerAgreementContent"),
       referralProgramTerms: normalizeDocument(data, "referralProgramTermsTitle", "referralProgramTermsContent"),
+      socialLinks: normalizeSocialLinks(data.socialLinks),
     };
   } catch {
     return null;
+  }
+}
+
+export async function getFooterSocialLinks(): Promise<SocialLink[]> {
+  const headers: Record<string, string> = STRAPI_TOKEN
+    ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
+    : {};
+
+  try {
+    const response = await fetch(`${STRAPI_URL}/api/company-document?populate[socialLinks]=*`, {
+      headers,
+      next: { revalidate: 60 },
+    });
+
+    if (!response.ok) return [];
+
+    const json = await response.json();
+    const data = extractSingleTypeData(json);
+    if (!data) return [];
+
+    return normalizeSocialLinks(data.socialLinks);
+  } catch {
+    return [];
   }
 }

@@ -516,6 +516,7 @@ export interface ApiCompanyDocumentCompanyDocument
     referralProgramTermsContent: Schema.Attribute.Text;
     referralProgramTermsTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0423\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u0440\u043E\u0433\u0440\u0430\u043C\u043C\u044B'>;
+    socialLinks: Schema.Attribute.Component<'shared.social-link', true>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

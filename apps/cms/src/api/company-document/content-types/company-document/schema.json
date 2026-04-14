@@ -39,6 +39,11 @@
         "readonly": false,
         "toolbar": true
       }
+    },
+    "socialLinks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.social-link"
     }
   }
 }

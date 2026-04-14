@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_shared_social_links",
+  "info": {
+    "displayName": "Соцсеть",
+    "description": "Ссылка на соцсеть"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "url": {
+      "type": "string",
+      "required": true
+    },
+    "kind": {
+      "type": "enumeration",
+      "enum": [
+        "telegram",
+        "whatsapp",
+        "vk",
+        "instagram",
+        "youtube",
+        "tiktok",
+        "linkedin",
+        "website"
+      ],
+      "required": true
+    }
+  }
+}
