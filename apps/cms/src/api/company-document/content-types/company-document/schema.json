@@ -12,33 +12,15 @@
   "attributes": {
     "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
     "privacyPolicyContent": {
-      "type": "richtext",
-      "customField": "plugin::tinymce.tinymce",
-      "options": {
-        "height": 400,
-        "readonly": false,
-        "toolbar": true
-      }
+      "type": "text"
     },
     "offerAgreementTitle": { "type": "string", "default": "Договор оферты" },
     "offerAgreementContent": {
-      "type": "richtext",
-      "customField": "plugin::tinymce.tinymce",
-      "options": {
-        "height": 400,
-        "readonly": false,
-        "toolbar": true
-      }
+      "type": "text"
     },
     "referralProgramTermsTitle": { "type": "string", "default": "Условия программы" },
     "referralProgramTermsContent": {
-      "type": "richtext",
-      "customField": "plugin::tinymce.tinymce",
-      "options": {
-        "height": 400,
-        "readonly": false,
-        "toolbar": true
-      }
+      "type": "text"
     }
   }
 }

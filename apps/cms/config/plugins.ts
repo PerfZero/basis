@@ -1,12 +1,7 @@
 import type { Core } from '@strapi/strapi';
 
 const config = ({ env: _env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
-  'jodit-editor': {
-    enabled: true,
-  },
-  tinymce: {
-    enabled: true,
-  },
+  // No custom rich-text plugins; use plain text fields.
 });
 
 export default config;
