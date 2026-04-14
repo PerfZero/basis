@@ -3,19 +3,18 @@
   position: relative;
 }
 
-.section::before{
-    content: '';
-    display: block;
-    position: absolute;
-    top: 0;
-    left: -150px;
-    width: 850px;
-    height:700px;
-    z-index: -1;
-    background-size: contain;
-    background: url('/left_two.png');
+.section::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -150px;
+  width: 850px;
+  height: 700px;
+  z-index: -1;
+  background-size: contain;
+  background: url("/left_two.png");
 }
-
 
 .inner {
   width: min(1200px, 100%);
@@ -67,8 +66,13 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: 310px 1fr;
-  background: linear-gradient(346deg, rgba(246, 245, 241, 0.4) 0%, #f6f5f1 100%);
+  background: linear-gradient(
+    346deg,
+    rgba(246, 245, 241, 0.4) 0%,
+    #f6f5f1 100%
+  );
   border: 1px solid rgba(189, 227, 220, 0.6);
+  position: relative;
 }
 
 .cardInfo {
@@ -77,6 +81,26 @@
   flex-direction: column;
   height: 100%;
   background: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+.watermark {
+  position: absolute;
+  left: 0;
+  top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+  opacity: 0.9;
+  z-index: 0;
+}
+
+.watermarkImg {
+  width: 220px;
+  height: auto;
 }
 
 /* Desktop: wrapper divs are transparent — children flow as direct flex children of cardInfo */
@@ -186,6 +210,7 @@
   position: relative;
   border-radius: 0 0 20px 0;
   overflow: hidden;
+  z-index: 1;
 }
 
 .photo {
@@ -390,7 +415,7 @@
 .coffeeMedia {
   padding: 30px;
   display: flex;
-      background-size: cover;
+  background-size: cover;
   align-items: center;
   justify-content: center;
   background-position: center;
@@ -688,15 +713,23 @@
   }
 
   .cardQrMobile {
-    display: flex;
     flex-direction: column;
-    align-items: flex-end;
     flex-shrink: 0;
+    align-items: flex-end;
+    position: absolute;
+    display: flex;
+    right: 10px;
+    bottom: 10px;
   }
 
-  .cardQrDesktop { display: none; }
+  .cardQrDesktop {
+    display: none;
+  }
 
-  .spacer { height: 10px; flex: none; }
+  .spacer {
+    height: 10px;
+    flex: none;
+  }
 
   /* cardContact: flex column */
   .cardContact {
@@ -705,14 +738,33 @@
     gap: 2px;
   }
 
-  .role        { font-size: 12px; }
-  .name        { font-size: 16px; line-height: 1.15; }
-  .line        { display: none; }
-  .description { font-size: 11px; max-width: calc(55% - 10px); }
+  .role {
+    font-size: 12px;
+  }
+  .name {
+    font-size: 16px;
+    line-height: 1.15;
+  }
+  .line {
+    display: none;
+  }
+  .description {
+    font-size: 11px;
+    max-width: calc(55% - 10px);
+  }
 
-  .handle  { text-align: right; font-size: 11px; }
-  .qrImage { width: 72px; height: 72px; margin-top: 4px; }
-  .qrPlaceholder { display: none; }
+  .handle {
+    text-align: right;
+    font-size: 11px;
+  }
+  .qrImage {
+    width: 94px;
+    height: 94px;
+    margin-top: 4px;
+  }
+  .qrPlaceholder {
+    display: none;
+  }
 
   /* Form */
   .formTitle {
@@ -735,15 +787,15 @@
     min-height: auto;
   }
 
-  .section::before{
-      left: 0;
-      width: 100%;
+  .section::before {
+    left: 0;
+    width: 100%;
   }
 
   .docsRow {
     gap: 16px;
     flex-direction: column;
-        align-items: flex-start;
+    align-items: flex-start;
   }
 
   /* Coffee card */

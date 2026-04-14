@@ -53,6 +53,15 @@ export function TeamFormSection({
           <div className={s.cardsCol}>
             {visibleMembers.map((member) => (
               <article key={member.id} className={s.card}>
+                <div className={s.watermark} aria-hidden="true">
+                  <Image
+                    src="/watermark.png"
+                    alt=""
+                    width={220}
+                    height={120}
+                    className={s.watermarkImg}
+                  />
+                </div>
                 <div className={s.cardInfo}>
                   {/* mobile: flex row (text left, qr right); desktop: transparent wrapper */}
                   <div className={s.cardBody}>
