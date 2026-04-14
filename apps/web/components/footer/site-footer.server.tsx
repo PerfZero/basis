@@ -11,7 +11,7 @@ async function getMenuServices(): Promise<MenuItem[]> {
   try {
     const res = await fetch(
       `${baseUrl}/api/menu-services?sort=sortOrder:asc&pagination[pageSize]=20&filters[isActive][$eq]=true`,
-      { headers, next: { revalidate: 60 } }
+      { headers, cache: "no-store" }
     );
     if (!res.ok) return [];
     const json = await res.json();

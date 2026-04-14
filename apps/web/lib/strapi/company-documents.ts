@@ -90,7 +90,7 @@ export async function getCompanyDocuments(): Promise<CompanyDocumentsData> {
   try {
     const response = await fetch(`${STRAPI_URL}/api/company-document`, {
       headers,
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
 
     if (!response.ok) return null;
@@ -118,7 +118,7 @@ export async function getFooterSocialLinks(): Promise<SocialLink[]> {
   try {
     const response = await fetch(`${STRAPI_URL}/api/company-document?populate[socialLinks]=*`, {
       headers,
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
 
     if (!response.ok) return [];

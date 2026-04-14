@@ -53,7 +53,7 @@ export async function getAboutPage(): Promise<AboutPageData> {
       `${STRAPI_URL}/api/about-page?${query.toString()}`,
       {
         headers,
-        next: { revalidate: 60 },
+        cache: "no-store",
       },
     );
     if (!res.ok) return null;
