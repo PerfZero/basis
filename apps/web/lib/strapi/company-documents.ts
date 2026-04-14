@@ -1,3 +1,5 @@
+import { resolveStrapiMediaUrl } from "./media-url";
+
 const STRAPI_URL = process.env.STRAPI_URL ?? "http://localhost:1337";
 const STRAPI_TOKEN = process.env.STRAPI_API_TOKEN;
 
@@ -10,7 +12,7 @@ export type SocialLink = {
   id: number;
   title: string;
   url: string;
-  kind: string;
+  iconUrl: string | null;
 };
 
 export type CompanyDocumentsData = {
@@ -63,14 +65,18 @@ function normalizeSocialLinks(value: unknown): SocialLink[] {
       if (!url) return null;
 
       const title = normalizeString(record.title);
-      const kind = normalizeString(record.kind) || "website";
+      const iconValue = record.icon as Record<string, unknown> | undefined;
+      const iconUrl =
+        (iconValue?.data as Record<string, unknown> | undefined)?.attributes
+          ? ((iconValue.data as { attributes?: { url?: string } }).attributes?.url ?? "")
+          : (iconValue?.url as string | undefined);
       const id = typeof record.id === "number" ? (record.id as number) : index;
 
       return {
         id,
-        title: title || kind,
+        title: title || "Соцсеть",
         url,
-        kind,
+        iconUrl: resolveStrapiMediaUrl(iconUrl ?? null),
       };
     })
     .filter((item): item is SocialLink => Boolean(item));

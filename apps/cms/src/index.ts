@@ -1441,16 +1441,16 @@ const socialLinkComponentLabels = {
       edit: { label: "Ссылка", visible: true, editable: true },
       list: { label: "Ссылка", searchable: false, sortable: false },
     },
-    kind: {
-      edit: { label: "Тип", visible: true, editable: true },
-      list: { label: "Тип", searchable: false, sortable: false },
+    icon: {
+      edit: { label: "Иконка", visible: true, editable: true },
+      list: { label: "Иконка", searchable: false, sortable: false },
     },
   },
   layouts: {
-    list: ["title", "kind"],
+    list: ["title", "url"],
     edit: [
-      [{ name: "title", size: 6 }, { name: "kind", size: 6 }],
-      [{ name: "url", size: 12 }],
+      [{ name: "title", size: 6 }, { name: "url", size: 6 }],
+      [{ name: "icon", size: 12 }],
     ],
   },
 };

@@ -283,19 +283,7 @@ export interface SharedSocialLink extends Struct.ComponentSchema {
     displayName: '\u0421\u043E\u0446\u0441\u0435\u0442\u044C';
   };
   attributes: {
-    kind: Schema.Attribute.Enumeration<
-      [
-        'telegram',
-        'whatsapp',
-        'vk',
-        'instagram',
-        'youtube',
-        'tiktok',
-        'linkedin',
-        'website',
-      ]
-    > &
-      Schema.Attribute.Required;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
     url: Schema.Attribute.String & Schema.Attribute.Required;
   };

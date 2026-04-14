@@ -14,19 +14,11 @@
       "type": "string",
       "required": true
     },
-    "kind": {
-      "type": "enumeration",
-      "enum": [
-        "telegram",
-        "whatsapp",
-        "vk",
-        "instagram",
-        "youtube",
-        "tiktok",
-        "linkedin",
-        "website"
-      ],
-      "required": true
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
     }
   }
 }
