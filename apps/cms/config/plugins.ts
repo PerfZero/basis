@@ -4,6 +4,9 @@ const config = ({ env: _env }: Core.Config.Shared.ConfigParams): Core.Config.Plu
   'jodit-editor': {
     enabled: true,
   },
+  tinymce: {
+    enabled: true,
+  },
 });
 
 export default config;

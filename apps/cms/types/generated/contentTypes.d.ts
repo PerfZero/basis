@@ -508,7 +508,7 @@ export interface ApiCompanyDocumentCompanyDocument
       Schema.Attribute.Private;
     offerAgreementContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::jodit-editor.jodit',
+        'plugin::tinymce.tinymce',
         {
           height: 400;
           readonly: false;
@@ -519,7 +519,7 @@ export interface ApiCompanyDocumentCompanyDocument
       Schema.Attribute.DefaultTo<'\u0414\u043E\u0433\u043E\u0432\u043E\u0440 \u043E\u0444\u0435\u0440\u0442\u044B'>;
     privacyPolicyContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::jodit-editor.jodit',
+        'plugin::tinymce.tinymce',
         {
           height: 400;
           readonly: false;
@@ -531,7 +531,7 @@ export interface ApiCompanyDocumentCompanyDocument
     publishedAt: Schema.Attribute.DateTime;
     referralProgramTermsContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::jodit-editor.jodit',
+        'plugin::tinymce.tinymce',
         {
           height: 400;
           readonly: false;
