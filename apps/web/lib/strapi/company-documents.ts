@@ -66,10 +66,10 @@ function normalizeSocialLinks(value: unknown): SocialLink[] {
 
       const title = normalizeString(record.title);
       const iconValue = record.icon as Record<string, unknown> | undefined;
-      const iconUrl =
-        (iconValue?.data as Record<string, unknown> | undefined)?.attributes
-          ? ((iconValue.data as { attributes?: { url?: string } }).attributes?.url ?? "")
-          : (iconValue?.url as string | undefined);
+      const iconFromV4 =
+        (iconValue?.data as { attributes?: { url?: string } } | undefined)?.attributes?.url;
+      const iconFromV5 = iconValue?.url as string | undefined;
+      const iconUrl = iconFromV4 ?? iconFromV5;
       const id = typeof record.id === "number" ? (record.id as number) : index;
 
       return {
