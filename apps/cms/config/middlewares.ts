@@ -9,8 +9,11 @@ const config: Core.Config.Middlewares = [
       contentSecurityPolicy: {
         useDefaults: true,
         directives: {
-          'script-src': ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com'],
-          'img-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com'],
+          'script-src': ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com', 'cdn.tiny.cloud'],
+          'script-src-elem': ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com', 'cdn.tiny.cloud'],
+          'style-src': ["'self'", "'unsafe-inline'", 'cdn.tiny.cloud'],
+          'font-src': ["'self'", 'cdn.tiny.cloud', 'data:'],
+          'img-src': ["'self'", 'data:', 'blob:', 'dl.airtable.com', 'res.cloudinary.com', 'cdn.tiny.cloud'],
           upgradeInsecureRequests: null,
         },
       },
