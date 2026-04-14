@@ -11,10 +11,34 @@
   "pluginOptions": {},
   "attributes": {
     "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
-    "privacyPolicyContent": { "type": "richtext" },
+    "privacyPolicyContent": {
+      "type": "richtext",
+      "customField": "plugin::ckeditor.CKEditor",
+      "options": {
+        "licenseKey": "GPL",
+        "preset": "rich",
+        "output": "HTML"
+      }
+    },
     "offerAgreementTitle": { "type": "string", "default": "Договор оферты" },
-    "offerAgreementContent": { "type": "richtext" },
+    "offerAgreementContent": {
+      "type": "richtext",
+      "customField": "plugin::ckeditor.CKEditor",
+      "options": {
+        "licenseKey": "GPL",
+        "preset": "rich",
+        "output": "HTML"
+      }
+    },
     "referralProgramTermsTitle": { "type": "string", "default": "Условия программы" },
-    "referralProgramTermsContent": { "type": "richtext" }
+    "referralProgramTermsContent": {
+      "type": "richtext",
+      "customField": "plugin::ckeditor.CKEditor",
+      "options": {
+        "licenseKey": "GPL",
+        "preset": "rich",
+        "output": "HTML"
+      }
+    }
   }
 }
