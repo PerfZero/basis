@@ -3,9 +3,8 @@ WORKDIR /app
 COPY . .
 RUN npm ci
 
-FROM node:22-alpine AS builder
+FROM deps AS builder
 WORKDIR /app
-COPY --from=deps /app /app
 ARG STRAPI_URL=http://cms:1337
 ENV STRAPI_URL=${STRAPI_URL}
 ENV NODE_OPTIONS=--max-old-space-size=4096

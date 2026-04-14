@@ -3,9 +3,8 @@ WORKDIR /app
 COPY . .
 RUN npm ci
 
-FROM node:22-alpine AS builder
+FROM deps AS builder
 WORKDIR /app
-COPY --from=deps /app /app
 ARG STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
 ARG ADMIN_PATH=/admin
 ENV STRAPI_ADMIN_BACKEND_URL=${STRAPI_ADMIN_BACKEND_URL}
