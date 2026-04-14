@@ -3,21 +3,7 @@ import type { Core } from '@strapi/strapi';
 const config: Core.Config.Middlewares = [
   'strapi::logger',
   'strapi::errors',
-  {
-    name: 'strapi::security',
-    config: {
-      contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-          'script-src': ["'self'", "'unsafe-inline'", 'https:', 'cdn.ckeditor.com'],
-          'connect-src': ["'self'", 'https:', 'http:', 'ws:', 'wss:', 'proxy-event.ckeditor.com'],
-          'img-src': ["'self'", 'data:', 'blob:', 'cdn.ckeditor.com', 'res.cloudinary.com'],
-          'media-src': ["'self'", 'data:', 'blob:'],
-          upgradeInsecureRequests: null,
-        },
-      },
-    },
-  },
+  'strapi::security',
   'strapi::cors',
   'strapi::poweredBy',
   'strapi::query',

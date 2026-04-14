@@ -685,7 +685,7 @@
     min-width: 0;
     word-break: break-word;
     overflow-wrap: break-word;
-    max-width: calc(55% - 10px);
+    max-width: calc(75% - 10px);
   }
   .line        { display: none; }
   .description { grid-column: 1; grid-row: 4; font-size: 11px; min-width: 0; max-width: calc(55% - 10px); }

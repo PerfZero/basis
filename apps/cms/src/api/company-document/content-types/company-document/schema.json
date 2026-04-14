@@ -13,31 +13,31 @@
     "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
     "privacyPolicyContent": {
       "type": "richtext",
-      "customField": "plugin::ckeditor.CKEditor",
+      "customField": "plugin::jodit-editor.jodit",
       "options": {
-        "licenseKey": "GPL",
-        "preset": "rich",
-        "output": "HTML"
+        "height": 400,
+        "readonly": false,
+        "toolbar": true
       }
     },
     "offerAgreementTitle": { "type": "string", "default": "Договор оферты" },
     "offerAgreementContent": {
       "type": "richtext",
-      "customField": "plugin::ckeditor.CKEditor",
+      "customField": "plugin::jodit-editor.jodit",
       "options": {
-        "licenseKey": "GPL",
-        "preset": "rich",
-        "output": "HTML"
+        "height": 400,
+        "readonly": false,
+        "toolbar": true
       }
     },
     "referralProgramTermsTitle": { "type": "string", "default": "Условия программы" },
     "referralProgramTermsContent": {
       "type": "richtext",
-      "customField": "plugin::ckeditor.CKEditor",
+      "customField": "plugin::jodit-editor.jodit",
       "options": {
-        "licenseKey": "GPL",
-        "preset": "rich",
-        "output": "HTML"
+        "height": 400,
+        "readonly": false,
+        "toolbar": true
       }
     }
   }

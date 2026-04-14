@@ -508,22 +508,22 @@ export interface ApiCompanyDocumentCompanyDocument
       Schema.Attribute.Private;
     offerAgreementContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
+        'plugin::jodit-editor.jodit',
         {
-          licenseKey: 'GPL';
-          output: 'HTML';
-          preset: 'rich';
+          height: 400;
+          readonly: false;
+          toolbar: true;
         }
       >;
     offerAgreementTitle: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'\u0414\u043E\u0433\u043E\u0432\u043E\u0440 \u043E\u0444\u0435\u0440\u0442\u044B'>;
     privacyPolicyContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
+        'plugin::jodit-editor.jodit',
         {
-          licenseKey: 'GPL';
-          output: 'HTML';
-          preset: 'rich';
+          height: 400;
+          readonly: false;
+          toolbar: true;
         }
       >;
     privacyPolicyTitle: Schema.Attribute.String &
@@ -531,11 +531,11 @@ export interface ApiCompanyDocumentCompanyDocument
     publishedAt: Schema.Attribute.DateTime;
     referralProgramTermsContent: Schema.Attribute.RichText &
       Schema.Attribute.CustomField<
-        'plugin::ckeditor.CKEditor',
+        'plugin::jodit-editor.jodit',
         {
-          licenseKey: 'GPL';
-          output: 'HTML';
-          preset: 'rich';
+          height: 400;
+          readonly: false;
+          toolbar: true;
         }
       >;
     referralProgramTermsTitle: Schema.Attribute.String &
