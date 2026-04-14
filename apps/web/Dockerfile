@@ -9,6 +9,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ARG STRAPI_URL=http://cms:1337
 ENV STRAPI_URL=${STRAPI_URL}
+ENV NODE_OPTIONS=--max-old-space-size=4096
 RUN npm run build
 
 FROM node:22-alpine AS runner

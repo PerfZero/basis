@@ -11,6 +11,7 @@ ARG STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
 ARG ADMIN_PATH=/admin
 ENV STRAPI_ADMIN_BACKEND_URL=${STRAPI_ADMIN_BACKEND_URL}
 ENV ADMIN_PATH=${ADMIN_PATH}
+ENV NODE_OPTIONS=--max-old-space-size=4096
 RUN npm run build
 
 FROM node:22-alpine AS runner
