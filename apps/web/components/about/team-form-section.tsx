@@ -33,8 +33,10 @@ export function TeamFormSection({
   const visibleMembers = members.slice(0, 3);
   if (visibleMembers.length === 0) return null;
   const docsContact = visibleMembers[0];
-  const docsPhone = contactBlock?.docsPhoneValue || docsContact?.phone || "+7 495 555 66 77";
-  const docsEmail = contactBlock?.docsEmailValue || docsContact?.email || "info@basisthree.ru";
+  const docsPhone =
+    contactBlock?.docsPhoneValue || docsContact?.phone || "+7 495 555 66 77";
+  const docsEmail =
+    contactBlock?.docsEmailValue || docsContact?.email || "info@basisthree.ru";
   const coffeeImageStyle = contactBlock?.coffeeImageUrl
     ? { backgroundImage: `url(${contactBlock.coffeeImageUrl})` }
     : undefined;
@@ -58,11 +60,15 @@ export function TeamFormSection({
                       <p className={s.role}>{member.role}</p>
                       <h3 className={s.name}>{member.name}</h3>
                       <span className={s.line} />
-                      {member.description && <p className={s.description}>{member.description}</p>}
+                      {member.description && (
+                        <p className={s.description}>{member.description}</p>
+                      )}
                     </div>
                     {/* QR shown on mobile only */}
                     <div className={s.cardQrMobile} aria-hidden="true">
-                      {member.contactHandle && <p className={s.handle}>{member.contactHandle}</p>}
+                      {member.contactHandle && (
+                        <p className={s.handle}>{member.contactHandle}</p>
+                      )}
                       {member.qrCodeUrl ? (
                         <Image
                           src={member.qrCodeUrl}
@@ -91,7 +97,9 @@ export function TeamFormSection({
 
                   {/* QR shown on desktop only */}
                   <div className={s.cardQrDesktop}>
-                    {member.contactHandle && <p className={s.handle}>{member.contactHandle}</p>}
+                    {member.contactHandle && (
+                      <p className={s.handle}>{member.contactHandle}</p>
+                    )}
                     {member.qrCodeUrl ? (
                       <Image
                         src={member.qrCodeUrl}
@@ -126,13 +134,13 @@ export function TeamFormSection({
             ))}
           </div>
 
-          <div className={s.formCol} id="contact">
+          <div className={s.formCol}>
             <h3 className={s.formTitle}>ОПИШИТЕ ВАШ ТЕХНОЛОГИЧЕСКИЙ ВЫЗОВ</h3>
             <AboutRequestForm />
           </div>
         </div>
 
-        <div className={s.contactCards}>
+        <div className={s.contactCards} id="contact">
           <div className={s.contactTopRow}>
             <article className={s.workCard}>
               <div className={s.cornerTab} aria-hidden="true">
@@ -147,10 +155,16 @@ export function TeamFormSection({
                   />
                 )}
               </div>
-              <h3 className={s.contactCardTitle}>{contactBlock?.workTitle || "Режим работы"}</h3>
+              <h3 className={s.contactCardTitle}>
+                {contactBlock?.workTitle || "Режим работы"}
+              </h3>
               <div className={s.contactSpacer} />
-              <p className={s.contactLabel}>{contactBlock?.workLabel || "Мы работаем в ритме бизнеса:"}</p>
-              <p className={s.contactValue}>{contactBlock?.workValue || "Пн - Пт, 10:00 - 18:00"}</p>
+              <p className={s.contactLabel}>
+                {contactBlock?.workLabel || "Мы работаем в ритме бизнеса:"}
+              </p>
+              <p className={s.contactValue}>
+                {contactBlock?.workValue || "Пн - Пт, 10:00 - 18:00"}
+              </p>
             </article>
 
             <article className={s.docsCard}>
@@ -166,15 +180,21 @@ export function TeamFormSection({
                   />
                 )}
               </div>
-              <h3 className={s.contactCardTitleLight}>{contactBlock?.docsTitle || "Для документов"}</h3>
+              <h3 className={s.contactCardTitleLight}>
+                {contactBlock?.docsTitle || "Для документов"}
+              </h3>
               <div className={s.contactSpacer} />
               <div className={s.docsRow}>
                 <div className={s.docsCol}>
-                  <p className={s.docsLabel}>{contactBlock?.docsPhoneLabel || "Телефон"}</p>
+                  <p className={s.docsLabel}>
+                    {contactBlock?.docsPhoneLabel || "Телефон"}
+                  </p>
                   <p className={s.docsValue}>{docsPhone}</p>
                 </div>
                 <div className={s.docsCol}>
-                  <p className={s.docsLabel}>{contactBlock?.docsEmailLabel || "Эл. почта"}</p>
+                  <p className={s.docsLabel}>
+                    {contactBlock?.docsEmailLabel || "Эл. почта"}
+                  </p>
                   <p className={s.docsValue}>{docsEmail}</p>
                 </div>
               </div>
@@ -183,7 +203,9 @@ export function TeamFormSection({
 
           <article className={s.coffeeCard}>
             <div className={s.coffeeContent}>
-              <h3 className={s.coffeeTitle}>{contactBlock?.coffeeTitle || "Начнем с кофе"}</h3>
+              <h3 className={s.coffeeTitle}>
+                {contactBlock?.coffeeTitle || "Начнем с кофе"}
+              </h3>
               <p className={s.coffeeText}>
                 {contactBlock?.coffeeText ||
                   "Если вы в Петербурге - приглашаем на личную встречу для обсуждения архитектуры вашего проекта"}
@@ -191,8 +213,12 @@ export function TeamFormSection({
             </div>
             <div className={s.coffeeMedia} style={coffeeImageStyle}>
               <a className={s.coffeeButton} href="#contact">
-                <span>{contactBlock?.coffeeButtonLabel || "Договориться о встрече"}</span>
-                <span className={s.coffeeButtonCircle} aria-hidden="true">→</span>
+                <span>
+                  {contactBlock?.coffeeButtonLabel || "Договориться о встрече"}
+                </span>
+                <span className={s.coffeeButtonCircle} aria-hidden="true">
+                  →
+                </span>
               </a>
             </div>
           </article>

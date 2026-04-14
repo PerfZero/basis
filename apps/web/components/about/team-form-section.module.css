@@ -639,7 +639,7 @@
     margin-bottom: 24px;
   }
 
-  /* Team cards — mobile layout */
+  /* Team cards — mobile layout: photo absolute top-right, info flex column */
   .card {
     display: block;
     position: relative;
@@ -653,9 +653,7 @@
     top: 0;
     right: 0;
     width: 50%;
-    height: 62%;
-    min-height: unset;
-    order: unset;
+    height: 65%;
     border-radius: 0 20px 0 0;
   }
 
@@ -663,40 +661,57 @@
     object-position: top center;
   }
 
-  /* Info: covers full card, z-index above photo */
+  /* Info: absolute full-card, flex column */
   .cardInfo {
     position: absolute;
     inset: 0;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
     z-index: 2;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 80px;
-    grid-template-rows: 1fr auto auto auto auto auto auto;
-    column-gap: 10px;
-    row-gap: 2px;
-    height: 100%;
   }
 
-  /* Left column */
-  .role        { grid-column: 1; grid-row: 2; align-self: end; min-width: 0; }
-  .name        {
-    grid-column: 1; grid-row: 3;
-    font-size: 16px; line-height: 1.15;
+  /* cardBody pushed to bottom by margin-top: auto */
+  .cardBody {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .cardText {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
     min-width: 0;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    max-width: calc(75% - 10px);
   }
-  .line        { display: none; }
-  .description { grid-column: 1; grid-row: 4; font-size: 11px; min-width: 0; max-width: calc(55% - 10px); }
-  .spacer      { display: none; }
-  .contactLabel { grid-column: 1 / -1; grid-row: 5; margin-top: 10px; }
-  .phone       { grid-column: 1 / -1; grid-row: 6; }
-  .email       { grid-column: 1 / -1; grid-row: 7; }
 
-  /* Right column: handle (row 2) + QR (rows 3-4), z-index above photo */
-  .handle  { grid-column: 2; grid-row: 2; align-self: end; text-align: right; font-size: 11px; position: relative; z-index: 3; }
-  .qrImage { grid-column: 2; grid-row: 3 / 5; width: 72px; height: 72px; margin-top: 4px; position: relative; z-index: 3; }
+  .cardQrMobile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+
+  .cardQrDesktop { display: none; }
+
+  .spacer { height: 10px; flex: none; }
+
+  /* cardContact: flex column */
+  .cardContact {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .role        { font-size: 12px; }
+  .name        { font-size: 16px; line-height: 1.15; }
+  .line        { display: none; }
+  .description { font-size: 11px; max-width: calc(55% - 10px); }
+
+  .handle  { text-align: right; font-size: 11px; }
+  .qrImage { width: 72px; height: 72px; margin-top: 4px; }
   .qrPlaceholder { display: none; }
 
   /* Form */
