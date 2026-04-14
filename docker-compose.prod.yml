@@ -55,6 +55,20 @@ services:
     expose:
       - "3000"
 
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - web
+      - cms
+
 volumes:
   basis_postgres_data:
     external: true
@@ -62,3 +76,5 @@ volumes:
   basis_cms_uploads:
     external: true
     name: ${CMS_UPLOADS_VOLUME_NAME:-basis_basis_cms_uploads}
+  caddy_data:
+  caddy_config:
