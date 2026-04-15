@@ -23,16 +23,16 @@ jobs:
         include:
           - service: web
             image: ghcr.io/perfzero/basis-web
-            context: ./apps/web
+            context: .
             file: ./apps/web/Dockerfile
             build_args: |
               STRAPI_URL=http://cms:1337
           - service: cms
             image: ghcr.io/perfzero/basis-cms
-            context: ./apps/cms
+            context: .
             file: ./apps/cms/Dockerfile
             build_args: |
-              STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
+              STRAPI_ADMIN_BACKEND_URL=https://cms.basisthree.ru
               ADMIN_PATH=/admin
 
     steps:
