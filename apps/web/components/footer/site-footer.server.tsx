@@ -1,4 +1,4 @@
-import { getFooterSocialLinks } from "@/lib/strapi/company-documents";
+import { getFooterData } from "@/lib/strapi/company-documents";
 import { SiteFooter } from "./site-footer";
 
 type MenuItem = { id: number; title: string; link: string };
@@ -27,7 +27,14 @@ async function getMenuServices(): Promise<MenuItem[]> {
 
 export async function SiteFooterServer() {
   const services = await getMenuServices();
-  const socialLinks = await getFooterSocialLinks();
+  const footerData = await getFooterData();
 
-  return <SiteFooter services={services} socialLinks={socialLinks} />;
+  return (
+    <SiteFooter
+      services={services}
+      socialLinks={footerData.socialLinks}
+      contactEmail={footerData.contactEmail}
+      contactPhone={footerData.contactPhone}
+    />
+  );
 }

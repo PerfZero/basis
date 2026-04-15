@@ -10,6 +10,14 @@
   "options": { "draftAndPublish": true },
   "pluginOptions": {},
   "attributes": {
+    "contactEmail": {
+      "type": "string",
+      "default": "info@basisthree.ru"
+    },
+    "contactPhone": {
+      "type": "string",
+      "default": "+7 (989) 655–12–12"
+    },
     "privacyPolicyTitle": { "type": "string", "default": "Политика конфиденциальности" },
     "privacyPolicyContent": {
       "type": "richtext",

@@ -38,7 +38,7 @@ services:
     depends_on:
       - db
     volumes:
-      - basis_cms_uploads:/app/public/uploads
+      - basis_cms_uploads:/app/apps/cms/public/uploads
     expose:
       - "1337"
 

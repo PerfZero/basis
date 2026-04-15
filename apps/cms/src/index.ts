@@ -1342,6 +1342,24 @@ const companyDocumentsLabels = {
   },
   metadatas: {
     id: { edit: {}, list: { label: "ID", searchable: false, sortable: false } },
+    contactEmail: {
+      edit: {
+        label: "Email для футера",
+        description: "Почта в колонке «Контакты».",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Email", searchable: true, sortable: false },
+    },
+    contactPhone: {
+      edit: {
+        label: "Телефон для футера",
+        description: "Телефон в колонке «Контакты».",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Телефон", searchable: true, sortable: false },
+    },
     privacyPolicyTitle: {
       edit: {
         label: "Заголовок: Политика конфиденциальности",
@@ -1409,6 +1427,7 @@ const companyDocumentsLabels = {
   layouts: {
     list: ["id"],
     edit: [
+      [{ name: "contactEmail", size: 6 }, { name: "contactPhone", size: 6 }],
       [{ name: "privacyPolicyTitle", size: 12 }],
       [{ name: "privacyPolicyContent", size: 12 }],
       [{ name: "offerAgreementTitle", size: 12 }],
@@ -1427,14 +1446,14 @@ const socialLinkComponentLabels = {
     filterable: false,
     searchable: false,
     pageSize: 20,
-    mainField: "title",
+    mainField: "url",
     defaultSortBy: "id",
     defaultSortOrder: "ASC",
   },
   metadatas: {
     id: { edit: {}, list: { label: "ID", searchable: false, sortable: false } },
     title: {
-      edit: { label: "Название", visible: true, editable: true },
+      edit: { label: "Название (необязательно)", visible: true, editable: true },
       list: { label: "Название", searchable: true, sortable: false },
     },
     url: {

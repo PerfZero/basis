@@ -276,19 +276,6 @@ export interface BlocksStatCard extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSocialLink extends Struct.ComponentSchema {
-  collectionName: 'components_shared_social_links';
-  info: {
-    description: '\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0441\u043E\u0446\u0441\u0435\u0442\u044C';
-    displayName: '\u0421\u043E\u0446\u0441\u0435\u0442\u044C';
-  };
-  attributes: {
-    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    url: Schema.Attribute.String & Schema.Attribute.Required;
-  };
-}
-
 export interface SharedSeo extends Struct.ComponentSchema {
   collectionName: 'components_shared_seos';
   info: {
@@ -307,6 +294,19 @@ export interface SharedSeo extends Struct.ComponentSchema {
     ogImage: Schema.Attribute.Media<'images'>;
     ogTitle: Schema.Attribute.String;
     robotsNoIndex: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface SharedSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_shared_social_links';
+  info: {
+    description: '\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0441\u043E\u0446\u0441\u0435\u0442\u044C';
+    displayName: '\u0421\u043E\u0446\u0441\u0435\u0442\u044C';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String;
+    url: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -332,8 +332,8 @@ declare module '@strapi/strapi' {
       'blocks.service-target-card': BlocksServiceTargetCard;
       'blocks.service-target-section': BlocksServiceTargetSection;
       'blocks.stat-card': BlocksStatCard;
-      'shared.social-link': SharedSocialLink;
       'shared.seo': SharedSeo;
+      'shared.social-link': SharedSocialLink;
     }
   }
 }

@@ -16,11 +16,19 @@ export type SocialLink = {
 };
 
 export type CompanyDocumentsData = {
+  contactEmail?: string;
+  contactPhone?: string;
   privacyPolicy?: CompanyDocumentText;
   offerAgreement?: CompanyDocumentText;
   referralProgramTerms?: CompanyDocumentText;
   socialLinks?: SocialLink[];
 } | null;
+
+export type FooterData = {
+  contactEmail: string;
+  contactPhone: string;
+  socialLinks: SocialLink[];
+};
 
 type StrapiData = Record<string, unknown>;
 
@@ -74,7 +82,7 @@ function normalizeSocialLinks(value: unknown): SocialLink[] {
 
       return {
         id,
-        title: title || "Соцсеть",
+        title,
         url,
         iconUrl: resolveStrapiMediaUrl(iconUrl ?? null),
       };
@@ -100,6 +108,8 @@ export async function getCompanyDocuments(): Promise<CompanyDocumentsData> {
     if (!data) return null;
 
     return {
+      contactEmail: normalizeString(data.contactEmail),
+      contactPhone: normalizeString(data.contactPhone),
       privacyPolicy: normalizeDocument(data, "privacyPolicyTitle", "privacyPolicyContent"),
       offerAgreement: normalizeDocument(data, "offerAgreementTitle", "offerAgreementContent"),
       referralProgramTerms: normalizeDocument(data, "referralProgramTermsTitle", "referralProgramTermsContent"),
@@ -116,7 +126,10 @@ export async function getFooterSocialLinks(): Promise<SocialLink[]> {
     : {};
 
   try {
-    const response = await fetch(`${STRAPI_URL}/api/company-document?populate=*`, {
+    const query = new URLSearchParams();
+    query.set("populate[socialLinks][populate]", "icon");
+
+    const response = await fetch(`${STRAPI_URL}/api/company-document?${query.toString()}`, {
       headers,
       cache: "no-store",
     });
@@ -130,5 +143,41 @@ export async function getFooterSocialLinks(): Promise<SocialLink[]> {
     return normalizeSocialLinks(data.socialLinks);
   } catch {
     return [];
+  }
+}
+
+export async function getFooterData(): Promise<FooterData> {
+  const headers: Record<string, string> = STRAPI_TOKEN
+    ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
+    : {};
+
+  const fallback: FooterData = {
+    contactEmail: "info@basisthree.ru",
+    contactPhone: "+7 (989) 655–12–12",
+    socialLinks: [],
+  };
+
+  try {
+    const query = new URLSearchParams();
+    query.set("populate[socialLinks][populate]", "icon");
+
+    const response = await fetch(`${STRAPI_URL}/api/company-document?${query.toString()}`, {
+      headers,
+      cache: "no-store",
+    });
+
+    if (!response.ok) return fallback;
+
+    const json = await response.json();
+    const data = extractSingleTypeData(json);
+    if (!data) return fallback;
+
+    return {
+      contactEmail: normalizeString(data.contactEmail) || fallback.contactEmail,
+      contactPhone: normalizeString(data.contactPhone) || fallback.contactPhone,
+      socialLinks: normalizeSocialLinks(data.socialLinks),
+    };
+  } catch {
+    return fallback;
   }
 }
