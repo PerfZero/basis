@@ -576,10 +576,10 @@ const serviceCardLabels = {
       edit: {
         label: "Выделенная карточка (тёмный фон)",
         description: "Включи для тёмно-бирюзового варианта",
-        visible: true,
+        visible: false,
         editable: true,
       },
-      list: { label: "Выделена", searchable: false, sortable: true },
+      list: { label: "Выделена", searchable: false, sortable: false },
     },
     sortOrder: {
       edit: {
@@ -593,12 +593,9 @@ const serviceCardLabels = {
     },
   },
   layouts: {
-    list: ["id", "title", "isFeatured", "sortOrder"],
+    list: ["id", "title", "sortOrder"],
     edit: [
-      [
-        { name: "title", size: 8 },
-        { name: "isFeatured", size: 4 },
-      ],
+      [{ name: "title", size: 12 }],
       [{ name: "description", size: 12 }],
       [
         { name: "link", size: 8 },
@@ -1241,6 +1238,7 @@ const PUBLIC_UIDS = [
   "api::diag-cta.diag-cta",
   "api::about-page.about-page",
   "api::company-document.company-document",
+  "api::site-setting.site-setting",
   "api::contact-request.contact-request",
   "api::diagnostic-request.diagnostic-request",
 ];
@@ -1436,6 +1434,68 @@ const companyDocumentsLabels = {
       [{ name: "referralProgramTermsTitle", size: 12 }],
       [{ name: "referralProgramTermsContent", size: 12 }],
       [{ name: "socialLinks", size: 12 }],
+    ],
+  },
+};
+
+const siteSettingLabels = {
+  uid: "api::site-setting.site-setting",
+  settings: {
+    bulkable: false,
+    filterable: false,
+    searchable: false,
+    pageSize: 10,
+    mainField: "id",
+    defaultSortBy: "id",
+    defaultSortOrder: "ASC",
+  },
+  metadatas: {
+    id: { edit: {}, list: { label: "ID", searchable: false, sortable: false } },
+    gtmContainerId: {
+      edit: {
+        label: "GTM ID",
+        description: "Например: GTM-XXXXXXX",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "GTM", searchable: false, sortable: false },
+    },
+    yandexMetrikaId: {
+      edit: {
+        label: "ID Яндекс.Метрики",
+        description: "Только число, например: 12345678",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Метрика", searchable: false, sortable: false },
+    },
+    customHeadScript: {
+      edit: {
+        label: "Скрипт в <head>",
+        description:
+          "Дополнительный JS-код для вставки в head. Можно вставлять как чистый JS, так и <script>...</script>.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Скрипт head", searchable: false, sortable: false },
+    },
+    customBodyScript: {
+      edit: {
+        label: "Скрипт перед </body>",
+        description:
+          "Дополнительный JS-код для вставки в конец body. Можно вставлять как чистый JS, так и <script>...</script>.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Скрипт body", searchable: false, sortable: false },
+    },
+  },
+  layouts: {
+    list: ["id"],
+    edit: [
+      [{ name: "gtmContainerId", size: 6 }, { name: "yandexMetrikaId", size: 6 }],
+      [{ name: "customHeadScript", size: 12 }],
+      [{ name: "customBodyScript", size: 12 }],
     ],
   },
 };
@@ -1907,6 +1967,7 @@ export default {
     await setContentManagerConfig(strapi, contactRequestLabels);
     await setContentManagerConfig(strapi, aboutPageLabels);
     await setContentManagerConfig(strapi, companyDocumentsLabels);
+    await setContentManagerConfig(strapi, siteSettingLabels);
     await setComponentConfig(strapi, principleComponentLabels);
     await setComponentConfig(strapi, seoComponentLabels);
     await setComponentConfig(strapi, socialLinkComponentLabels);

@@ -1,0 +1,28 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Настройки сайта",
+    "description": "Глобальные коды метрик и скриптов"
+  },
+  "options": { "draftAndPublish": true },
+  "pluginOptions": {},
+  "attributes": {
+    "gtmContainerId": {
+      "type": "string",
+      "default": ""
+    },
+    "yandexMetrikaId": {
+      "type": "string",
+      "default": ""
+    },
+    "customHeadScript": {
+      "type": "text"
+    },
+    "customBodyScript": {
+      "type": "text"
+    }
+  }
+}
