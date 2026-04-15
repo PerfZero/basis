@@ -116,7 +116,7 @@ export async function getFooterSocialLinks(): Promise<SocialLink[]> {
     : {};
 
   try {
-    const response = await fetch(`${STRAPI_URL}/api/company-document?populate[socialLinks]=*`, {
+    const response = await fetch(`${STRAPI_URL}/api/company-document?populate=*`, {
       headers,
       cache: "no-store",
     });
