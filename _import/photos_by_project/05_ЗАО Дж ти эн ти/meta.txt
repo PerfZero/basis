@@ -1,3 +1,0 @@
-title: ЗАО Дж ти эн ти
-project_date: Январь 2026
-project_location: Москва

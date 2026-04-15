@@ -1,5 +1,6 @@
 node_modules/
 *.log
+.DS_Store
 .env
 .env.local
 .env.*.local
@@ -8,5 +9,16 @@ apps/*/.env.local
 apps/*/.env.production
 apps/*/.next/
 apps/cms/.strapi/
+apps/cms/public/uploads/*
+!apps/cms/public/uploads/.gitkeep
 apps/*/dist/
 apps/*/build/
+
+# local agent/debug/temp artifacts
+.playwright-mcp/
+.tmp/
+backups/
+
+# one-off local import/media/debug files
+_import/
+about-*.png
