@@ -1242,6 +1242,7 @@ const PUBLIC_UIDS = [
   "api::about-page.about-page",
   "api::company-document.company-document",
   "api::contact-request.contact-request",
+  "api::diagnostic-request.diagnostic-request",
 ];
 
 async function grantPublicPermissions(strapi: Core.Strapi) {
@@ -1252,7 +1253,7 @@ async function grantPublicPermissions(strapi: Core.Strapi) {
   if (!publicRole) return;
 
   for (const uid of PUBLIC_UIDS) {
-    const actions = uid.includes("contact-request")
+    const actions = uid.includes("contact-request") || uid.includes("diagnostic-request")
       ? ["create"]
       : uid.includes("team-member") ||
           uid.includes("menu-service") ||
