@@ -1,0 +1,23 @@
+.git
+.github
+.claude
+.playwright-mcp
+.tmp
+.DS_Store
+
+**/node_modules
+**/.next
+**/dist
+**/build
+**/coverage
+**/.cache
+
+*.log
+npm-debug.log*
+
+# Local/temporary artifacts not needed in CI image builds
+workout-auth
+about-before.png
+about-after.png
+about-team-form-after.png
+about-ywjc9-final.png
