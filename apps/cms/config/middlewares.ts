@@ -20,7 +20,6 @@ const config: Core.Config.Middlewares = [
             'dl.airtable.com',
             'res.cloudinary.com',
             'cdn.tiny.cloud',
-            'https://cms.basis.devdenis.ru',
             'https://cms.basisthree.ru',
             'http://localhost:1337',
           ],

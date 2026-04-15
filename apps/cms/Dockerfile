@@ -5,7 +5,7 @@ RUN npm ci
 
 FROM deps AS builder
 WORKDIR /app
-ARG STRAPI_ADMIN_BACKEND_URL=https://cms.basis.devdenis.ru
+ARG STRAPI_ADMIN_BACKEND_URL=https://cms.basisthree.ru
 ARG ADMIN_PATH=/admin
 ENV STRAPI_ADMIN_BACKEND_URL=${STRAPI_ADMIN_BACKEND_URL}
 ENV ADMIN_PATH=${ADMIN_PATH}
