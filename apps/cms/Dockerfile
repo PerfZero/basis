@@ -2,6 +2,7 @@ FROM node:22-alpine AS deps
 WORKDIR /app
 COPY . .
 RUN npm ci --include=optional
+RUN npm --workspace apps/cms install --no-save --os=linux --libc=musl --cpu=x64 sharp
 
 FROM deps AS builder
 WORKDIR /app
