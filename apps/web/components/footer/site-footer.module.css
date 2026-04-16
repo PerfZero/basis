@@ -1,5 +1,9 @@
 .footer {
-  background: radial-gradient(79.18% 100% at 50% 0%, rgba(255, 255, 255, 0) 46.32%, rgba(11, 122, 102, 0.15) 100%);
+  background: radial-gradient(
+    79.18% 100% at 50% 0%,
+    rgba(255, 255, 255, 0) 46.32%,
+    rgba(11, 122, 102, 0.15) 100%
+  );
   padding-top: 60px;
   overflow: hidden;
 }
@@ -126,7 +130,7 @@ a.bottomItem:hover {
 .bigLogoAccent {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size:clamp(43px, 10.75vw, 153px);
+  font-size: clamp(43px, 10.75vw, 153px);
   text-transform: uppercase;
   text-align: center;
 }
@@ -188,12 +192,11 @@ a.bottomItem:hover {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: #0b7a66;
   }
 
   .socialIcon {
-    width: 24px;
-    height: 24px;
+    width: 34px;
+    height: 34px;
   }
 
   .col .bottomItem,
@@ -211,5 +214,4 @@ a.bottomItem:hover {
   .mobileLegal .bottomItem {
     white-space: normal;
   }
-
 }
