@@ -100,6 +100,16 @@ export function SiteFooter({
             </Link>
           </div>
         </div>
+
+        <div className={styles.mobileLegal}>
+          <span className={styles.bottomItem}>© {year}. Все права защищены</span>
+          <Link href="/privacy" className={styles.bottomItem}>
+            Политика конфиденциальности
+          </Link>
+          <Link href="/oferta" className={styles.bottomItem}>
+            Договор оферты
+          </Link>
+        </div>
       </div>
 
       <div className={styles.bigLogoWrap} aria-hidden="true">

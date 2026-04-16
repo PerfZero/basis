@@ -110,6 +110,10 @@ a.bottomItem:hover {
   opacity: 1;
 }
 
+.mobileLegal {
+  display: none;
+}
+
 .bigLogoWrap {
   display: flex;
   justify-content: center;
@@ -138,13 +142,9 @@ a.bottomItem:hover {
 /* ── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .columns {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-    padding-bottom: 32px;
-  }
-
-  .colContacts {
-    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding-bottom: 20px;
   }
 
   .col {
@@ -155,8 +155,61 @@ a.bottomItem:hover {
     gap: 14px;
   }
 
+  .colMain {
+    gap: 10px;
+  }
+
+  .colList {
+    gap: 8px;
+  }
+
+  .colLabel {
+    font-size: 14px;
+  }
+
+  .colLink {
+    font-size: 18px;
+    line-height: 130%;
+  }
+
   .contactsTopRow {
-    gap: 10px 16px;
+    justify-content: flex-start;
+    gap: 10px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .socials {
+    margin-top: 8px;
+    gap: 10px;
+  }
+
+  .socialBtn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #0b7a66;
+  }
+
+  .socialIcon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .col .bottomItem,
+  .colContacts .bottomItem {
+    display: none;
+  }
+
+  .mobileLegal {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 16px;
+  }
+
+  .mobileLegal .bottomItem {
+    white-space: normal;
   }
 
 }
