@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Golos_Text } from "next/font/google";
 import Script from "next/script";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
+import { CookieConsentBanner } from "@/components/shared/cookie-consent-banner";
 import { getSiteSettings, toInlineScriptCode } from "@/lib/strapi/site-settings";
 import "./globals.css";
 
@@ -93,6 +94,7 @@ export default async function RootLayout({
           />
         ) : null}
         {children}
+        <CookieConsentBanner />
         <ScrollToTopButton />
       </body>
     </html>
