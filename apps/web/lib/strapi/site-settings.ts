@@ -6,6 +6,8 @@ export type SiteSettings = {
   yandexMetrikaId: string;
   customHeadScript: string;
   customBodyScript: string;
+  cookieBannerText: string;
+  cookiePolicyUrl: string;
 };
 
 const fallback: SiteSettings = {
@@ -13,6 +15,9 @@ const fallback: SiteSettings = {
   yandexMetrikaId: "",
   customHeadScript: "",
   customBodyScript: "",
+  cookieBannerText:
+    "Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать сайт, вы соглашаетесь с",
+  cookiePolicyUrl: "/privacy",
 };
 
 function normalizeString(value: unknown): string {
@@ -55,6 +60,11 @@ function normalizeYandexMetrikaId(value: string): string {
   return digits.length > 0 ? digits : "";
 }
 
+function normalizeCookiePolicyUrl(value: string): string {
+  const trimmed = value.trim();
+  return trimmed || fallback.cookiePolicyUrl;
+}
+
 export async function getSiteSettings(): Promise<SiteSettings> {
   const headers: Record<string, string> = STRAPI_TOKEN
     ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
@@ -77,6 +87,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       yandexMetrikaId: normalizeYandexMetrikaId(normalizeString(data.yandexMetrikaId)),
       customHeadScript: normalizeString(data.customHeadScript),
       customBodyScript: normalizeString(data.customBodyScript),
+      cookieBannerText: normalizeString(data.cookieBannerText) || fallback.cookieBannerText,
+      cookiePolicyUrl: normalizeCookiePolicyUrl(normalizeString(data.cookiePolicyUrl)),
     };
   } catch {
     return fallback;

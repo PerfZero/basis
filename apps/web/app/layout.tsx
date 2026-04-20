@@ -94,7 +94,10 @@ export default async function RootLayout({
           />
         ) : null}
         {children}
-        <CookieConsentBanner />
+        <CookieConsentBanner
+          text={siteSettings.cookieBannerText}
+          policyUrl={siteSettings.cookiePolicyUrl}
+        />
         <ScrollToTopButton />
       </body>
     </html>

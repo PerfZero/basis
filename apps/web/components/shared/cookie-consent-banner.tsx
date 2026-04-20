@@ -1,28 +1,28 @@
 "use client";
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./cookie-consent-banner.module.css";
 
 const CONSENT_KEY = "basis_cookie_consent_v1";
+const DEFAULT_TEXT =
+  "Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать сайт, вы соглашаетесь с";
+const DEFAULT_POLICY_URL = "/privacy";
 
-export function CookieConsentBanner() {
-  const [visible, setVisible] = useState(false);
+type CookieConsentBannerProps = {
+  text?: string;
+  policyUrl?: string;
+};
 
-  useEffect(() => {
-    const saved = window.localStorage.getItem(CONSENT_KEY);
-    if (!saved) {
-      setVisible(true);
-    }
-  }, []);
+export function CookieConsentBanner({ text, policyUrl }: CookieConsentBannerProps) {
+  const [visible, setVisible] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.localStorage.getItem(CONSENT_KEY) !== "accepted";
+  });
+  const bannerText = text?.trim() || DEFAULT_TEXT;
+  const policyHref = policyUrl?.trim() || DEFAULT_POLICY_URL;
 
   const onAccept = () => {
     window.localStorage.setItem(CONSENT_KEY, "accepted");
-    setVisible(false);
-  };
-
-  const onReject = () => {
-    window.localStorage.setItem(CONSENT_KEY, "rejected");
     setVisible(false);
   };
 
@@ -34,17 +34,13 @@ export function CookieConsentBanner() {
     <div className={styles.banner} role="dialog" aria-live="polite" aria-label="Согласие на cookie">
       <div className={styles.content}>
         <p className={styles.text}>
-          Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать
-          сайт, вы соглашаетесь с{" "}
-          <Link href="/privacy" className={styles.link}>
+          {bannerText}{" "}
+          <a href={policyHref} className={styles.link}>
             политикой конфиденциальности
-          </Link>
+          </a>
           .
         </p>
         <div className={styles.actions}>
-          <button type="button" className={`${styles.button} ${styles.buttonGhost}`} onClick={onReject}>
-            Отклонить
-          </button>
           <button type="button" className={`${styles.button} ${styles.buttonPrimary}`} onClick={onAccept}>
             Принять
           </button>

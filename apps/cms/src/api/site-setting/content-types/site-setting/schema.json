@@ -5,7 +5,7 @@
     "singularName": "site-setting",
     "pluralName": "site-settings",
     "displayName": "Настройки сайта",
-    "description": "Глобальные коды метрик и скриптов"
+    "description": "Глобальные настройки сайта: метрики, скрипты и cookie-баннер"
   },
   "options": { "draftAndPublish": true },
   "pluginOptions": {},
@@ -23,6 +23,14 @@
     },
     "customBodyScript": {
       "type": "text"
+    },
+    "cookieBannerText": {
+      "type": "text",
+      "default": "Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать сайт, вы соглашаетесь с"
+    },
+    "cookiePolicyUrl": {
+      "type": "string",
+      "default": "/privacy"
     }
   }
 }

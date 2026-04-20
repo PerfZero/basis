@@ -1489,6 +1489,26 @@ const siteSettingLabels = {
       },
       list: { label: "Скрипт body", searchable: false, sortable: false },
     },
+    cookieBannerText: {
+      edit: {
+        label: "Cookie-баннер: текст",
+        description:
+          "Текст перед ссылкой на политику конфиденциальности в плашке cookie.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Текст cookie", searchable: false, sortable: false },
+    },
+    cookiePolicyUrl: {
+      edit: {
+        label: "Cookie-баннер: ссылка на политику",
+        description:
+          "Можно указать относительный путь (/privacy) или полный URL.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Ссылка cookie", searchable: false, sortable: false },
+    },
   },
   layouts: {
     list: ["id"],
@@ -1496,6 +1516,8 @@ const siteSettingLabels = {
       [{ name: "gtmContainerId", size: 6 }, { name: "yandexMetrikaId", size: 6 }],
       [{ name: "customHeadScript", size: 12 }],
       [{ name: "customBodyScript", size: 12 }],
+      [{ name: "cookieBannerText", size: 12 }],
+      [{ name: "cookiePolicyUrl", size: 12 }],
     ],
   },
 };
