@@ -25,11 +25,14 @@ export default async function RootLayout({
   const siteSettings = await getSiteSettings();
   const headScriptCode = toInlineScriptCode(siteSettings.customHeadScript);
   const bodyScriptCode = toInlineScriptCode(siteSettings.customBodyScript);
+  const faviconHref = siteSettings.faviconUrl || "/favicon.ico";
 
   return (
     <html lang="ru" className={`h-full antialiased ${golosText.variable}`}>
-      {siteSettings.gtmContainerId ? (
-        <head>
+      <head>
+        <link rel="icon" href={faviconHref} sizes="any" />
+        <link rel="shortcut icon" href={faviconHref} />
+        {siteSettings.gtmContainerId ? (
           <Script
             id="gtm-loader"
             strategy="beforeInteractive"
@@ -37,23 +40,15 @@ export default async function RootLayout({
               __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode&&f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${siteSettings.gtmContainerId}');`,
             }}
           />
-          {headScriptCode ? (
-            <Script
-              id="custom-head-script"
-              strategy="beforeInteractive"
-              dangerouslySetInnerHTML={{ __html: headScriptCode }}
-            />
-          ) : null}
-        </head>
-      ) : headScriptCode ? (
-        <head>
+        ) : null}
+        {headScriptCode ? (
           <Script
             id="custom-head-script"
             strategy="beforeInteractive"
             dangerouslySetInnerHTML={{ __html: headScriptCode }}
           />
-        </head>
-      ) : null}
+        ) : null}
+      </head>
       <body className="min-h-full flex flex-col">
         {siteSettings.gtmContainerId ? (
           <noscript>

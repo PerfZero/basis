@@ -1509,6 +1509,15 @@ const siteSettingLabels = {
       },
       list: { label: "Ссылка cookie", searchable: false, sortable: false },
     },
+    favicon: {
+      edit: {
+        label: "Favicon сайта",
+        description: "Иконка вкладки браузера. Рекомендуется квадрат PNG/ICO.",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Favicon", searchable: false, sortable: false },
+    },
   },
   layouts: {
     list: ["id"],
@@ -1518,6 +1527,7 @@ const siteSettingLabels = {
       [{ name: "customBodyScript", size: 12 }],
       [{ name: "cookieBannerText", size: 12 }],
       [{ name: "cookiePolicyUrl", size: 12 }],
+      [{ name: "favicon", size: 12 }],
     ],
   },
 };

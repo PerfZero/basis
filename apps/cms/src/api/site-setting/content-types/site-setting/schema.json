@@ -31,6 +31,13 @@
     "cookiePolicyUrl": {
       "type": "string",
       "default": "/privacy"
+    },
+    "favicon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }
