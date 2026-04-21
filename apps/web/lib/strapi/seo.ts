@@ -100,6 +100,9 @@ export function buildMetadataFromSeo({
       ? toAbsoluteUrl(path)
       : undefined;
   const ogImage = seo?.ogImage?.url ? toAbsoluteUrl(seo.ogImage.url) : undefined;
+  const socialTitle = seo?.ogTitle ?? title;
+  const socialDescription = seo?.ogDescription ?? description;
+  const hasSocialImage = Boolean(ogImage);
   const keywords = splitKeywords(seo?.keywords);
 
   return {
@@ -109,13 +112,17 @@ export function buildMetadataFromSeo({
     ...(canonical ? { alternates: { canonical } } : {}),
     ...(seo?.robotsNoIndex ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
-      ...(seo?.ogTitle || title ? { title: seo?.ogTitle ?? title } : {}),
-      ...(seo?.ogDescription || description
-        ? { description: seo?.ogDescription ?? description }
-        : {}),
+      ...(socialTitle ? { title: socialTitle } : {}),
+      ...(socialDescription ? { description: socialDescription } : {}),
       ...(canonical ? { url: canonical } : {}),
       ...(ogType ? { type: ogType } : {}),
       ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+    },
+    twitter: {
+      card: hasSocialImage ? "summary_large_image" : "summary",
+      ...(socialTitle ? { title: socialTitle } : {}),
+      ...(socialDescription ? { description: socialDescription } : {}),
+      ...(ogImage ? { images: [ogImage] } : {}),
     },
   };
 }
