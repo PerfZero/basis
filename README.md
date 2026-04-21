@@ -144,6 +144,7 @@ docker compose -f docker-compose.prod.yml up -d
 - `TRANSFER_TOKEN_SALT`
 - `ENCRYPTION_KEY`
 - `JWT_SECRET`
+- `NEXT_PUBLIC_SITE_URL` (публичный URL сайта, например `https://basisthree.ru`, нужен для корректных Open Graph ссылок)
 - `STRAPI_URL` (обычно `http://cms:1337` внутри docker-сети)
 - `STRAPI_API_TOKEN` (для чтения контента сайтом при необходимости)
 

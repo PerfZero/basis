@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { resolveStrapiMediaUrl } from "./media-url";
 
-const DEFAULT_SITE_URL = "http://localhost:3000";
+const DEFAULT_SITE_URL =
+  process.env.NODE_ENV === "production"
+    ? "https://basisthree.ru"
+    : "http://localhost:3000";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -21,7 +24,7 @@ function asBoolean(value: unknown): boolean | undefined {
 }
 
 function getSiteUrl(): string {
-  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const value = process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.SITE_URL?.trim();
   return value && value.length > 0 ? value : DEFAULT_SITE_URL;
 }
 
