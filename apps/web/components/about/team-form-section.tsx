@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { TeamSectionData } from "@/lib/strapi/team";
+import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
 import { AboutRequestForm } from "./about-request-form.client";
 import s from "./team-form-section.module.css";
 
@@ -221,14 +222,14 @@ export function TeamFormSection({
               </p>
             </div>
             <div className={s.coffeeMedia} style={coffeeImageStyle}>
-              <a className={s.coffeeButton} href="#contact">
+              <DiagnosticTriggerButton className={s.coffeeButton}>
                 <span>
                   {contactBlock?.coffeeButtonLabel || "Договориться о встрече"}
                 </span>
                 <span className={s.coffeeButtonCircle} aria-hidden="true">
                   →
                 </span>
-              </a>
+              </DiagnosticTriggerButton>
             </div>
           </article>
         </div>
