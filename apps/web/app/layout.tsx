@@ -4,6 +4,7 @@ import Script from "next/script";
 import { ScrollToTopButton } from "@/components/shared/scroll-to-top-button";
 import { CookieConsentBanner } from "@/components/shared/cookie-consent-banner";
 import { getSiteSettings, toInlineScriptCode } from "@/lib/strapi/site-settings";
+import { getSiteUrl } from "@/lib/strapi/seo";
 import "./globals.css";
 
 const golosText = Golos_Text({
@@ -13,8 +14,24 @@ const golosText = Golos_Text({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
+  applicationName: "BasisThree",
   title: "Диагностика | Главная",
   description: "Сайт компании: услуги, о компании, контакты",
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+  },
+  openGraph: {
+    siteName: "BasisThree",
+    locale: "ru_RU",
+    type: "website",
+    images: [{ url: "/Rectangle 23.png", width: 1200, height: 500, alt: "BasisThree" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/Rectangle 23.png"],
+  },
 };
 
 export default async function RootLayout({
@@ -72,6 +89,7 @@ export default async function RootLayout({
             />
             <noscript>
               <div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`https://mc.yandex.ru/watch/${siteSettings.yandexMetrikaId}`}
                   style={{ position: "absolute", left: "-9999px" }}
@@ -92,6 +110,7 @@ export default async function RootLayout({
         <CookieConsentBanner
           text={siteSettings.cookieBannerText}
           policyUrl={siteSettings.cookiePolicyUrl}
+          acceptButtonLabel={siteSettings.cookieAcceptButtonLabel}
         />
         <ScrollToTopButton />
       </body>

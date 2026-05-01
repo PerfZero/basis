@@ -2,18 +2,10 @@ import Image from "next/image";
 import blurBack from "@/app/blur_back.png";
 import type { HeroBlockData } from "@/lib/strapi/hero-block";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./hero-section.module.css";
 
 type Props = HeroBlockData;
-
-function renderTextWithBreaks(text: string) {
-  return text.split("\n").map((line, index) => (
-    <span key={`${line}-${index}`}>
-      {index > 0 && <br />}
-      {line}
-    </span>
-  ));
-}
 
 export function HeroSection({
   eyebrow,
@@ -35,15 +27,19 @@ export function HeroSection({
           {headingParts.map((part, i) =>
             part.accent ? (
               <span key={i} className={s.headingAccent}>
-                {renderTextWithBreaks(`[${part.text}]`)}
+                <FormattedText text={`[${part.text}]`} />
               </span>
             ) : (
-              <span key={i}>{renderTextWithBreaks(part.text)}</span>
+              <span key={i}>
+                <FormattedText text={part.text} />
+              </span>
             )
           )}
         </h1>
 
-        <p className={s.description}>{description}</p>
+        <p className={s.description}>
+          <FormattedText text={description} />
+        </p>
 
         <div className={s.buttons}>
           <DiagnosticTriggerButton className={s.btnPrimary}>

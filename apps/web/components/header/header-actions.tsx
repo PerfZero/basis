@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -12,21 +12,20 @@ type HeaderActionsProps = {
   mobile?: boolean;
 };
 
-export function HeaderActions({ className, mobile = false }: HeaderActionsProps) {
+function hasAuthCookie(): boolean {
+  if (typeof document === "undefined") return false;
+  return document.cookie
+    .split(";")
+    .map((part) => part.trim())
+    .some((part) => part.startsWith("basis_jwt=") || part.startsWith("basis_user="));
+}
+
+export function HeaderActions({ className }: HeaderActionsProps) {
   const [open, setOpen] = useState(false);
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const pathname = usePathname();
   const isCabinetPage = pathname?.startsWith("/cabinet");
+  const isAuthorized = hasAuthCookie();
   const isProfileActive = Boolean(isCabinetPage || isAuthorized);
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    const hasAuthCookie = document.cookie
-      .split(";")
-      .map((part) => part.trim())
-      .some((part) => part.startsWith("basis_jwt=") || part.startsWith("basis_user="));
-    setIsAuthorized(hasAuthCookie);
-  }, [pathname]);
 
   return (
     <>

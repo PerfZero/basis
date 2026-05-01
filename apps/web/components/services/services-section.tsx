@@ -1,12 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ServicesSectionData } from "@/lib/strapi/services";
+import { FormattedText } from "@/components/shared/formatted-text";
+import { splitCmsTextLines } from "@/lib/text-format";
 import styles from "./services-section.module.css";
 
 function splitHeadingLines(value: string): string[] {
-  return value
-    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
-    .split(/(?:<br\s*\/?>|\r?\n)/gi)
+  return splitCmsTextLines(value)
     .map((line) => line.trim())
     .filter((line) => line.length > 0);
 }
@@ -28,6 +28,11 @@ export function ServicesSection({ heading, subheading, cards }: ServicesSectionD
                 ))
               : heading}
           </h2>
+          {subheading && (
+            <p className={styles.subheading}>
+              <FormattedText text={subheading} />
+            </p>
+          )}
         </div>
         <div className={styles.grid}>
           {cards.map((card) => (
@@ -47,9 +52,13 @@ export function ServicesSection({ heading, subheading, cards }: ServicesSectionD
                       />
                     </div>
                   )}
-                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <h3 className={styles.cardTitle}>
+                    <FormattedText text={card.title} />
+                  </h3>
                   {card.description && (
-                    <p className={styles.cardDescription}>{card.description}</p>
+                    <p className={styles.cardDescription}>
+                      <FormattedText text={card.description} />
+                    </p>
                   )}
                   {card.link && (
                     <span className={styles.cardLink}>

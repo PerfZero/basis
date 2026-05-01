@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import type { ServicePageData } from "@/lib/strapi/service-page";
 import s from "./service-cta.module.css";
 
@@ -28,17 +29,26 @@ export function ServiceCta({
     <section className={s.section}>
       <div className={s.container}>
         <h2 className={s.heading}>
-          <span>{ctaHeading}</span>
+          <span>
+            <FormattedText text={ctaHeading} />
+          </span>
           {ctaHeadingAccent && (
-            <span className={s.headingAccent}> {ctaHeadingAccent}</span>
+            <span className={s.headingAccent}>
+              {" "}
+              <FormattedText text={ctaHeadingAccent} />
+            </span>
           )}
         </h2>
 
-        {ctaSubheading && <p className={s.subheading}>{ctaSubheading}</p>}
+        {ctaSubheading && (
+          <p className={s.subheading}>
+            <FormattedText text={ctaSubheading} />
+          </p>
+        )}
 
         {ctaPrimaryButtonLabel && (
           <DiagnosticTriggerButton className={s.btn} dataTargetHref={targetHref}>
-            {ctaPrimaryButtonLabel}
+            <FormattedText text={ctaPrimaryButtonLabel} />
           </DiagnosticTriggerButton>
         )}
 

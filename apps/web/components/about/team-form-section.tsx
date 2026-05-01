@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { TeamSectionData } from "@/lib/strapi/team";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import { AboutRequestForm } from "./about-request-form.client";
 import s from "./team-form-section.module.css";
 
@@ -46,8 +47,14 @@ export function TeamFormSection({
     <section className={s.section}>
       <div className={s.inner}>
         <header className={s.header}>
-          <h2 className={s.heading}>{heading}</h2>
-          {subheading && <p className={s.subheading}>{subheading}</p>}
+          <h2 className={s.heading}>
+            <FormattedText text={heading} />
+          </h2>
+          {subheading && (
+            <p className={s.subheading}>
+              <FormattedText text={subheading} />
+            </p>
+          )}
         </header>
 
         <div className={s.contentRow}>
@@ -67,11 +74,17 @@ export function TeamFormSection({
                   {/* mobile: flex row (text left, qr right); desktop: transparent wrapper */}
                   <div className={s.cardBody}>
                     <div className={s.cardText}>
-                      <p className={s.role}>{member.role}</p>
-                      <h3 className={s.name}>{member.name}</h3>
+                      <p className={s.role}>
+                        <FormattedText text={member.role} />
+                      </p>
+                      <h3 className={s.name}>
+                        <FormattedText text={member.name} />
+                      </h3>
                       <span className={s.line} />
                       {member.description && (
-                        <p className={s.description}>{member.description}</p>
+                        <p className={s.description}>
+                          <FormattedText text={member.description} />
+                        </p>
                       )}
                     </div>
                     {/* QR shown on mobile only */}
@@ -166,14 +179,14 @@ export function TeamFormSection({
                 )}
               </div>
               <h3 className={s.contactCardTitle}>
-                {contactBlock?.workTitle || "Режим работы"}
+                <FormattedText text={contactBlock?.workTitle || "Режим работы"} />
               </h3>
               <div className={s.contactSpacer} />
               <p className={s.contactLabel}>
-                {contactBlock?.workLabel || "Мы работаем в ритме бизнеса:"}
+                <FormattedText text={contactBlock?.workLabel || "Мы работаем в ритме бизнеса:"} />
               </p>
               <p className={s.contactValue}>
-                {contactBlock?.workValue || "Пн - Пт, 10:00 - 18:00"}
+                <FormattedText text={contactBlock?.workValue || "Пн - Пт, 10:00 - 18:00"} />
               </p>
             </article>
 
@@ -191,21 +204,25 @@ export function TeamFormSection({
                 )}
               </div>
               <h3 className={s.contactCardTitleLight}>
-                {contactBlock?.docsTitle || "Для документов"}
+                <FormattedText text={contactBlock?.docsTitle || "Для документов"} />
               </h3>
               <div className={s.contactSpacer} />
               <div className={s.docsRow}>
                 <div className={s.docsCol}>
                   <p className={s.docsLabel}>
-                    {contactBlock?.docsPhoneLabel || "Телефон"}
+                    <FormattedText text={contactBlock?.docsPhoneLabel || "Телефон"} />
                   </p>
-                  <p className={s.docsValue}>{docsPhone}</p>
+                  <p className={s.docsValue}>
+                    <FormattedText text={docsPhone} />
+                  </p>
                 </div>
                 <div className={s.docsCol}>
                   <p className={s.docsLabel}>
-                    {contactBlock?.docsEmailLabel || "Эл. почта"}
+                    <FormattedText text={contactBlock?.docsEmailLabel || "Эл. почта"} />
                   </p>
-                  <p className={s.docsValue}>{docsEmail}</p>
+                  <p className={s.docsValue}>
+                    <FormattedText text={docsEmail} />
+                  </p>
                 </div>
               </div>
             </article>
@@ -214,17 +231,21 @@ export function TeamFormSection({
           <article className={s.coffeeCard}>
             <div className={s.coffeeContent}>
               <h3 className={s.coffeeTitle}>
-                {contactBlock?.coffeeTitle || "Начнем с кофе"}
+                <FormattedText text={contactBlock?.coffeeTitle || "Начнем с кофе"} />
               </h3>
               <p className={s.coffeeText}>
-                {contactBlock?.coffeeText ||
-                  "Если вы в Петербурге - приглашаем на личную встречу для обсуждения архитектуры вашего проекта"}
+                <FormattedText
+                  text={
+                    contactBlock?.coffeeText ||
+                    "Если вы в Петербурге - приглашаем на личную встречу для обсуждения архитектуры вашего проекта"
+                  }
+                />
               </p>
             </div>
             <div className={s.coffeeMedia} style={coffeeImageStyle}>
               <DiagnosticTriggerButton className={s.coffeeButton}>
                 <span>
-                  {contactBlock?.coffeeButtonLabel || "Договориться о встрече"}
+                  <FormattedText text={contactBlock?.coffeeButtonLabel || "Договориться о встрече"} />
                 </span>
                 <span className={s.coffeeButtonCircle} aria-hidden="true">
                   →

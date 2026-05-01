@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { ServicePageData, ServiceAutoTab } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-auto.module.css";
 
 type Props = Pick<NonNullable<ServicePageData>, "autoTitle" | "autoTabs">;
@@ -16,7 +17,11 @@ export function ServiceAuto({ autoTitle, autoTabs }: Props) {
 
   return (
     <section className={s.section}>
-      {autoTitle && <h2 className={s.title}>{autoTitle}</h2>}
+      {autoTitle && (
+        <h2 className={s.title}>
+          <FormattedText text={autoTitle} />
+        </h2>
+      )}
 
       <div className={s.card}>
         <div className={s.tabs}>
@@ -26,7 +31,7 @@ export function ServiceAuto({ autoTitle, autoTabs }: Props) {
               className={[s.tab, i === active ? s.tabActive : ""].join(" ")}
               onClick={() => setActive(i)}
             >
-              {t.label}
+              <FormattedText text={t.label} />
               <span className={s.tabDivider} />
             </button>
           ))}
@@ -34,10 +39,15 @@ export function ServiceAuto({ autoTitle, autoTabs }: Props) {
 
         <div className={s.body}>
           <div className={s.left}>
-            {tab?.subtitle && <h3 className={s.subtitle}>{tab.subtitle}</h3>}
+            {tab?.subtitle && (
+              <h3 className={s.subtitle}>
+                <FormattedText text={tab.subtitle} />
+              </h3>
+            )}
             {tab?.challenge && (
               <p className={s.challenge}>
-                <span className={s.challengeLabel}>Вызов:</span> {tab.challenge}
+                <span className={s.challengeLabel}>Вызов:</span>{" "}
+                <FormattedText text={tab.challenge} />
               </p>
             )}
             {tab?.feature && (
@@ -53,12 +63,14 @@ export function ServiceAuto({ autoTitle, autoTabs }: Props) {
                     </defs>
                   </svg>
                 </span>
-                <p className={s.featureText}>{tab.feature}</p>
+                <p className={s.featureText}>
+                  <FormattedText text={tab.feature} />
+                </p>
               </div>
             )}
             {tab?.buttonLabel && (
               <DiagnosticTriggerButton className={s.btn} dataTargetHref={tab.buttonHref ?? "#contact"}>
-                {tab.buttonLabel}
+                <FormattedText text={tab.buttonLabel} />
                 <span className={s.btnArrow} aria-hidden>
                   <svg width="13" height="8" viewBox="0 0 13 8" fill="none">
                     <path d="M0.5 3.18201C0.223858 3.18201 0 3.40586 0 3.68201C0 3.95815 0.223858 4.18201 0.5 4.18201V3.68201V3.18201ZM12.8536 4.03556C13.0488 3.8403 13.0488 3.52371 12.8536 3.32845L9.67157 0.146472C9.47631-0.04879 9.15973-0.04879 8.96447 0.146472C8.7692 0.341734 8.7692 0.658317 8.96447 0.853579L11.7929 3.68201L8.96447 6.51043C8.7692 6.7057 8.7692 7.02228 8.96447 7.21754C9.15973 7.4128 9.47631 7.4128 9.67157 7.21754L12.8536 4.03556ZM0.5 3.68201V4.18201H12.5V3.68201V3.18201H0.5V3.68201Z" fill="currentColor"/>

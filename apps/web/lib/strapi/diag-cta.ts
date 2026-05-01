@@ -1,5 +1,6 @@
 import type { HeadingPart } from "./hero-block";
 import { resolveStrapiMediaUrl } from "./media-url";
+import { normalizeCmsText } from "@/lib/text-format";
 
 export type DiagCtaData = {
   headingParts: HeadingPart[];
@@ -12,16 +13,17 @@ export type DiagCtaData = {
 const FALLBACK_HEADING = "Диагностика [ВАШИХ] Бизнес-Процессов";
 
 function parseHeading(raw: string): HeadingPart[] {
+  const normalized = normalizeCmsText(raw);
   const parts: HeadingPart[] = [];
   const regex = /\[([^\]]+)\]/g;
   let last = 0;
   let match;
-  while ((match = regex.exec(raw)) !== null) {
-    if (match.index > last) parts.push({ text: raw.slice(last, match.index), accent: false });
+  while ((match = regex.exec(normalized)) !== null) {
+    if (match.index > last) parts.push({ text: normalized.slice(last, match.index), accent: false });
     parts.push({ text: match[1], accent: true });
     last = match.index + match[0].length;
   }
-  if (last < raw.length) parts.push({ text: raw.slice(last), accent: false });
+  if (last < normalized.length) parts.push({ text: normalized.slice(last), accent: false });
   return parts;
 }
 

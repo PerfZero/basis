@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { resolveStrapiMediaUrl } from "./media-url";
 
-const DEFAULT_SITE_URL =
-  process.env.NODE_ENV === "production"
-    ? "https://basisthree.ru"
-    : "http://localhost:3000";
+const DEFAULT_SITE_URL = "https://basisthree.ru";
+const DEFAULT_OG_IMAGE = "/Rectangle 23.png";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -23,9 +21,14 @@ function asBoolean(value: unknown): boolean | undefined {
   return typeof value === "boolean" ? value : undefined;
 }
 
-function getSiteUrl(): string {
+function isLocalUrl(value: string): boolean {
+  return /(^|\.)localhost(?::|\/|$)|127\.0\.0\.1|0\.0\.0\.0/.test(value);
+}
+
+export function getSiteUrl(): string {
   const value = process.env.NEXT_PUBLIC_SITE_URL?.trim() || process.env.SITE_URL?.trim();
-  return value && value.length > 0 ? value : DEFAULT_SITE_URL;
+  if (!value || isLocalUrl(value)) return DEFAULT_SITE_URL;
+  return value.replace(/\/$/, "");
 }
 
 function toAbsoluteUrl(url: string): string | undefined {
@@ -99,7 +102,9 @@ export function buildMetadataFromSeo({
     : path
       ? toAbsoluteUrl(path)
       : undefined;
-  const ogImage = seo?.ogImage?.url ? toAbsoluteUrl(seo.ogImage.url) : undefined;
+  const ogImage = seo?.ogImage?.url
+    ? toAbsoluteUrl(seo.ogImage.url)
+    : toAbsoluteUrl(DEFAULT_OG_IMAGE);
   const socialTitle = seo?.ogTitle ?? title;
   const socialDescription = seo?.ogDescription ?? description;
   const hasSocialImage = Boolean(ogImage);
@@ -112,11 +117,24 @@ export function buildMetadataFromSeo({
     ...(canonical ? { alternates: { canonical } } : {}),
     ...(seo?.robotsNoIndex ? { robots: { index: false, follow: false } } : {}),
     openGraph: {
+      siteName: "BasisThree",
+      locale: "ru_RU",
       ...(socialTitle ? { title: socialTitle } : {}),
       ...(socialDescription ? { description: socialDescription } : {}),
       ...(canonical ? { url: canonical } : {}),
       ...(ogType ? { type: ogType } : {}),
-      ...(ogImage ? { images: [{ url: ogImage }] } : {}),
+      ...(ogImage
+        ? {
+            images: [
+              {
+                url: ogImage,
+                width: seo?.ogImage?.url ? 1200 : 1200,
+                height: seo?.ogImage?.url ? 630 : 500,
+                alt: socialTitle ?? "BasisThree",
+              },
+            ],
+          }
+        : {}),
     },
     twitter: {
       card: hasSocialImage ? "summary_large_image" : "summary",

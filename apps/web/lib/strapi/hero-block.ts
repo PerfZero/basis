@@ -1,4 +1,5 @@
 import { mapStrapiSeo, type StrapiSeo } from "./seo";
+import { normalizeCmsText } from "@/lib/text-format";
 
 export type HeadingPart = { text: string; accent: boolean };
 
@@ -17,9 +18,7 @@ const FALLBACK_HEADING = "Строим системы, которые [Увел�
 
 /** "Hello [World] foo" → [{text:"Hello ", accent:false}, {text:"World", accent:true}, {text:" foo", accent:false}] */
 function parseHeading(raw: string): HeadingPart[] {
-  const normalized = raw
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n");
+  const normalized = normalizeCmsText(raw);
   const parts: HeadingPart[] = [];
   const regex = /\[([^\]]+)\]/g;
   let last = 0;

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { ServicePageData, ServiceFeatureCard } from "@/lib/strapi/service-page";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-features.module.css";
 
 type Props = Pick<
@@ -19,9 +20,15 @@ export function ServiceFeatures({
       <div className={s.container}>
         {(featuresTitle || featuresTitleAccent) && (
           <h2 className={s.title}>
-            {featuresTitle && <span>{featuresTitle} </span>}
+            {featuresTitle && (
+              <span>
+                <FormattedText text={`${featuresTitle} `} />
+              </span>
+            )}
             {featuresTitleAccent && (
-              <span className={s.titleAccent}>{featuresTitleAccent}</span>
+              <span className={s.titleAccent}>
+                <FormattedText text={featuresTitleAccent} />
+              </span>
             )}
           </h2>
         )}
@@ -42,9 +49,13 @@ export function ServiceFeatures({
               ) : (
                 <span className={s.cardIconDot} aria-hidden />
               )}
-              <h3 className={s.cardTitle}>{card.title}</h3>
+              <h3 className={s.cardTitle}>
+                <FormattedText text={card.title} />
+              </h3>
               {card.description && (
-                <p className={s.cardDesc}>{card.description}</p>
+                <p className={s.cardDesc}>
+                  <FormattedText text={card.description} />
+                </p>
               )}
             </article>
           ))}

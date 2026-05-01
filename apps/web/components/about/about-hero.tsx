@@ -1,6 +1,8 @@
 import Image from "next/image";
 import s from "./about-hero.module.css";
 import type { AboutPageData } from "@/lib/strapi/about-page";
+import { FormattedText } from "@/components/shared/formatted-text";
+import { splitCmsTextLines } from "@/lib/text-format";
 const FALLBACK_BG =
   "https://images.unsplash.com/photo-1591980607210-8ea99bee96f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w4NDM0ODN8MHwxfHJhbmRvbXx8fHx8fHx8fDE3NzU0NjQwMDV8&ixlib=rb-4.1.0&q=80&w=1080";
 
@@ -15,7 +17,7 @@ type Principle = {
 type AboutData = AboutPageData;
 
 function renderAccentTextByClass(text: string, accentClass: string) {
-  const lines = text.split(/<br\s*\/?>|\n/gi);
+  const lines = splitCmsTextLines(text);
 
   return lines.flatMap((line, lineIndex) => {
     const parts = line.split(/(\[[^\]]+\])/g).filter(Boolean);
@@ -23,12 +25,16 @@ function renderAccentTextByClass(text: string, accentClass: string) {
       if (part.startsWith("[") && part.endsWith("]")) {
         return (
           <span key={`accent-${lineIndex}-${partIndex}`} className={accentClass}>
-            {part.slice(1, -1)}
+            <FormattedText text={part.slice(1, -1)} />
           </span>
         );
       }
 
-      return <span key={`plain-${lineIndex}-${partIndex}`}>{part}</span>;
+      return (
+        <span key={`plain-${lineIndex}-${partIndex}`}>
+          <FormattedText text={part} />
+        </span>
+      );
     });
 
     if (lineIndex < lines.length - 1) {
@@ -76,7 +82,9 @@ export function AboutHero({ data }: { data: AboutData }) {
     <>
       <section className={s.hero}>
         <div className={s.container}>
-          <p className={s.eyebrow}>{data?.eyebrow ?? "О компании"}</p>
+          <p className={s.eyebrow}>
+            <FormattedText text={data?.eyebrow ?? "О компании"} />
+          </p>
           <span className={s.divider} />
 
           <h1 className={s.heading}>
@@ -84,7 +92,7 @@ export function AboutHero({ data }: { data: AboutData }) {
           </h1>
 
           <p className={s.description}>
-            {data?.description ?? "Мы ценим личное общение и глубокое погружение в задачу. Если ваш бизнес требует инженерного подхода к автоматизации — мы готовы к диалогу."}
+            <FormattedText text={data?.description ?? "Мы ценим личное общение и глубокое погружение в задачу. Если ваш бизнес требует инженерного подхода к автоматизации — мы готовы к диалогу."} />
           </p>
 
           <div className={s.locations}>
@@ -103,7 +111,7 @@ export function AboutHero({ data }: { data: AboutData }) {
                 <span className={s.locationDot} aria-hidden="true" />
               )}
               <span className={s.locationText}>
-                {data?.badge1Text ?? "САНКТ-ПЕТЕРБУРГ"}
+                <FormattedText text={data?.badge1Text ?? "САНКТ-ПЕТЕРБУРГ"} />
               </span>
             </span>
             <span className={s.locationItem}>
@@ -121,7 +129,7 @@ export function AboutHero({ data }: { data: AboutData }) {
                 <span className={s.locationDot} aria-hidden="true" />
               )}
               <span className={s.locationText}>
-                {data?.badge2Text ?? "РАБОТАЕМ ПО ВСЕЙ РОССИИ"}
+                <FormattedText text={data?.badge2Text ?? "РАБОТАЕМ ПО ВСЕЙ РОССИИ"} />
               </span>
             </span>
           </div>
@@ -135,17 +143,31 @@ export function AboutHero({ data }: { data: AboutData }) {
           <div className={s.principlesOverlay} />
           <div className={s.principlesContent}>
             <h2 className={s.principlesTitle}>
-              {data?.sectionTitle ?? "«Цифровой фундамент»"}
+              <FormattedText text={data?.sectionTitle ?? "«Цифровой фундамент»"} />
             </h2>
             <div className={s.principlesGrid}>
               {principles.map((p) => (
                 <article key={p.id} className={s.principle}>
-                  {p.badge && <span className={s.principleBadge}>{p.badge}</span>}
-                  <h3 className={s.principleTitle}>{p.title}</h3>
-                  {p.paragraph1 && <p className={s.principleTextPrimary}>{p.paragraph1}</p>}
+                  {p.badge && (
+                    <span className={s.principleBadge}>
+                      <FormattedText text={p.badge} />
+                    </span>
+                  )}
+                  <h3 className={s.principleTitle}>
+                    <FormattedText text={p.title ?? ""} />
+                  </h3>
+                  {p.paragraph1 && (
+                    <p className={s.principleTextPrimary}>
+                      <FormattedText text={p.paragraph1} />
+                    </p>
+                  )}
                   <span className={s.principleDivider} />
 
-                  {p.paragraph2 && <p className={s.principleTextSecondary}>{p.paragraph2}</p>}
+                  {p.paragraph2 && (
+                    <p className={s.principleTextSecondary}>
+                      <FormattedText text={p.paragraph2} />
+                    </p>
+                  )}
                 </article>
               ))}
             </div>

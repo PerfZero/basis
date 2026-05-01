@@ -10,6 +10,7 @@ export type SiteSettings = {
   customBodyScript: string;
   cookieBannerText: string;
   cookiePolicyUrl: string;
+  cookieAcceptButtonLabel: string;
   faviconUrl: string;
 };
 
@@ -21,6 +22,7 @@ const fallback: SiteSettings = {
   cookieBannerText:
     "Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать сайт, вы соглашаетесь с",
   cookiePolicyUrl: "/privacy",
+  cookieAcceptButtonLabel: "Понятно",
   faviconUrl: "/favicon.ico",
 };
 
@@ -125,6 +127,8 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       customBodyScript: normalizeString(data.customBodyScript),
       cookieBannerText: normalizeString(data.cookieBannerText) || fallback.cookieBannerText,
       cookiePolicyUrl: normalizeCookiePolicyUrl(normalizeString(data.cookiePolicyUrl)),
+      cookieAcceptButtonLabel:
+        normalizeString(data.cookieAcceptButtonLabel) || fallback.cookieAcceptButtonLabel,
       faviconUrl: resolveStrapiMediaUrl(extractMediaUrl(data.favicon)) || fallback.faviconUrl,
     };
   } catch {

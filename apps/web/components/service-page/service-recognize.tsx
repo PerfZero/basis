@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ServicePageData, ServiceRecognizeCard } from "@/lib/strapi/service-page";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-recognize.module.css";
 
 type Props = Pick<NonNullable<ServicePageData>, "recognizeTitle" | "recognizeCards">;
@@ -13,7 +14,11 @@ export function ServiceRecognize({ recognizeTitle, recognizeCards }: Props) {
 
   return (
     <section className={s.section}>
-      {recognizeTitle && <h2 className={s.title}>{recognizeTitle}</h2>}
+      {recognizeTitle && (
+        <h2 className={s.title}>
+          <FormattedText text={recognizeTitle} />
+        </h2>
+      )}
 
       <div className={s.track}>
         {recognizeCards.map((card: ServiceRecognizeCard, i: number) => {
@@ -42,20 +47,26 @@ export function ServiceRecognize({ recognizeTitle, recognizeCards }: Props) {
               onMouseLeave={() => setHovered(null)}
             >
               <div className={s.cardText}>
-                <h3 className={s.cardTitle}>{card.title}</h3>
+                <h3 className={s.cardTitle}>
+                  <FormattedText text={card.title} />
+                </h3>
                 <div className={s.cardBody}>
                   {card.description && (
                     <p className={s.cardDesc}>
-                      <span className={s.cardDescLabel}>Суть:</span> {card.description}
+                      <span className={s.cardDescLabel}>Суть:</span>{" "}
+                      <FormattedText text={card.description} />
                     </p>
                   )}
                   {card.feature && (
-                    <p className={s.cardFeature}>{card.feature}</p>
+                    <p className={s.cardFeature}>
+                      <FormattedText text={card.feature} />
+                    </p>
                   )}
                 </div>
               </div>
               {card.image?.url && (
                 <div className={s.blocs}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={card.image.url} alt="" className={s.cardThumb} aria-hidden />
                 </div>
                 )}

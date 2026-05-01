@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { DiagCtaData } from "@/lib/strapi/diag-cta";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import styles from "./diag-cta-section.module.css";
 
 export function DiagCtaSection({ headingParts, subheading, buttonLabel, imageUrl }: DiagCtaData) {
@@ -10,13 +11,21 @@ export function DiagCtaSection({ headingParts, subheading, buttonLabel, imageUrl
         <h2 className={styles.heading}>
           {headingParts.map((part, i) =>
             part.accent ? (
-              <span key={i} className={styles.headingAccent}>{part.text}</span>
+              <span key={i} className={styles.headingAccent}>
+                <FormattedText text={part.text} />
+              </span>
             ) : (
-              <span key={i}>{part.text}</span>
+              <span key={i}>
+                <FormattedText text={part.text} />
+              </span>
             )
           )}
         </h2>
-        {subheading && <p className={styles.subheading}>{subheading}</p>}
+        {subheading && (
+          <p className={styles.subheading}>
+            <FormattedText text={subheading} />
+          </p>
+        )}
         <DiagnosticTriggerButton className={styles.btn}>{buttonLabel}</DiagnosticTriggerButton>
         {imageUrl && (
           <div className={styles.imageWrap}>

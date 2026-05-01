@@ -124,7 +124,11 @@ function NameFields({ profile, onSave }: { profile: AuthUser; onSave: (f: string
 }
 
 export function CabinetPage({ user }: { user: AuthUser }) {
-  const [tab, setTab] = useState<TabId>("profile");
+  const [tab, setTab] = useState<TabId>(() => {
+    if (typeof window === "undefined") return "profile";
+    const savedTab = window.localStorage.getItem(TAB_STORAGE_KEY);
+    return isTabId(savedTab) ? savedTab : "profile";
+  });
   const [profile, setProfile] = useState(user);
   const [passwordOpen, setPasswordOpen] = useState(false);
   const [pwdCurrent, setPwdCurrent] = useState("");
@@ -137,13 +141,6 @@ export function CabinetPage({ user }: { user: AuthUser }) {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const initials = (profile.firstName?.[0] ?? profile.username?.[0] ?? "А").toUpperCase();
-
-  useEffect(() => {
-    const savedTab = window.localStorage.getItem(TAB_STORAGE_KEY);
-    if (isTabId(savedTab)) {
-      setTab(savedTab);
-    }
-  }, []);
 
   useEffect(() => {
     window.localStorage.setItem(TAB_STORAGE_KEY, tab);

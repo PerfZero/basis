@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type TouchEventHandler } from "react";
 import type { ServicePageData, ServiceLogicSlide } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-logic.module.css";
 
 type Props = Pick<NonNullable<ServicePageData>, "logicTitle" | "logicSlides">;
@@ -13,16 +14,6 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
   const wheelDeltaRef = useRef(0);
   const lastStepTsRef = useRef(0);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
-
-  if (!logicTitle && logicSlides.length === 0) return null;
-  if (logicSlides.length === 0) return null;
-
-  useEffect(() => {
-    setActive((prev) => {
-      if (logicSlides.length === 0) return 0;
-      return ((prev % logicSlides.length) + logicSlides.length) % logicSlides.length;
-    });
-  }, [logicSlides.length]);
 
   useEffect(() => {
     const el = contentRef.current;
@@ -58,7 +49,11 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
     return () => el.removeEventListener("wheel", onWheel as EventListener);
   }, [logicSlides.length]);
 
-  const slide = logicSlides[active];
+  if (!logicTitle && logicSlides.length === 0) return null;
+  if (logicSlides.length === 0) return null;
+
+  const safeActive = ((active % logicSlides.length) + logicSlides.length) % logicSlides.length;
+  const slide = logicSlides[safeActive];
   const changeSlide = (direction: 1 | -1) => {
     setActive((prev) => (prev + direction + logicSlides.length) % logicSlides.length);
   };
@@ -99,7 +94,11 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
 
   return (
     <section className={s.section}>
-      {logicTitle && <h2 className={s.title}>{logicTitle}</h2>}
+      {logicTitle && (
+        <h2 className={s.title}>
+          <FormattedText text={logicTitle} />
+        </h2>
+      )}
 
       <div
         className={s.container}
@@ -119,15 +118,19 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
             {logicSlides.map((item: ServiceLogicSlide, i: number) => (
               <div
                 key={item.id}
-                className={[s.slide, i === active ? s.slideActive : ""].join(" ")}
+                className={[s.slide, i === safeActive ? s.slideActive : ""].join(" ")}
               >
-                <h3 className={s.slideTitle}>{item.title}</h3>
+                <h3 className={s.slideTitle}>
+                  <FormattedText text={item.title} />
+                </h3>
                 {item.description && (
-                  <p className={s.slideDesc}>{item.description}</p>
+                  <p className={s.slideDesc}>
+                    <FormattedText text={item.description} />
+                  </p>
                 )}
                 {item.buttonLabel && (
                   <DiagnosticTriggerButton className={s.btn} dataTargetHref={item.buttonHref ?? "#contact"}>
-                    {item.buttonLabel}
+                    <FormattedText text={item.buttonLabel} />
                     <span className={s.btnArrow} aria-hidden>→</span>
                   </DiagnosticTriggerButton>
                 )}
@@ -141,7 +144,7 @@ export function ServiceLogic({ logicTitle, logicSlides }: Props) {
                 <button
                   key={i}
                   type="button"
-                  className={[s.dot, i === active ? s.dotActive : ""].join(" ")}
+                  className={[s.dot, i === safeActive ? s.dotActive : ""].join(" ")}
                   onClick={() => setActive(i)}
                   aria-label={`Слайд ${i + 1}`}
                 />

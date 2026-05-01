@@ -1,4 +1,5 @@
 import type { ServicePageData, ServiceStatRow } from "@/lib/strapi/service-page";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-stats.module.css";
 
 type Props = Pick<
@@ -18,23 +19,37 @@ export function ServiceStats({
   return (
     <section className={s.section}>
       <div className={s.container}>
-        {statsTitle && <h2 className={s.title}>{statsTitle}</h2>}
+        {statsTitle && (
+          <h2 className={s.title}>
+            <FormattedText text={statsTitle} />
+          </h2>
+        )}
 
         <div className={`${s.tableWrap} ${s.desktopOnly}`}>
           <table className={s.table}>
             <thead>
               <tr>
                 <th className={s.thLabel} />
-                <th className={s.thBefore}>{statsColBefore ?? "До"}</th>
-                <th className={s.thAfter}>{statsColAfter ?? "После"}</th>
+                <th className={s.thBefore}>
+                  <FormattedText text={statsColBefore ?? "До"} />
+                </th>
+                <th className={s.thAfter}>
+                  <FormattedText text={statsColAfter ?? "После"} />
+                </th>
               </tr>
             </thead>
             <tbody>
               {statsRows.map((row: ServiceStatRow) => (
                 <tr key={row.id} className={s.row}>
-                  <td className={s.tdLabel}>{row.label}</td>
-                  <td className={s.tdBefore}>{row.valueBefore}</td>
-                  <td className={s.tdAfter}>{row.valueAfter}</td>
+                  <td className={s.tdLabel}>
+                    <FormattedText text={row.label} />
+                  </td>
+                  <td className={s.tdBefore}>
+                    <FormattedText text={row.valueBefore ?? ""} />
+                  </td>
+                  <td className={s.tdAfter}>
+                    <FormattedText text={row.valueAfter ?? ""} />
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -43,31 +58,45 @@ export function ServiceStats({
 
         <div className={s.mobileOnly}>
           <div className={s.mobileCard}>
-            <h3 className={s.mobileSectionTitle}>{statsColBefore ?? "До внедрения"}</h3>
+            <h3 className={s.mobileSectionTitle}>
+              <FormattedText text={statsColBefore ?? "До внедрения"} />
+            </h3>
             <div className={s.mobileRows}>
               {statsRows.map((row: ServiceStatRow) => (
                 <div key={`before-${row.id}`} className={s.mobileRow}>
-                  <div className={s.mobileLabel}>{row.label}</div>
-                  <div className={s.mobileValue}>{row.valueBefore}</div>
+                  <div className={s.mobileLabel}>
+                    <FormattedText text={row.label} />
+                  </div>
+                  <div className={s.mobileValue}>
+                    <FormattedText text={row.valueBefore ?? ""} />
+                  </div>
                 </div>
               ))}
             </div>
 
             <h3 className={`${s.mobileSectionTitle} ${s.mobileSectionTitleAfter}`}>
-              {statsColAfter ?? "После внедрения"}
+              <FormattedText text={statsColAfter ?? "После внедрения"} />
             </h3>
             <div className={s.mobileRows}>
               {statsRows.map((row: ServiceStatRow) => (
                 <div key={`after-${row.id}`} className={s.mobileRow}>
-                  <div className={s.mobileLabel}>{row.label}</div>
-                  <div className={`${s.mobileValue} ${s.mobileValueAfter}`}>{row.valueAfter}</div>
+                  <div className={s.mobileLabel}>
+                    <FormattedText text={row.label} />
+                  </div>
+                  <div className={`${s.mobileValue} ${s.mobileValueAfter}`}>
+                    <FormattedText text={row.valueAfter ?? ""} />
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {statsBottomText && <p className={s.bottomText}>{statsBottomText}</p>}
+        {statsBottomText && (
+          <p className={s.bottomText}>
+            <FormattedText text={statsBottomText} />
+          </p>
+        )}
       </div>
     </section>
   );

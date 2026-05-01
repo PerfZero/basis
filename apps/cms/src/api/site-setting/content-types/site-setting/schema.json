@@ -32,6 +32,10 @@
       "type": "string",
       "default": "/privacy"
     },
+    "cookieAcceptButtonLabel": {
+      "type": "string",
+      "default": "Понятно"
+    },
     "favicon": {
       "type": "media",
       "multiple": false,

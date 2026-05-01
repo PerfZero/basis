@@ -113,6 +113,42 @@ export type ServicePageData = {
   seo?: StrapiSeo;
 } | null;
 
+export async function getServicePageSlugs(): Promise<string[]> {
+  const headers: Record<string, string> = STRAPI_TOKEN
+    ? { Authorization: `Bearer ${STRAPI_TOKEN}` }
+    : {};
+
+  const query = new URLSearchParams();
+  query.set("fields[0]", "slug");
+  query.set("pagination[pageSize]", "100");
+  query.set("sort[0]", "slug:asc");
+
+  try {
+    const res = await fetch(`${STRAPI_URL}/api/service-pages?${query.toString()}`, {
+      headers,
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return [];
+
+    const json = await res.json();
+    const items = json?.data;
+    if (!Array.isArray(items)) return [];
+
+    return items
+      .map((item: { slug?: unknown; attributes?: { slug?: unknown } }) =>
+        typeof item.slug === "string"
+          ? item.slug
+          : typeof item.attributes?.slug === "string"
+            ? item.attributes.slug
+            : "",
+      )
+      .map((slug) => slug.trim())
+      .filter((slug) => slug.length > 0);
+  } catch {
+    return [];
+  }
+}
+
 export async function getServicePage(slug: string): Promise<ServicePageData> {
   const headers: Record<string, string> = STRAPI_TOKEN
     ? { Authorization: `Bearer ${STRAPI_TOKEN}` }

@@ -1,5 +1,6 @@
 import type { ServicePageData, ServiceTargetCard } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
 import s from "./service-target.module.css";
 
 type Props = Pick<
@@ -19,21 +20,32 @@ export function ServiceTarget({
     <section className={s.section}>
       <div className={s.container}>
         {targetTitle && (
-          <h2 className={s.title}>{targetTitle}</h2>
+          <h2 className={s.title}>
+            <FormattedText text={targetTitle} />
+          </h2>
         )}
 
         <div className={s.grid}>
           {targetCards.map((card: ServiceTargetCard) => (
             <article key={card.id} className={s.card}>
-              {card.tag && <span className={s.tag}>{card.tag}</span>}
-              <h3 className={s.cardTitle}>{card.title}</h3>
+              {card.tag && (
+                <span className={s.tag}>
+                  <FormattedText text={card.tag} />
+                </span>
+              )}
+              <h3 className={s.cardTitle}>
+                <FormattedText text={card.title} />
+              </h3>
               {card.challenge && (
                 <p className={s.challenge}>
-                  <span className={s.challengeLabel}>Вызов:</span> {card.challenge}
+                  <span className={s.challengeLabel}>Вызов:</span>{" "}
+                  <FormattedText text={card.challenge} />
                 </p>
               )}
               {card.feature && (
-                <p className={s.feature}>{card.feature}</p>
+                <p className={s.feature}>
+                  <FormattedText text={card.feature} />
+                </p>
               )}
             </article>
           ))}

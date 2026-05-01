@@ -1,8 +1,8 @@
 import Image from "next/image";
-import { Fragment } from "react";
-import blurBack from "@/app/blur_back.png";
 import type { ServicePageData, ServiceBadge } from "@/lib/strapi/service-page";
 import { DiagnosticTriggerButton } from "@/components/shared/diagnostic-trigger-button";
+import { FormattedText } from "@/components/shared/formatted-text";
+import { normalizeCmsText } from "@/lib/text-format";
 import s from "./service-hero.module.css";
 
 type Props = Pick<
@@ -19,11 +19,7 @@ type Props = Pick<
 type HeadingPart = { text: string; accent: boolean };
 
 function normalizeHeading(value: string): string {
-  return value
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/[\u2028\u2029]/g, "\n");
+  return normalizeCmsText(value);
 }
 
 function parseHeadingParts(value: string): HeadingPart[] {
@@ -57,15 +53,6 @@ function parseHeadingParts(value: string): HeadingPart[] {
   return parts;
 }
 
-function renderTextWithBreaks(value: string, keyPrefix: string) {
-  return normalizeHeading(value).split("\n").map((line, index) => (
-    <Fragment key={`${keyPrefix}-${index}`}>
-      {index > 0 && <br />}
-      {line}
-    </Fragment>
-  ));
-}
-
 export function ServiceHero({
   heroEyebrow,
   heroHeading,
@@ -91,24 +78,32 @@ export function ServiceHero({
     <section className={s.section}>
 
       <div className={s.inner}>
-        {heroEyebrow && <p className={s.eyebrow}>{heroEyebrow}</p>}
+        {heroEyebrow && (
+          <p className={s.eyebrow}>
+            <FormattedText text={heroEyebrow} />
+          </p>
+        )}
         <span className={s.divider} />
 
         <h1 className={s.heading}>
           {headingParts.map((part, index) =>
             part.accent ? (
               <span key={`accent-${index}`} className={s.headingAccent}>
-                {renderTextWithBreaks(part.text, `accent-${index}`)}
+                <FormattedText text={part.text} />
               </span>
             ) : (
               <span key={`plain-${index}`}>
-                {renderTextWithBreaks(part.text, `plain-${index}`)}
+                <FormattedText text={part.text} />
               </span>
             )
           )}
         </h1>
 
-        {heroDescription && <p className={s.description}>{heroDescription}</p>}
+        {heroDescription && (
+          <p className={s.description}>
+            <FormattedText text={heroDescription} />
+          </p>
+        )}
 
         <div className={s.buttons}>
           {heroPrimaryButtonLabel && (
@@ -139,7 +134,9 @@ export function ServiceHero({
                 ) : (
                   <span className={s.badgeDot} aria-hidden />
                 )}
-                <span>{badge.label}</span>
+                <span>
+                  <FormattedText text={badge.label} />
+                </span>
               </span>
             ))}
           </div>

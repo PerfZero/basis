@@ -1509,6 +1509,16 @@ const siteSettingLabels = {
       },
       list: { label: "Ссылка cookie", searchable: false, sortable: false },
     },
+    cookieAcceptButtonLabel: {
+      edit: {
+        label: "Cookie-баннер: текст кнопки",
+        description: 'Например: "Понятно".',
+        placeholder: "Понятно",
+        visible: true,
+        editable: true,
+      },
+      list: { label: "Кнопка cookie", searchable: false, sortable: false },
+    },
     favicon: {
       edit: {
         label: "Favicon сайта",
@@ -1526,7 +1536,7 @@ const siteSettingLabels = {
       [{ name: "customHeadScript", size: 12 }],
       [{ name: "customBodyScript", size: 12 }],
       [{ name: "cookieBannerText", size: 12 }],
-      [{ name: "cookiePolicyUrl", size: 12 }],
+      [{ name: "cookiePolicyUrl", size: 6 }, { name: "cookieAcceptButtonLabel", size: 6 }],
       [{ name: "favicon", size: 12 }],
     ],
   },

@@ -7,19 +7,26 @@ const CONSENT_KEY = "basis_cookie_consent_v1";
 const DEFAULT_TEXT =
   "Мы используем cookie, чтобы сайт работал корректно и для аналитики. Продолжая использовать сайт, вы соглашаетесь с";
 const DEFAULT_POLICY_URL = "/privacy";
+const DEFAULT_ACCEPT_BUTTON_LABEL = "Понятно";
 
 type CookieConsentBannerProps = {
   text?: string;
   policyUrl?: string;
+  acceptButtonLabel?: string;
 };
 
-export function CookieConsentBanner({ text, policyUrl }: CookieConsentBannerProps) {
+export function CookieConsentBanner({
+  text,
+  policyUrl,
+  acceptButtonLabel,
+}: CookieConsentBannerProps) {
   const [visible, setVisible] = useState(() => {
     if (typeof window === "undefined") return false;
     return window.localStorage.getItem(CONSENT_KEY) !== "accepted";
   });
   const bannerText = text?.trim() || DEFAULT_TEXT;
   const policyHref = policyUrl?.trim() || DEFAULT_POLICY_URL;
+  const buttonLabel = acceptButtonLabel?.trim() || DEFAULT_ACCEPT_BUTTON_LABEL;
 
   const onAccept = () => {
     window.localStorage.setItem(CONSENT_KEY, "accepted");
@@ -42,7 +49,7 @@ export function CookieConsentBanner({ text, policyUrl }: CookieConsentBannerProp
         </p>
         <div className={styles.actions}>
           <button type="button" className={`${styles.button} ${styles.buttonPrimary}`} onClick={onAccept}>
-            Принять
+            {buttonLabel}
           </button>
         </div>
       </div>

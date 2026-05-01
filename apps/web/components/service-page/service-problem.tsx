@@ -2,8 +2,10 @@
 
 import Image from "next/image";
 import gsap from "gsap";
-import { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { ServicePageData, ServiceProblemItem } from "@/lib/strapi/service-page";
+import { FormattedText } from "@/components/shared/formatted-text";
+import { normalizeCmsText } from "@/lib/text-format";
 import s from "./service-problem.module.css";
 
 const DEFAULT_DEGREE_STEP = 20;
@@ -18,11 +20,7 @@ type Props = Pick<
 type HeadingPart = { text: string; accent: boolean };
 
 function normalizeHeading(value: string): string {
-  return value
-    .replace(/<br\s*\/?>/gi, "\n")
-    .replace(/&lt;\s*br\s*\/?\s*&gt;/gi, "\n")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/[\u2028\u2029]/g, "\n");
+  return normalizeCmsText(value);
 }
 
 function parseHeadingParts(value: string): HeadingPart[] {
@@ -52,15 +50,6 @@ function parseHeadingParts(value: string): HeadingPart[] {
   return parts.length > 0 ? parts : [{ text: normalized, accent: false }];
 }
 
-function renderTextWithBreaks(value: string, keyPrefix: string) {
-  return normalizeHeading(value).split("\n").map((line, index) => (
-    <Fragment key={`${keyPrefix}-${index}`}>
-      {index > 0 && <br />}
-      {line}
-    </Fragment>
-  ));
-}
-
 export function ServiceProblem({
   problemTitle,
   problemIcon,
@@ -72,29 +61,17 @@ export function ServiceProblem({
 
   const desktopWheelItems = useMemo(() => {
     if (problemItems.length === 0) return [];
+    const normalizedDesktopOffset =
+      ((desktopOffset % problemItems.length) + problemItems.length) %
+      problemItems.length;
 
     return Array.from({ length: DESKTOP_VISIBLE_SLOTS }, (_, slotIndex) => {
-      const itemIndex = (slotIndex + desktopOffset) % problemItems.length;
+      const itemIndex = (slotIndex + normalizedDesktopOffset) % problemItems.length;
       return problemItems[itemIndex];
     });
   }, [problemItems, desktopOffset]);
 
-  useEffect(() => {
-    if (problemItems.length === 0) {
-      setDesktopOffset(0);
-      return;
-    }
-
-    setDesktopOffset((current) => {
-      const normalized = ((current % problemItems.length) + problemItems.length) % problemItems.length;
-      return normalized;
-    });
-  }, [problemItems.length]);
-
   const headingParts = problemTitle ? parseHeadingParts(problemTitle) : [];
-
-  if (!problemTitle && problemItems.length === 0) return null;
-  if (problemItems.length === 0) return null;
 
   useEffect(() => {
     const scrollControl = scrollControlRef.current;
@@ -177,6 +154,9 @@ export function ServiceProblem({
     };
   }, [problemItems.length, desktopWheelItems.length]);
 
+  if (!problemTitle && problemItems.length === 0) return null;
+  if (problemItems.length === 0) return null;
+
   return (
     <section className={s.sectionBackground}>
       <div className={s.paddingGlobal}>
@@ -190,11 +170,11 @@ export function ServiceProblem({
                       {headingParts.map((part, index) =>
                         part.accent ? (
                           <span key={`accent-${index}`} className={s.titleAccent}>
-                            {renderTextWithBreaks(part.text, `accent-${index}`)}
+                            <FormattedText text={part.text} />
                           </span>
                         ) : (
                           <span key={`plain-${index}`}>
-                            {renderTextWithBreaks(part.text, `plain-${index}`)}
+                            <FormattedText text={part.text} />
                           </span>
                         ),
                       )}
@@ -233,12 +213,16 @@ export function ServiceProblem({
                       <div role="listitem" className={s.wDynItem} key={`slot-${index}`}>
                         <div className={s.sentence}>
                           <div className={s.headingStyleH5}>
-                            <div>{item.title}</div>
+                            <div>
+                              <FormattedText text={item.title} />
+                            </div>
                           </div>
                           {item.description && (
                             <div className={s.textColorGray36}>
                               <div className={s.textSizeSmall}>
-                                <div>{item.description}</div>
+                                <div>
+                                  <FormattedText text={item.description} />
+                                </div>
                               </div>
                             </div>
                           )}
@@ -264,9 +248,13 @@ export function ServiceProblem({
                     role="listitem"
                     className={s.mobileItem}
                   >
-                    <h3 className={s.mobileSentenceTitle}>{item.title}</h3>
+                    <h3 className={s.mobileSentenceTitle}>
+                      <FormattedText text={item.title} />
+                    </h3>
                     {item.description && (
-                      <p className={s.mobileSentenceDescription}>{item.description}</p>
+                      <p className={s.mobileSentenceDescription}>
+                        <FormattedText text={item.description} />
+                      </p>
                     )}
                   </article>
                 ))}

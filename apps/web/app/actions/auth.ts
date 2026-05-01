@@ -34,6 +34,10 @@ function splitFullName(fullName: string): { firstName: string; lastName: string;
   return { firstName, lastName, middleName };
 }
 
+function buildUsername(email: string): string {
+  return email.toLowerCase();
+}
+
 export async function registerAction(data: {
   name: string;
   email: string;
@@ -43,7 +47,7 @@ export async function registerAction(data: {
   referralCode?: string;
 }): Promise<ActionResult> {
   const name = data.name.trim();
-  const email = data.email.trim();
+  const email = data.email.trim().toLowerCase();
   const password = data.password;
   const phone = data.phone.trim();
   const company = data.company.trim();
@@ -66,7 +70,7 @@ export async function registerAction(data: {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      username: name,
+      username: buildUsername(email),
       email,
       password,
     }),
@@ -160,10 +164,12 @@ export async function loginAction(data: {
   email: string;
   password: string;
 }): Promise<ActionResult> {
+  const email = data.email.trim().toLowerCase();
+
   const res = await fetch(`${STRAPI_URL}/api/auth/local`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ identifier: data.email, password: data.password }),
+    body: JSON.stringify({ identifier: email, password: data.password }),
   });
 
   const json = await res.json();
