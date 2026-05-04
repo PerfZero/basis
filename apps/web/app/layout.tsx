@@ -18,10 +18,6 @@ export const metadata: Metadata = {
   applicationName: "BasisThree",
   title: "Диагностика | Главная",
   description: "Сайт компании: услуги, о компании, контакты",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-  },
   openGraph: {
     siteName: "BasisThree",
     locale: "ru_RU",
@@ -42,13 +38,10 @@ export default async function RootLayout({
   const siteSettings = await getSiteSettings();
   const headScriptCode = toInlineScriptCode(siteSettings.customHeadScript);
   const bodyScriptCode = toInlineScriptCode(siteSettings.customBodyScript);
-  const faviconHref = siteSettings.faviconUrl || "/favicon.ico";
 
   return (
     <html lang="ru" className={`h-full antialiased ${golosText.variable}`}>
       <head>
-        <link rel="icon" href={faviconHref} sizes="any" />
-        <link rel="shortcut icon" href={faviconHref} />
         {siteSettings.gtmContainerId ? (
           <Script
             id="gtm-loader"
