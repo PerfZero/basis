@@ -38,10 +38,12 @@ export default async function RootLayout({
   const siteSettings = await getSiteSettings();
   const headScriptCode = toInlineScriptCode(siteSettings.customHeadScript);
   const bodyScriptCode = toInlineScriptCode(siteSettings.customBodyScript);
+  const faviconHref = siteSettings.faviconUrl;
 
   return (
     <html lang="ru" className={`h-full antialiased ${golosText.variable}`}>
       <head>
+        {faviconHref ? <link rel="icon" href={faviconHref} sizes="any" /> : null}
         {siteSettings.gtmContainerId ? (
           <Script
             id="gtm-loader"
